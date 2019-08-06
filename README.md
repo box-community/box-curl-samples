@@ -33,6 +33,9 @@ Box API calls.
 curl -X POST https://api.box.com/oauth2/token \
      -H "Content-Type: application/x-www-form-urlencoded" \
      -d '{
+       "client_id": "<CLIENT_ID>",
+       "client_secret": "<CLIENT_SECRET>",
+       "code": "<CODE>",
        "grant_type": "authorization_code"
      }'
 ```
@@ -45,7 +48,12 @@ that has been previously authenticated.
 <!-- sample post_oauth2_revoke -->
 ```bash
 curl -X POST https://api.box.com/oauth2/revoke \
-     -H "Content-Type: application/x-www-form-urlencoded"
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d '{
+       "client_id": "<CLIENT_ID>",
+       "client_secret": "<CLIENT_SECRET>",
+       "token": "<ACCESS_TOKEN>"
+     }'
 ```
 
 # Get a file
@@ -78,7 +86,10 @@ create a shared link, or lock a file.
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "New name"
+     }'
 ```
 
 # Delete a file
@@ -115,11 +126,7 @@ using the Chunk Upload APIs.
 curl -X POST https://upload.box.com/api/2.0/files/12345/content \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: multipart/form-data" \
-     -d '{
-       "attributes": {
-         "name": "Photo 2.0.png"
-       }
-     }'
+     -F file=@<FILE_NAME>
 ```
 
 # Preflight check
@@ -145,12 +152,11 @@ curl -X POST https://upload.box.com/api/2.0/files/content \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: multipart/form-data" \
      -d '{
-       "attributes": {
-         "name": "Photo.png",
-         "parent": {
-           "id": "124132"
-         }
-       }
+       "name": "Photo.png",
+       "parent": {
+         "id": "124132"
+       },
+       "size": 15243
      }'
 ```
 
@@ -190,7 +196,7 @@ Return information about an upload session.
 
 <!-- sample get_files_upload_sessions_id -->
 ```bash
-curl -X GET https://upload.box.com/api/2.0/files/upload_sessions/D5E3F7A \
+curl -X GET https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -200,11 +206,12 @@ Updates a chunk of an upload session for a file.
 
 <!-- sample put_files_upload_sessions_id -->
 ```bash
-curl -X PUT https://upload.box.com/api/2.0/files/upload_sessions/D5E3F7A \
+curl -X PUT https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
      -H "Content-Range: 8388608-16777215/445856194" \
-     -H "Content-Type: application/octet-stream"
+     -H "Content-Type: application/octet-stream" \
+     --data-binary @<FILE_NAME>
 ```
 
 # Abort upload session
@@ -215,7 +222,7 @@ This cannot be reversed.
 
 <!-- sample delete_files_upload_sessions_id -->
 ```bash
-curl -X DELETE https://upload.box.com/api/2.0/files/upload_sessions/D5E3F7A \
+curl -X DELETE https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -226,7 +233,7 @@ session so far.
 
 <!-- sample get_files_upload_sessions_id_parts -->
 ```bash
-curl -X GET https://upload.box.com/api/2.0/files/upload_sessions/D5E3F7A/parts \
+curl -X GET https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/parts \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -237,11 +244,27 @@ uploaded chunks.
 
 <!-- sample post_files_upload_sessions_id_commit -->
 ```bash
-curl -X POST https://upload.box.com/api/2.0/files/upload_sessions/D5E3F7A/commit \
+curl -X POST https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/commit \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
      -H "Content-Type: application/json" \
-     -d '{}'
+     -d '{
+       "parts": [
+         {
+           "part_id": "BFDF5379",
+           "offset": 0,
+           "size": 8388608
+         },
+		     {
+           "part_id": "E8A3ED8E",
+           "offset": 8388608,
+           "size": 1611392
+         }
+       ],
+       "attributes": {
+         "content_modified_at": "2017-04-08T00:58:08Z"
+       }
+     }'
 ```
 
 # Copy a file
@@ -255,7 +278,7 @@ curl -X POST https://api.box.com/2.0/files/12345/copy \
      -H "Content-Type: application/json" \
      -d '{
        "parent": {
-         "id": "0"
+         "id": "123"
        }
      }'
 ```
@@ -353,7 +376,7 @@ Versions are only tracked for Box users with premium accounts.
 
 <!-- sample get_files_id_versions_id -->
 ```bash
-curl -X GET https://api.box.com/2.0/files/12345/versions/1234 \
+curl -X GET https://api.box.com/2.0/files/12345/versions/456456 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -365,7 +388,7 @@ Versions are only tracked for Box users with premium accounts.
 
 <!-- sample delete_files_id_versions_id -->
 ```bash
-curl -X DELETE https://api.box.com/2.0/files/12345/versions/1234 \
+curl -X DELETE https://api.box.com/2.0/files/12345/versions/456456 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -389,7 +412,11 @@ former values.
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345/versions/current \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "type": "file_version",
+       "id": "456456"
+     }'
 ```
 
 # List file's metadata
@@ -423,7 +450,16 @@ will be accepted.
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "audience: "internal",
+       "documentType": "Q1 plans",
+       "competitiveDocument": "no",
+       "status": "active",
+       "author": "Jones",
+       "currentState": "proposal"
+     }'
+
 ```
 
 # Update file metadata
@@ -441,7 +477,53 @@ application of the operations, the metadata instance remains unchanged.
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '[
+        {
+          "op": "test",
+          "path": "/competitiveDocument",
+          "value": "no"
+        },
+        {
+          "op": "remove",
+          "path": "/competitiveDocument"
+        },
+        {
+          "op": "test",
+          "path": "/status",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/status",
+          "value": "inactive"
+        },
+        {
+          "op": "test",
+          "path": "/author",
+          "value": "Jones"
+        },
+        {
+          "op": "copy",
+          "from": "/author",
+          "path": "/editor"
+        },
+        {
+          "op": "test",
+          "path": "/currentState",
+          "value": "proposal"
+        },
+        {
+          "op": "move",
+          "from": "/currentState",
+          "path": "/previousState"
+        },
+        {
+          "op": "add",
+          "path": "/currentState",
+          "value": "reviewed"
+        }
+      ]'
 ```
 
 # Delete file metadata
@@ -500,7 +582,7 @@ To fetch more items within the folder, please use the
 
 <!-- sample get_folders_id -->
 ```bash
-curl -X GET https://api.box.com/2.0/folders/0 \
+curl -X GET https://api.box.com/2.0/folders/4353455 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -508,20 +590,10 @@ curl -X GET https://api.box.com/2.0/folders/0 \
 
 Restores a folder that has been moved to the trash.
 
-# Folder locking
-
-During this operation, part of the file tree will be locked, mainly
-the source folder and all of its descendants, as well as the destination
-folder.
-
-For the duration of the operation, no other move, copy, delete, or restore
-operation can performed on any of the locked folders.
-
 <!-- sample post_folders_id -->
 ```bash
-curl -X POST https://api.box.com/2.0/folders/0 \
-     -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+curl -X GET https://api.box.com/2.0/folders/4353455 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 # Update a folder
@@ -529,25 +601,14 @@ curl -X POST https://api.box.com/2.0/folders/0 \
 Updates a folder. This can be also be used to move the folder,
 create shared links, update collaborations, and more.
 
-# Folder locking
-
-When moving a folder, part of the file tree will be locked, mainly
-the source folder and all of its descendants, as well as the destination
-folder.
-
-For the duration of the move, no other move, copy, delete, or restore
-operation can performed on any of the locked folders.
-
-# Timeout
-
-Timeout for this operation is 60 seconds. The operation will include
-after a `HTTP 503` has been returned.
-
 <!-- sample put_folders_id -->
 ```bash
-curl -X PUT https://api.box.com/2.0/folders/0 \
+curl -X PUT https://api.box.com/2.0/folders/4353455 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "New folder name"
+     }'
 ```
 
 # Delete a folder
@@ -555,32 +616,9 @@ curl -X PUT https://api.box.com/2.0/folders/0 \
 Deletes a folder, either permanently or by moving it to
 the trash.
 
-# Recursive deletion
-
-This API returns an error if the folder is not empty. You
-can use the `recursive` query parameter to force this
-operation to recursively delete the folder and all of its
-contents.
-
-# Folder locking
-
-The enterprise settings determine whether the folder will
-be permanently deleted from Box or moved to the trash.
-
-During this operation, part of the file tree will be locked, mainly
-the source folder and all of its descendants.
-
-For the duration of the operation, no other move, copy, delete, or restore
-operation can performed on any of the locked folders.
-
-# Timeout
-
-Timeout for this operation is 60 seconds. The operation will include
-after a `HTTP 503` has been returned.
-
 <!-- sample delete_folders_id -->
 ```bash
-curl -X DELETE https://api.box.com/2.0/folders/0 \
+curl -X DELETE https://api.box.com/2.0/folders/4353455 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -621,43 +659,14 @@ Creates a copy of a folder within a destination folder.
 
 The original folder will not be changed.
 
-# Asynchronous copying
-
-If the folder being copied contains up to 500 items the copy will
-happen synchronously with the API call. The call will not return until
-the copy operation has completed.
-
-If the folder contains more than 500 items the copy operation will be
-executed asynchronously and the API call will return directly yet before
-the copy operation has completed. We currently have no API to check when
-a copy operation has finished.
-
-# Folder locking
-
-During this operation, part of the file tree will be locked, mainly
-the source folder and all of its descendants, as well as the destination
-folder.
-
-For the duration of the operation, no other move, copy, delete, or restore
-operation can performed on any of the locked folders. Most importantly, this
-means that the same folder can not be copied to two different parts of the
-folder tree at the same time.
-
-# Metadata
-
-If the destination folder has a metadata cascade policy attached to any of the
-parent folders a metadata cascade operation will be kicked off asynchronously.
-
-We currently have no API to check when this operation has finished.
-
 <!-- sample post_folders_id_copy -->
 ```bash
-curl -X POST https://api.box.com/2.0/folders/0/copy \
+curl -X POST https://api.box.com/2.0/folders/4353455/copy \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
        "parent": {
-         "id": "0"
+         "id": "345345"
        }
      }'
 ```
@@ -669,7 +678,7 @@ returns all the users that have access to the folder.
 
 <!-- sample get_folders_id_collaborations -->
 ```bash
-curl -X GET https://api.box.com/2.0/folders/0/collaborations \
+curl -X GET https://api.box.com/2.0/folders/4353455/collaborations \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -679,7 +688,7 @@ Retrieves a folder that has been moved to the trash.
 
 <!-- sample get_folders_id_trash -->
 ```bash
-curl -X GET https://api.box.com/2.0/folders/0/trash \
+curl -X GET https://api.box.com/2.0/folders/4353455/trash \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -690,7 +699,7 @@ This action cannot be undone.
 
 <!-- sample delete_folders_id_trash -->
 ```bash
-curl -X DELETE https://api.box.com/2.0/folders/0/trash \
+curl -X DELETE https://api.box.com/2.0/folders/4353455/trash \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -700,7 +709,7 @@ Retrieves all metadata for a given folder.
 
 <!-- sample get_folders_id_metadata -->
 ```bash
-curl -X GET https://api.box.com/2.0/folders/0/metadata \
+curl -X GET https://api.box.com/2.0/folders/4353455/metadata \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -710,7 +719,7 @@ Retrieve a specific metadata template instance for a folder
 
 <!-- sample get_folders_id_metadata_id_id -->
 ```bash
-curl -X GET https://api.box.com/2.0/folders/0/metadata/enterprise_27335/blueprintTemplate \
+curl -X GET https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -723,9 +732,17 @@ will be accepted.
 
 <!-- sample post_folders_id_metadata_id_id -->
 ```bash
-curl -X POST https://api.box.com/2.0/folders/0/metadata/enterprise_27335/blueprintTemplate \
+curl -X POST https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "audience: "internal",
+       "documentType": "Q1 plans",
+       "competitiveDocument": "no",
+       "status": "active",
+       "author": "Jones",
+       "currentState": "proposal"
+     }'
 ```
 
 # Update folder metadata
@@ -741,9 +758,55 @@ application of the operations, the metadata instance remains unchanged.
 
 <!-- sample put_folders_id_metadata_id_id -->
 ```bash
-curl -X PUT https://api.box.com/2.0/folders/0/metadata/enterprise_27335/blueprintTemplate \
+curl -X PUT https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '[
+        {
+          "op": "test",
+          "path": "/competitiveDocument",
+          "value": "no"
+        },
+        {
+          "op": "remove",
+          "path": "/competitiveDocument"
+        },
+        {
+          "op": "test",
+          "path": "/status",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/status",
+          "value": "inactive"
+        },
+        {
+          "op": "test",
+          "path": "/author",
+          "value": "Jones"
+        },
+        {
+          "op": "copy",
+          "from": "/author",
+          "path": "/editor"
+        },
+        {
+          "op": "test",
+          "path": "/currentState",
+          "value": "proposal"
+        },
+        {
+          "op": "move",
+          "from": "/currentState",
+          "path": "/previousState"
+        },
+        {
+          "op": "add",
+          "path": "/currentState",
+          "value": "reviewed"
+        }
+      ]'
 ```
 
 # Delete folder metadata
@@ -752,7 +815,7 @@ Deletes a piece of folder metadata.
 
 <!-- sample delete_folders_id_metadata_id_id -->
 ```bash
-curl -X DELETE https://api.box.com/2.0/folders/0/metadata/enterprise_27335/blueprintTemplate \
+curl -X DELETE https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -777,7 +840,7 @@ Retrieve the watermark for a folder.
 
 <!-- sample get_folders_id_watermark -->
 ```bash
-curl -X GET https://api.box.com/2.0/folders/0/watermark \
+curl -X GET https://api.box.com/2.0/folders/4353455/watermark \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -787,7 +850,7 @@ Applies or update a watermark on a folder.
 
 <!-- sample put_folders_id_watermark -->
 ```bash
-curl -X PUT https://api.box.com/2.0/folders/0/watermark \
+curl -X PUT https://api.box.com/2.0/folders/4353455/watermark \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
@@ -803,7 +866,7 @@ Removes the watermark from a folder.
 
 <!-- sample delete_folders_id_watermark -->
 ```bash
-curl -X DELETE https://api.box.com/2.0/folders/0/watermark \
+curl -X DELETE https://api.box.com/2.0/folders/4353455/watermark \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -831,7 +894,16 @@ application of the operations, the metadata template remains unchanged.
 ```bash
 curl -X PUT https://api.box.com/2.0/metadata_templates/enterprise_27335/blueprintTemplate/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '[
+       {
+         "op": "editField",
+         "fieldKey": "category",
+         "data": {
+           "displayName": "Customer Group"
+         }
+       }
+     ]'
 ```
 
 # Delete metadata template
@@ -873,7 +945,52 @@ Creates a new metadata template that can be applied to files and folders.
 ```bash
 curl -X POST https://api.box.com/2.0/metadata_templates/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+      "templateKey": "customer",
+      "scope": "enterprise",
+      "displayName": "Customer",
+      "fields": [
+        {
+          "type": "string",
+          "key": "customerTeam",
+          "displayName": "Customer team"
+        },
+        {
+          "type": "string",
+          "key": "category",
+          "displayName": "Category"
+        },
+        {
+          "type": "string",
+          "key": "brand",
+          "displayName": "Brand"
+        },
+        {
+          "type": "multiSelect",
+          "key": "fy",
+          "displayName": "FY",
+          "options": [
+            {"key": "FY11"},
+            {"key": "FY12"},
+            {"key": "FY13"},
+            {"key": "FY14"},
+            {"key": "FY15"}
+          ]
+        },
+        {
+          "type": "enum",
+          "key": "qtr",
+          "displayName": "Qtr",
+          "options": [
+            {"key": "First"},
+            {"key": "Second"},
+            {"key": "Third"},
+            {"key": "Fourth"}
+          ]
+        }
+      ]
+     }'
 ```
 
 # List cascade policies
@@ -962,7 +1079,10 @@ Update the message of a comment.
 ```bash
 curl -X PUT https://api.box.com/2.0/comments/12345 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "message": "My New Message"
+     }'
 ```
 
 # Delete comment
@@ -1011,7 +1131,10 @@ accept collaboration invites.
 ```bash
 curl -X PUT https://api.box.com/2.0/collaborations/1234 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "role": "viewer"
+     }'
 ```
 
 # Delete collaboration
@@ -1151,7 +1274,9 @@ curl -X POST https://api.box.com/2.0/task_assignments \
          "id": "11446498",
          "type": "task"
        },
-       "assign_to": {}
+       "assign_to": {
+         "id": "4823213"
+       }
      }'
 ```
 
@@ -1174,7 +1299,11 @@ used to update the state of a task.
 ```bash
 curl -X PUT https://api.box.com/2.0/task_assignments/12345 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "message": "New message",
+       "resolution_state": "completed"
+     }'
 ```
 
 # Unassign task
@@ -1201,8 +1330,7 @@ shared item when only given a shared link.
 ```bash
 curl -X GET https://api.box.com/2.0/shared_items \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&\
-     shared_link_password=letmein"
+     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
 ```
 
 # Create web link
@@ -1215,6 +1343,7 @@ curl -X POST https://api.box.com/2.0/web_links \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
+       "name": "Cloud Content Management",
        "url": "https://box.com"
      }'
 ```
@@ -1248,7 +1377,10 @@ Updates a web link object.
 ```bash
 curl -X PUT https://api.box.com/2.0/web_links/12345 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "Cloud Content Management"
+     }'
 ```
 
 # Delete web link
@@ -1309,6 +1441,7 @@ curl -X POST https://api.box.com/2.0/users \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
+       "login": "ceo@example.com",
        "name": "Aaron Levie"
      }'
 ```
@@ -1362,7 +1495,10 @@ admin permissions.
 ```bash
 curl -X PUT https://api.box.com/2.0/users/12345 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "Aaron Levie"
+     }'
 ```
 
 # Delete user
@@ -1413,7 +1549,7 @@ curl -X PUT https://api.box.com/2.0/users/12345/folders/0 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-       "enterprise": {
+       "owned_by": {
          "id": "1232234"
        }
      }'
@@ -1487,7 +1623,9 @@ curl -X POST https://api.box.com/2.0/invites \
        "enterprise": {
          "id": "1232234"
        },
-       "actionable_by": {}
+       "actionable_by": {
+         "login" : "freeuser@box.com" 
+       }
      }'
 ```
 
@@ -1545,7 +1683,10 @@ Updates a specific group.
 ```bash
 curl -X PUT https://api.box.com/2.0/groups/57645 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "Customer Support"
+     }'
 ```
 
 # Delete group
@@ -1620,7 +1761,10 @@ Updates a user's group membership.
 ```bash
 curl -X PUT https://api.box.com/2.0/group_memberships/434534 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "role": "admin"
+     }'
 ```
 
 # Remove user from group
@@ -1653,7 +1797,10 @@ curl -X POST https://api.box.com/2.0/webhooks \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-       "target": {},
+       "target": {
+         "id": "234234", 
+         "type": "folder"
+       }, 
        "address": "https://example.com/webhooks",
        "triggers": [
          "FILE.UPLOADED"
@@ -1679,7 +1826,12 @@ Updates a webhook.
 ```bash
 curl -X PUT https://api.box.com/2.0/webhooks/3321123 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "triggers": [
+         "FILE.DOWNLOADED"
+       ]
+     }'
 ```
 
 # Delete webhook
@@ -1826,6 +1978,7 @@ curl -X POST https://api.box.com/2.0/retention_policies \
      -d '{
        "policy_name": "Some Policy Name",
        "policy_type": "finite",
+       "retention_length": 365,
        "disposition_action": "permanently_delete"
      }'
 ```
@@ -1848,7 +2001,10 @@ Updates a retention policy.
 ```bash
 curl -X PUT https://api.box.com/2.0/retention_policies/982312 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "disposition_action": "permanently_delete"
+     }'
 ```
 
 # List policy's assignments
@@ -1911,7 +2067,8 @@ curl -X POST https://api.box.com/2.0/legal_hold_policies \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-       "policy_name": "Sales Policy"
+       "policy_name": "Policy 3",
+       "description": "Automatic created policy"
      }'
 ```
 
@@ -1933,7 +2090,10 @@ Update legal hold policy.
 ```bash
 curl -X PUT https://api.box.com/2.0/legal_hold_policies/324432 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json"
+     -H "Content-Type: application/json" \
+     -d '{
+       "policy_name": "Policy 4"
+     }'
 ```
 
 # Delete legal hold policy
@@ -2365,4 +2525,3 @@ twice per user in a 24 hour period.
 curl -X DELETE https://api.box.com/2.0/storage_policy_assignments/932483 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
-
