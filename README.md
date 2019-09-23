@@ -1798,6 +1798,23 @@ curl -X POST https://api.box.com/2.0/webhooks \
      -H "Content-Type: application/json" \
      -d '{
        "target": {
+         "id": "21322", 
+         "type": "file"
+       }, 
+       "address": "https://example.com/webhooks",
+       "triggers": [
+         "FILE.PREVIEWED"
+       ]
+     }'
+```
+
+<!-- sample post_webhooks for_folder -->
+```bash
+curl -X POST https://api.box.com/2.0/webhooks \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "target": {
          "id": "234234", 
          "type": "folder"
        }, 
