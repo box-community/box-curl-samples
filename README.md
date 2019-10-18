@@ -638,6 +638,18 @@ curl -X PUT https://api.box.com/2.0/folders/4353455 \
      }'
 ```
 
+# Rename a folder
+
+<!-- sample put_folders_id rename -->
+```bash
+curl -X PUT https://api.box.com/2.0/folders/4353455 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "New folder name"
+     }'
+```
+
 # Delete a folder
 
 Deletes a folder, either permanently or by moving it to
