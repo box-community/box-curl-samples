@@ -1397,7 +1397,10 @@ curl -X POST https://api.box.com/2.0/web_links \
      -H "Content-Type: application/json" \
      -d '{
        "name": "Cloud Content Management",
-       "url": "https://box.com"
+       "url": "https://box.com",
+       "parent": {
+         "id": "0"
+       }
      }'
 ```
 
