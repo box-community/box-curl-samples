@@ -650,6 +650,20 @@ curl -X PUT https://api.box.com/2.0/folders/4353455 \
      }'
 ```
 
+# Change folder owner
+
+<!-- sample put_folders_id transfer -->
+```bash
+curl -X PUT https://api.box.com/2.0/folders/4353455 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "ownerd_by": {
+         "id": "123"
+       }
+     }'
+```
+
 # Delete a folder
 
 Deletes a folder, either permanently or by moving it to
