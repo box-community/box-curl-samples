@@ -128,6 +128,34 @@ curl -X GET https://api.box.com/2.0/files/12345/content \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
+# Download a file version
+
+Returns the contents of a file in binary format.
+
+<!-- sample get_files_id_content for_version -->
+```bash
+curl -X GET https://api.box.com/2.0/files/12345/content?version=4 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+# Download a shared link
+
+Returns the contents of a file in binary format.
+
+<!-- sample get_files_id_content for_shared_file -->
+```bash
+curl -X GET https://api.box.com/2.0/files/12345/content \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
+```
+
+<!-- sample get_files_id_content for_shared_folder -->
+```bash
+curl -X GET https://api.box.com/2.0/folders/12345/content \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
+```
+
 # Upload a file version
 
 Update a file's content. For file sizes over 50MB we recommend
