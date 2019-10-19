@@ -125,14 +125,22 @@ Returns the contents of a file in binary format.
 <!-- sample get_files_id_content -->
 ```bash
 curl -X GET https://api.box.com/2.0/files/12345/content \
-     -H "Authorization: Bearer <ACCESS_TOKEN>"
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -L
 ```
 
 # Download a file version
 
-Returns the contents of a file in binary format.
-
 <!-- sample get_files_id_content for_version -->
+```bash
+curl -X GET https://api.box.com/2.0/files/12345/content?version=4 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -L
+```
+
+# Get download URL
+
+<!-- sample get_files_id_content get_url -->
 ```bash
 curl -X GET https://api.box.com/2.0/files/12345/content?version=4 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
@@ -146,7 +154,8 @@ Returns the contents of a file in binary format.
 ```bash
 curl -X GET https://api.box.com/2.0/files/12345/content \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
+     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein" \
+     -L
 ```
 
 # Upload a file version
