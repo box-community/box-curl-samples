@@ -2052,6 +2052,90 @@ curl -X GET https://api.box.com/2.0/collections/926489/items \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
+# Add file to collection
+
+<!-- sample put_files_id add_to_collection -->
+```bash
+curl -X PUT https://api.box.com/2.0/files/12345 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "collections": [
+          {
+            "id": "123"
+          }
+       ]
+     }'
+```
+
+# Add folder to collection
+
+<!-- sample put_folders_id add_to_collection -->
+```bash
+curl -X PUT https://api.box.com/2.0/folders/12345 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "collections": [
+          {
+            "id": "123"
+          }
+       ]
+     }'
+```
+
+# Add web link to collection
+
+<!-- sample put_web_links_id add_to_collection -->
+```bash
+curl -X PUT https://api.box.com/2.0/web_links/12345 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "collections": [
+          {
+            "id": "123"
+          }
+       ]
+     }'
+```
+
+# Remove file from collection
+
+<!-- sample put_files_id remove_from_collection -->
+```bash
+curl -X PUT https://api.box.com/2.0/files/12345 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "collections": []
+     }'
+```
+
+# Remove folder from collection
+
+<!-- sample put_folders_id remove_from_collection -->
+```bash
+curl -X PUT https://api.box.com/2.0/folders/12345 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "collections": []
+     }'
+```
+
+# Remove web link from collection
+
+<!-- sample put_web_links_id remove_from_collection -->
+```bash
+curl -X PUT https://api.box.com/2.0/web_links/12345 \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "collections": []
+     }'
+```
+
 # List recent items
 
 Returns information about the recent items accessed
