@@ -1234,6 +1234,24 @@ curl -X POST https://api.box.com/2.0/comments \
      }
 ```
 
+
+# Tag User in Reply
+
+<!-- sample post_comments as_reply_tag_user -->
+```bash
+```bash
+curl -X POST https://api.box.com/2.0/comments \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "message": " @[1234:John], I agree with this.",
+       "item": {
+         "type": "comment",
+         "id": 345344
+       }
+     }
+```
+
 # Get collaboration
 
 Retrieves a single collaboration.
