@@ -1194,8 +1194,44 @@ curl -X POST https://api.box.com/2.0/comments \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-       "message": "Review completed!"
+       "message": "Review completed!",
+       "item": {
+         "type": "file",
+         "id": 426436
+       }
      }'
+```
+
+# Create reply
+
+<!-- sample post_comments as_reply  -->
+```bash
+curl -X POST https://api.box.com/2.0/comments \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "message": "I agree with this.",
+       "item": {
+         "type": "comment",
+         "id": 345344
+       }
+     }
+```
+
+# Tag User in Comment
+
+<!-- sample post_comments tag_user -->
+```bash
+curl -X POST https://api.box.com/2.0/comments \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "tagged_message": "What do you think @[1234:John]?",
+       "item": {
+         "type": "file",
+         "id": 123
+       }
+     }
 ```
 
 # Get collaboration
