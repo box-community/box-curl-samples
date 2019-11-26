@@ -1035,50 +1035,47 @@ curl -X POST https://api.box.com/2.0/metadata_templates/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-      "templateKey": "customer",
       "scope": "enterprise",
       "displayName": "Customer",
       "fields": [
         {
           "type": "string",
-          "key": "customerTeam",
-          "displayName": "Customer team"
+          "key": "name",
+          "displayName": "Name",
+          "description": "The customer name",
+          "hidden": false
         },
         {
-          "type": "string",
-          "key": "category",
-          "displayName": "Category"
-        },
-        {
-          "type": "string",
-          "key": "brand",
-          "displayName": "Brand"
-        },
-        {
-          "type": "multiSelect",
-          "key": "fy",
-          "displayName": "FY",
-          "options": [
-            {"key": "FY11"},
-            {"key": "FY12"},
-            {"key": "FY13"},
-            {"key": "FY14"},
-            {"key": "FY15"}
-          ]
+          "type": "date",
+          "key": "last_contacted_at",
+          "displayName": "Last Contacted At",
+          "description": "When this customer was last contacted at",
+          "hidden": false
         },
         {
           "type": "enum",
-          "key": "qtr",
-          "displayName": "Qtr",
+          "key": "industry",
+          "displayName": "Industry",
           "options": [
-            {"key": "First"},
-            {"key": "Second"},
-            {"key": "Third"},
-            {"key": "Fourth"}
+            {"key": "Technology"},
+            {"key": "Healthcare"},
+            {"key": "Legal"}
+          ]
+        },
+        {
+          "type": "multiSelect",
+          "key": "role",
+          "displayName": "Contact Role",
+          "options": [
+            {"key": "Developer"},
+            {"key": "Business Owner"},
+            {"key": "Marketing"},
+            {"key": "Legal"},
+            {"key": "Sales"}
           ]
         }
       ]
-     }'
+    }'
 ```
 
 # List cascade policies
