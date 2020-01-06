@@ -10,7 +10,7 @@ format.
 
 <!-- sample get_authorize -->
 ```bash
-curl -X GET "https://account.box.com/api/oauth2/authorize?response_type=5idyGSFuf54zrvKmclient_id=ly1nj6n11vionaie65emwzk575hnnmrk&redirect_uri=http://example.com/auth/callback"
+curl -X GET "https://account.box.com/api/oauth2/authorize?response_type=code&client_id=ly1nj6n11vionaie65emwzk575hnnmrk&redirect_uri=http://example.com/auth/callback"
 ```
 
 # Request an access token
