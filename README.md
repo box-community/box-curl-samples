@@ -964,7 +964,7 @@ Retrieves a metadata template by its scope and template name.
 
 <!-- sample get_metadata_templates_id_id_schema -->
 ```bash
-curl -X GET https://api.box.com/2.0/metadata_templates/enterprise_27335/blueprintTemplate/schema \
+curl -X GET https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -980,7 +980,7 @@ application of the operations, the metadata template remains unchanged.
 
 <!-- sample put_metadata_templates_id_id_schema -->
 ```bash
-curl -X PUT https://api.box.com/2.0/metadata_templates/enterprise_27335/blueprintTemplate/schema \
+curl -X PUT https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '[
@@ -1001,7 +1001,7 @@ This deletion is permanent and can not be reversed.
 
 <!-- sample delete_metadata_templates_id_id_schema -->
 ```bash
-curl -X DELETE https://api.box.com/2.0/metadata_templates/enterprise_27335/blueprintTemplate/schema \
+curl -X DELETE https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -1011,7 +1011,7 @@ Retrieves a metadata template by its ID.
 
 <!-- sample get_metadata_templates_id -->
 ```bash
-curl -X GET https://api.box.com/2.0/metadata_templates/f7a9891f \
+curl -X GET https://api.box.com/2.0/metadata_templates/d9671692-3df6-11ea-b77f-2e728ce88125 \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -1022,6 +1022,16 @@ Used to retrieve all metadata templates within a user's enterprise
 <!-- sample get_metadata_templates_enterprise -->
 ```bash
 curl -X GET https://api.box.com/2.0/metadata_templates/enterprise \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+# List global templates
+
+Used to retrieve all globally available metadata templates.
+
+<!-- sample get_metadata_templates_enterprise -->
+```bash
+curl -X GET https://api.box.com/2.0/metadata_templates/global \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
