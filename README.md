@@ -10,7 +10,7 @@ format.
 
 <!-- sample get_authorize -->
 ```bash
-curl -X GET https://account.box.com/api/oauth2/authorize?response_type=5idyGSFuf54zrvKmclient_id=ly1nj6n11vionaie65emwzk575hnnmrkredirect_uri=http://example.com/auth/callback
+curl -X GET "https://account.box.com/api/oauth2/authorize?response_type=code&client_id=ly1nj6n11vionaie65emwzk575hnnmrk&redirect_uri=http://example.com/auth/callback"
 ```
 
 # Request an access token
@@ -1029,7 +1029,7 @@ curl -X GET https://api.box.com/2.0/metadata_templates/enterprise \
 
 Used to retrieve all globally available metadata templates.
 
-<!-- sample get_metadata_templates_enterprise -->
+<!-- sample get_metadata_templates_global -->
 ```bash
 curl -X GET https://api.box.com/2.0/metadata_templates/global \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
@@ -1045,50 +1045,47 @@ curl -X POST https://api.box.com/2.0/metadata_templates/schema \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-      "templateKey": "customer",
       "scope": "enterprise",
       "displayName": "Customer",
       "fields": [
         {
           "type": "string",
-          "key": "customerTeam",
-          "displayName": "Customer team"
+          "key": "name",
+          "displayName": "Name",
+          "description": "The customer name",
+          "hidden": false
         },
         {
-          "type": "string",
-          "key": "category",
-          "displayName": "Category"
-        },
-        {
-          "type": "string",
-          "key": "brand",
-          "displayName": "Brand"
-        },
-        {
-          "type": "multiSelect",
-          "key": "fy",
-          "displayName": "FY",
-          "options": [
-            {"key": "FY11"},
-            {"key": "FY12"},
-            {"key": "FY13"},
-            {"key": "FY14"},
-            {"key": "FY15"}
-          ]
+          "type": "date",
+          "key": "last_contacted_at",
+          "displayName": "Last Contacted At",
+          "description": "When this customer was last contacted at",
+          "hidden": false
         },
         {
           "type": "enum",
-          "key": "qtr",
-          "displayName": "Qtr",
+          "key": "industry",
+          "displayName": "Industry",
           "options": [
-            {"key": "First"},
-            {"key": "Second"},
-            {"key": "Third"},
-            {"key": "Fourth"}
+            {"key": "Technology"},
+            {"key": "Healthcare"},
+            {"key": "Legal"}
+          ]
+        },
+        {
+          "type": "multiSelect",
+          "key": "role",
+          "displayName": "Contact Role",
+          "options": [
+            {"key": "Developer"},
+            {"key": "Business Owner"},
+            {"key": "Marketing"},
+            {"key": "Legal"},
+            {"key": "Sales"}
           ]
         }
       ]
-     }'
+    }'
 ```
 
 # List cascade policies
