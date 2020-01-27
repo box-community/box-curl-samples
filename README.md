@@ -693,7 +693,7 @@ curl -X PUT https://api.box.com/2.0/folders/4353455 \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{
-       "ownerd_by": {
+       "owned_by": {
          "id": "123"
        }
      }'
