@@ -28,7 +28,7 @@ You will then send this code to this endpoint to exchange it for
 an Access Token. The returned Access Token can then be used to to make
 Box API calls.
 
-<!-- sample post_oauth2_token downscope_token -->
+<!-- sample post_oauth2_token -->
 ```bash
 curl -X POST https://api.box.com/oauth2/token \
      -H "Content-Type: application/x-www-form-urlencoded" \
@@ -61,11 +61,9 @@ that has been previously authenticated.
 ```bash
 curl -X POST https://api.box.com/oauth2/revoke \
      -H "Content-Type: application/x-www-form-urlencoded" \
-     -d '{
-       "client_id": "<CLIENT_ID>",
-       "client_secret": "<CLIENT_SECRET>",
-       "token": "<ACCESS_TOKEN>"
-     }'
+     -d "client_id=[CLIENT_ID]" \
+     -d "client_secret=[CLIENT_SECRET]" \
+     -d "token=[ACCESS_TOKEN]"
 ```
 
 # Get a file
