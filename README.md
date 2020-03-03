@@ -254,7 +254,7 @@ Updates a chunk of an upload session for a file.
 curl -X PUT https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD \
      -H 'Authorization: Bearer <ACCESS_TOKEN>" '
      -H "Digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
-     -H "Content-Range: 8388608-16777215/445856194" \
+     -H "Content-Range: bytes 8388608-16777215/445856194" \
      -H "Content-Type: application/octet-stream" \
      --data-binary @<FILE_NAME>
 ```
