@@ -38,6 +38,18 @@ curl -X POST https://api.box.com/oauth2/token \
      -d 'grant_type=authorization_code'
 ```
 
+# Refresh an access token
+
+<!-- sample post_oauth2_token refresh -->
+```bash
+curl -X POST https://api.box.com/oauth2/token \
+     -H 'Content-Type: application/x-www-form-urlencoded' \
+     -d 'client_id=[CLIENT_ID]' \
+     -d 'client_secret=[CLIENT_SECRET]' \
+     -d 'refresh_token=[REFRESH_TOKEN]' \
+     -d 'grant_type=refresh_token'
+```
+
 # Downscope a token
 
 <!-- sample post_oauth2_token downscope_token -->
