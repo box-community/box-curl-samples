@@ -38,6 +38,18 @@ curl -X POST https://api.box.com/oauth2/token \
      -d 'grant_type=authorization_code'
 ```
 
+# Refresh an access token
+
+<!-- sample post_oauth2_token refresh -->
+```bash
+curl -X POST https://api.box.com/oauth2/token \
+     -H 'Content-Type: application/x-www-form-urlencoded' \
+     -d 'client_id=[CLIENT_ID]' \
+     -d 'client_secret=[CLIENT_SECRET]' \
+     -d 'refresh_token=[REFRESH_TOKEN]' \
+     -d 'grant_type=refresh_token'
+```
+
 # Downscope a token
 
 <!-- sample post_oauth2_token downscope_token -->
@@ -254,7 +266,7 @@ Updates a chunk of an upload session for a file.
 curl -X PUT https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD \
      -H 'Authorization: Bearer <ACCESS_TOKEN>" '
      -H "Digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
-     -H "Content-Range: 8388608-16777215/445856194" \
+     -H "Content-Range: bytes 8388608-16777215/445856194" \
      -H "Content-Type: application/octet-stream" \
      --data-binary @<FILE_NAME>
 ```
@@ -298,12 +310,14 @@ curl -X POST https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD
          {
            "part_id": "BFDF5379",
            "offset": 0,
-           "size": 8388608
+           "size": 8388608,
+	   "sha1": "134b65991ed521fcfe4724b7d814ab8ded5185dc"
          },
 		     {
            "part_id": "E8A3ED8E",
            "offset": 8388608,
-           "size": 1611392
+           "size": 1611392,
+	   "sha1": "234b65934ed521fcfe3424b7d814ab8ded5185dc"
          }
        ],
        "attributes": {
