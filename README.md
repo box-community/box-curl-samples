@@ -1153,6 +1153,31 @@ curl -X POST https://api.box.com/2.0/metadata_cascade_policies/21312/apply \
      }'
 ```
 
+# Create a metadata query 
+
+<!-- sample post_metadata_queries_execute_read -->
+```bash
+curl -X POST https://api.box.com/2.0/files/12345 \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Content-Type: application/json" '
+     -d '{    
+       "from": "enterprise_123456.contractTemplate",    
+       "query": "amount >= :value",    
+       "query_params": {        
+         "value": 100    
+       },    
+       "ancestor_folder_id": "5555",    
+       "use_index": "amountAsc",    
+       "order_by": [  
+         {
+           "field_key": "amount",
+           "direction": "asc"
+         }
+       ],    
+       "limit": 100
+     }'
+```
+
 # Get comment
 
 Retrieves the message and metadata for a specific comment, as well
