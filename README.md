@@ -1570,7 +1570,7 @@ curl -X POST https://api.box.com/2.0/collaborations \
        },
        "accessible_by": {
          "type": "user",
-         "login": "123456"
+         "login": "user@example.com"
        },
        "role": "editor"
      }'
