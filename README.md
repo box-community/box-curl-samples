@@ -2304,11 +2304,7 @@ Creates a group membership
 ```bash
 curl -X POST https://api.box.com/2.0/group_memberships \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "user": {
          "id": "1434325"
@@ -2462,11 +2458,7 @@ skill invocation.
 ```bash
 curl -X PUT https://api.box.com/2.0/skill_invocations/33243242 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "status": "success",
        "metadata": {
@@ -2828,11 +2820,7 @@ curl -X GET https://api.box.com/2.0/collections/926489/items \
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "collections": [
           {
@@ -2848,11 +2836,7 @@ curl -X PUT https://api.box.com/2.0/files/12345 \
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "collections": [
           {
@@ -2868,11 +2852,7 @@ curl -X PUT https://api.box.com/2.0/folders/12345 \
 ```bash
 curl -X PUT https://api.box.com/2.0/web_links/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "collections": [
           {
@@ -2888,11 +2868,7 @@ curl -X PUT https://api.box.com/2.0/web_links/12345 \
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "collections": []
      }'
@@ -2904,11 +2880,7 @@ curl -X PUT https://api.box.com/2.0/files/12345 \
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "collections": []
      }'
@@ -2920,11 +2892,7 @@ curl -X PUT https://api.box.com/2.0/folders/12345 \
 ```bash
 curl -X PUT https://api.box.com/2.0/web_links/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "collections": []
      }'
@@ -2960,11 +2928,7 @@ Creates a retention policy.
 ```bash
 curl -X POST https://api.box.com/2.0/retention_policies \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "policy_name": "Some Policy Name",
        "policy_type": "finite",
@@ -2991,11 +2955,7 @@ Updates a retention policy.
 ```bash
 curl -X PUT https://api.box.com/2.0/retention_policies/982312 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "disposition_action": "permanently_delete"
      }'
@@ -3020,11 +2980,7 @@ Assigns a retention policy to an item.
 ```bash
 curl -X POST https://api.box.com/2.0/retention_policy_assignments \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "policy_id": "173463",
        "assign_to": {
@@ -3063,11 +3019,7 @@ Create a new legal hold policy.
 ```bash
 curl -X POST https://api.box.com/2.0/legal_hold_policies \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "policy_name": "Policy 3",
        "description": "Automatic created policy"
@@ -3092,11 +3044,7 @@ Update legal hold policy.
 ```bash
 curl -X PUT https://api.box.com/2.0/legal_hold_policies/324432 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "policy_name": "Policy 4"
      }'
@@ -3133,11 +3081,7 @@ Assign a legal hold to a file, file version, folder, or user.
 ```bash
 curl -X POST https://api.box.com/2.0/legal_hold_policy_assignments \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "policy_id": "123244",
        "assign_to": {
@@ -3265,11 +3209,7 @@ and type of user.
 ```bash
 curl -X POST https://api.box.com/2.0/terms_of_services \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "status": "enabled",
        "text": "By collaborating on this file you are accepting..."
@@ -3294,11 +3234,7 @@ Updates a specific terms of service.
 ```bash
 curl -X PUT https://api.box.com/2.0/terms_of_services/324234 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "status": "enabled",
        "text": "By collaborating on this file you are accepting..."
@@ -3325,11 +3261,7 @@ Sets the status for a terms of service for a user.
 ```bash
 curl -X POST https://api.box.com/2.0/terms_of_service_user_statuses \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "tos": {
          "type": "terms_of_service",
@@ -3351,11 +3283,7 @@ Updates the status for a terms of service for a user.
 ```bash
 curl -X PUT https://api.box.com/2.0/terms_of_service_user_statuses/324234 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "is_accepted": true
      }'
@@ -3381,11 +3309,7 @@ and direction to allow collaboration for.
 ```bash
 curl -X POST https://api.box.com/2.0/collaboration_whitelist_entries \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "domain": "example.com",
        "direction": "inboud"
@@ -3432,11 +3356,7 @@ that is exempted from the whitelist.
 ```bash
 curl -X POST https://api.box.com/2.0/collaboration_whitelist_exempt_targets \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "user": {
          "id": "23522323"
@@ -3503,11 +3423,7 @@ Creates a storage policy assignment for an enterprise or user.
 ```bash
 curl -X POST https://api.box.com/2.0/storage_policy_assignments \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "storage_policy": {
          "type": "storage_policy",
@@ -3538,11 +3454,7 @@ Updates a specific storage policy assignment.
 ```bash
 curl -X PUT https://api.box.com/2.0/storage_policy_assignments/932483 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-<<<<<<< HEAD
      -H 'Content-Type: application/json'
-=======
-     -H 'Content-Type: application/json" '
->>>>>>> 313bf0e68b5c6eee3d04e6de998879fd37313c04
      -d '{
        "storage_policy": {
          "type": "storage_policy",
