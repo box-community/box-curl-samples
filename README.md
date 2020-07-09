@@ -2680,7 +2680,7 @@ curl -X POST https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards 
 
 ## Update Skill cards on file
 
-<!-- sample post_files_id_metadata_global_boxSkillsCards -->
+<!-- sample put_files_id_metadata_global_boxSkillsCards -->
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
