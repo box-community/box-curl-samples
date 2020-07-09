@@ -300,7 +300,7 @@ Restores an file that has been moved to the trash.
 <!-- sample post_files_id -->
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H 'Content-Type: application/json'
 ```
 
@@ -312,8 +312,8 @@ create a shared link, or lock a file.
 <!-- sample put_files_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "New name"
      }'
@@ -340,7 +340,7 @@ Returns the contents of a file in binary format.
 <!-- sample get_files_id_content -->
 ```bash
 curl -X GET https://api.box.com/2.0/files/12345/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -L
 ```
 
@@ -349,7 +349,7 @@ curl -X GET https://api.box.com/2.0/files/12345/content \
 <!-- sample get_files_id_content for_version -->
 ```bash
 curl -X GET https://api.box.com/2.0/files/12345/content?version=4 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -L
 ```
 
@@ -368,7 +368,7 @@ Returns the contents of a file in binary format.
 <!-- sample get_files_id_content for_shared_file -->
 ```bash
 curl -X GET https://api.box.com/2.0/files/12345/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein" \
      -L
 ```
@@ -381,7 +381,7 @@ using the Chunk Upload APIs.
 <!-- sample post_files_id_content -->
 ```bash
 curl -X POST https://upload.box.com/api/2.0/files/12345/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "Content-Type: multipart/form-data" \
      -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}' \
      -F file=@<FILE_NAME>
@@ -395,7 +395,7 @@ before you upload the entire file.
 <!-- sample options_files_content -->
 ```bash
 curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "Content-Type: multipart/form-data" \
      -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
 ```
@@ -403,7 +403,7 @@ curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
 <!-- sample options_files_id_content -->
 ```bash
 curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "Content-Type: multipart/form-data" \
      -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
 ```
@@ -416,7 +416,7 @@ using the Chunk Upload APIs.
 <!-- sample post_files_content -->
 ```bash
 curl -X POST https://upload.box.com/api/2.0/files/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "Content-Type: multipart/form-data" \
      -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}' \
      -F file=@<FILE_NAME>
@@ -429,8 +429,8 @@ Creates an upload session for a new file.
 <!-- sample post_files_upload_sessions -->
 ```bash
 curl -X POST https://upload.box.com/api/2.0/files/upload_sessions \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "folder_id": "0",
        "file_size": 104857600,
@@ -445,8 +445,8 @@ Creates an upload session for an existing file.
 <!-- sample post_files_id_upload_sessions -->
 ```bash
 curl -X POST https://upload.box.com/api/2.0/files/12345/upload_sessions \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "file_size": 104857600
      }'
@@ -469,7 +469,7 @@ Updates a chunk of an upload session for a file.
 <!-- sample put_files_upload_sessions_id -->
 ```bash
 curl -X PUT https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "Digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
      -H "Content-Range: bytes 8388608-16777215/445856194" \
      -H "Content-Type: application/octet-stream" \
@@ -507,9 +507,9 @@ uploaded chunks.
 <!-- sample post_files_upload_sessions_id_commit -->
 ```bash
 curl -X POST https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/commit \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "Digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
-     -H 'Content-Type: application/json" '
+     -H 'Content-Type: application/json'
      -d '{
        "parts": [
          {
@@ -538,8 +538,8 @@ Creates a copy of a file.
 <!-- sample post_files_id_copy -->
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345/copy \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "parent": {
          "id": "123"
@@ -675,8 +675,8 @@ former values.
 <!-- sample post_files_id_versions_current -->
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345/versions/current \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "type": "file_version",
        "id": "456456"
@@ -713,8 +713,8 @@ will be accepted.
 <!-- sample post_files_id_metadata_id_id -->
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "audience: "internal",
        "documentType": "Q1 plans",
@@ -740,8 +740,8 @@ application of the operations, the metadata instance remains unchanged.
 <!-- sample put_files_id_metadata_id_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '[
         {
           "op": "test",
@@ -817,8 +817,8 @@ Applies or update a watermark on a file.
 <!-- sample put_files_id_watermark -->
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345/watermark \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "watermark": {
          "imprint": "default"
@@ -868,8 +868,8 @@ create shared links, update collaborations, and more.
 <!-- sample put_folders_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/4353455 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "New folder name"
      }'
@@ -880,8 +880,8 @@ curl -X PUT https://api.box.com/2.0/folders/4353455 \
 <!-- sample put_folders_id move -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/4353455 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "New folder name",
        "parent": {
@@ -895,8 +895,8 @@ curl -X PUT https://api.box.com/2.0/folders/4353455 \
 <!-- sample put_folders_id rename -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/4353455 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "New folder name"
      }'
@@ -907,8 +907,8 @@ curl -X PUT https://api.box.com/2.0/folders/4353455 \
 <!-- sample put_folders_id transfer -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/4353455 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "owned_by": {
          "id": "123"
@@ -948,8 +948,8 @@ Creates a new empty folder within the specified parent folder.
 <!-- sample post_folders -->
 ```bash
 curl -X POST https://api.box.com/2.0/folders \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "New Folder",
        "parent": {
@@ -967,8 +967,8 @@ The original folder will not be changed.
 <!-- sample post_folders_id_copy -->
 ```bash
 curl -X POST https://api.box.com/2.0/folders/4353455/copy \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "parent": {
          "id": "345345"
@@ -1038,8 +1038,8 @@ will be accepted.
 <!-- sample post_folders_id_metadata_id_id -->
 ```bash
 curl -X POST https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "audience: "internal",
        "documentType": "Q1 plans",
@@ -1064,8 +1064,8 @@ application of the operations, the metadata instance remains unchanged.
 <!-- sample put_folders_id_metadata_id_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '[
         {
           "op": "test",
@@ -1156,8 +1156,8 @@ Applies or update a watermark on a folder.
 <!-- sample put_folders_id_watermark -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/4353455/watermark \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "watermark": {
          "imprint": "default"
@@ -1198,8 +1198,8 @@ application of the operations, the metadata template remains unchanged.
 <!-- sample put_metadata_templates_id_id_schema -->
 ```bash
 curl -X PUT https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '[
        {
          "op": "editField",
@@ -1259,8 +1259,8 @@ Creates a new metadata template that can be applied to files and folders.
 <!-- sample post_metadata_templates_schema -->
 ```bash
 curl -X POST https://api.box.com/2.0/metadata_templates/schema \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
       "scope": "enterprise",
       "displayName": "Customer",
@@ -1328,8 +1328,8 @@ be applied to the folder.
 <!-- sample post_metadata_cascade_policies -->
 ```bash
 curl -X POST https://api.box.com/2.0/metadata_cascade_policies \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "folder_id": "12321",
        "scope": "enterprise_27335",
@@ -1365,8 +1365,8 @@ to all existing files and sub-folders within the target folder.
 <!-- sample post_metadata_cascade_policies_id_apply -->
 ```bash
 curl -X POST https://api.box.com/2.0/metadata_cascade_policies/21312/apply \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "conflict_resolution": "overwrite"
      }'
@@ -1377,8 +1377,8 @@ curl -X POST https://api.box.com/2.0/metadata_cascade_policies/21312/apply \
 <!-- sample post_metadata_queries_execute_read -->
 ```bash
 curl -X POST https://api.box.com/2.0/files/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{    
        "from": "enterprise_123456.contractTemplate",    
        "query": "amount >= :value",    
@@ -1415,8 +1415,8 @@ Update the message of a comment.
 <!-- sample put_comments_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/comments/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "message": "My New Message"
      }'
@@ -1440,8 +1440,8 @@ as a reply to an other comment.
 <!-- sample post_comments -->
 ```bash
 curl -X POST https://api.box.com/2.0/comments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "message": "Review completed!",
        "item": {
@@ -1456,8 +1456,8 @@ curl -X POST https://api.box.com/2.0/comments \
 <!-- sample post_comments as_reply  -->
 ```bash
 curl -X POST https://api.box.com/2.0/comments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "message": "I agree with this.",
        "item": {
@@ -1472,8 +1472,8 @@ curl -X POST https://api.box.com/2.0/comments \
 <!-- sample post_comments tag_user -->
 ```bash
 curl -X POST https://api.box.com/2.0/comments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "tagged_message": "What do you think @[1234:John]?",
        "item": {
@@ -1489,8 +1489,8 @@ curl -X POST https://api.box.com/2.0/comments \
 <!-- sample post_comments as_reply_tag_user -->
 ```bash
 curl -X POST https://api.box.com/2.0/comments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "message": " @[1234:John], I agree with this.",
        "item": {
@@ -1520,8 +1520,8 @@ accept collaboration invites.
 <!-- sample put_collaborations_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/collaborations/1234 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "role": "viewer"
      }'
@@ -1561,8 +1561,8 @@ this endpoint is dependent on the group's ability to be invited.
 <!-- sample post_collaborations -->
 ```bash
 curl -X POST https://api.box.com/2.0/collaborations \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "item": {
          "type": "file",
@@ -1593,8 +1593,8 @@ Creates a single task on a file.
 <!-- sample post_tasks -->
 ```bash
 curl -X POST https://api.box.com/2.0/tasks \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "item": {
          "id": "11446498",
@@ -1621,8 +1621,8 @@ Updates a specific task.
 <!-- sample put_tasks_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/tasks/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "action": "review"
      }'
@@ -1658,8 +1658,8 @@ are allowed per task.
 <!-- sample post_task_assignments -->
 ```bash
 curl -X POST https://api.box.com/2.0/task_assignments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "task": {
          "id": "11446498",
@@ -1689,8 +1689,8 @@ used to update the state of a task.
 <!-- sample put_task_assignments_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/task_assignments/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "message": "New message",
        "resolution_state": "completed"
@@ -1720,7 +1720,7 @@ shared item when only given a shared link.
 <!-- sample get_shared_items -->
 ```bash
 curl -X GET https://api.box.com/2.0/shared_items \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
 ```
 
@@ -1731,8 +1731,8 @@ Creates a web link object within a folder.
 <!-- sample post_web_links -->
 ```bash
 curl -X POST https://api.box.com/2.0/web_links \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "Cloud Content Management",
        "url": "https://box.com",
@@ -1759,7 +1759,7 @@ Restores an web link that has been moved to the trash.
 <!-- sample post_web_links_id -->
 ```bash
 curl -X POST https://api.box.com/2.0/web_links/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -H 'Content-Type: application/json'
 ```
 
@@ -1770,8 +1770,8 @@ Updates a web link object.
 <!-- sample put_web_links_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/web_links/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "Cloud Content Management"
      }'
@@ -1832,8 +1832,8 @@ admin permissions.
 <!-- sample post_users -->
 ```bash
 curl -X POST https://api.box.com/2.0/users \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "login": "ceo@example.com",
        "name": "Aaron Levie"
@@ -1888,8 +1888,8 @@ admin permissions.
 <!-- sample put_users_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/users/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "Aaron Levie"
      }'
@@ -1940,8 +1940,8 @@ There is currently no way to check for when this operation is finished.
 <!-- sample put_users_id_folders_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/users/12345/folders/0 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "owned_by": {
          "id": "1232234"
@@ -1967,8 +1967,8 @@ Adds a new email alias to a user account..
 <!-- sample post_users_id_email_aliases -->
 ```bash
 curl -X POST https://api.box.com/2.0/users/12345/email_aliases \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "email": "alias@example.com"
      }'
@@ -2011,8 +2011,8 @@ the application, which can be enabled within the developer console.
 <!-- sample post_invites -->
 ```bash
 curl -X POST https://api.box.com/2.0/invites \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "enterprise": {
          "id": "1232234"
@@ -2052,8 +2052,8 @@ permissions can create new groups.
 <!-- sample post_groups -->
 ```bash
 curl -X POST https://api.box.com/2.0/groups \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "Customer Support"
      }'
@@ -2076,8 +2076,8 @@ Updates a specific group.
 <!-- sample put_groups_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/groups/57645 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "name": "Customer Support"
      }'
@@ -2125,8 +2125,8 @@ Creates a group membership
 <!-- sample post_group_memberships -->
 ```bash
 curl -X POST https://api.box.com/2.0/group_memberships \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "user": {
          "id": "1434325"
@@ -2154,8 +2154,8 @@ Updates a user's group membership.
 <!-- sample put_group_memberships_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/group_memberships/434534 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "role": "admin"
      }'
@@ -2188,8 +2188,8 @@ Creates a webhook.
 <!-- sample post_webhooks -->
 ```bash
 curl -X POST https://api.box.com/2.0/webhooks \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "target": {
          "id": "21322", 
@@ -2205,8 +2205,8 @@ curl -X POST https://api.box.com/2.0/webhooks \
 <!-- sample post_webhooks for_folder -->
 ```bash
 curl -X POST https://api.box.com/2.0/webhooks \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "target": {
          "id": "234234", 
@@ -2236,8 +2236,8 @@ Updates a webhook.
 <!-- sample put_webhooks_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/webhooks/3321123 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "triggers": [
          "FILE.DOWNLOADED"
@@ -2263,13 +2263,266 @@ skill invocation.
 <!-- sample put_skill_invocations_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/skill_invocations/33243242 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "status": "success",
-       "metadata": {},
-       "file": {}
+       "metadata": {
+         "cards": [{
+            "type": "skill_card",
+            "skill_card_type": "keyword",
+            "skill_card_title": {
+              "code": "license-plates",
+              "message": "Licence Plates"
+            },
+            "skill": {
+              "type": "service"
+              "id": "license-plates-service"
+            },
+            "invocation": {
+              "type": "skill_invocation"
+              "id": "license-plates-service-123"
+            },
+            "entries": {
+              { "text": "DD-26-YT" },
+              { "text": "DN86 BOX" }
+            }
+          },{
+            "type": "skill_card",
+            "skill_card_type": "transcript",
+            "skill_card_title": {
+              "code": "video-transcription",
+              "message": "Video Transcription"
+            },
+            "skill": {
+              "type": "service"
+              "id": "video-transcription-service"
+            },
+            "invocation": {
+              "type": "skill_invocation"
+              "id": "video-transcription-service-123"
+            },
+            "duration": 1000,
+            "entries": {
+              { 
+                "text": "Hi John, have I told you about Box recently?", 
+                "appears": [{ "start": 0 }] 
+              },
+              { 
+                "text": "No Aaron, you have not. Tell me more!", 
+                "appears": [{ "start": 5 }] 
+              }
+            }
+          },{
+            "type": "skill_card",
+            "skill_card_type": "timeline",
+            "skill_card_title": {
+              "code": "face-detection",
+              "message": "Faces"
+            },
+            "skill": {
+              "type": "service"
+              "id": "face-detection-service"
+            },
+            "invocation": {
+              "type": "skill_invocation"
+              "id": "face-detection-service-123"
+            },
+            "duration": 1000,
+            "entries": {
+              { 
+                "text": "John", 
+                "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }], 
+                "image_url": "https://example.com/john.png" 
+              },
+              { 
+                "text": "Aaron", 
+                "appears": [{ "start": 5, "end": 10 }], 
+                "image_url": "https://example.com/aaron.png" 
+              }
+            }
+          },{
+            "type": "skill_card",
+            "skill_card_type": "status",
+            "skill_card_title": {
+              "code": "hold",
+              "message": "Please hold..."
+            },
+            "skill": {
+              "type": "service"
+              "id": "face-detection-service"
+            },
+            "invocation": {
+              "type": "skill_invocation"
+              "id": "face-detection-service-123"
+            },
+            "status": {
+              "code": "processing",
+              "message": "We are processing this file right now."
+            }
+          }],
+       },
+       "file": {
+         "id": "12345"
+       },
+       "usage": {
+         "unit": "file",
+         "value": 1
+       }
      }'
+```
+
+## List Skill cards on file
+
+<!-- sample get_files_id_metadata_global_boxSkillsCards -->
+```bash
+curl -X PUT https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+```
+
+## Create Skill cards on file
+
+<!-- sample post_files_id_metadata_global_boxSkillsCards -->
+```bash
+curl -X POST https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
+     -d '{
+       "cards": [{
+         "type": "skill_card",
+         "skill_card_type": "keyword",
+         "skill_card_title": {
+           "code": "license-plates",
+           "message": "Licence Plates"
+         },
+         "skill": {
+           "type": "service"
+           "id": "license-plates-service"
+         },
+         "invocation": {
+           "type": "skill_invocation"
+           "id": "license-plates-service-123"
+         },
+         "entries": {
+           { "text": "DD-26-YT" },
+           { "text": "DN86 BOX" }
+         }
+       },{
+         "type": "skill_card",
+         "skill_card_type": "transcript",
+         "skill_card_title": {
+           "code": "video-transcription",
+           "message": "Video Transcription"
+         },
+         "skill": {
+           "type": "service"
+           "id": "video-transcription-service"
+         },
+         "invocation": {
+           "type": "skill_invocation"
+           "id": "video-transcription-service-123"
+         },
+         "duration": 1000,
+         "entries": {
+           { 
+             "text": "Hi John, have I told you about Box recently?", 
+             "appears": [{ "start": 0 }] 
+           },
+           { 
+             "text": "No Aaron, you have not. Tell me more!", 
+             "appears": [{ "start": 5 }] 
+           }
+         }
+       },{
+         "type": "skill_card",
+         "skill_card_type": "timeline",
+         "skill_card_title": {
+           "code": "face-detection",
+           "message": "Faces"
+         },
+         "skill": {
+           "type": "service"
+           "id": "face-detection-service"
+         },
+         "invocation": {
+           "type": "skill_invocation"
+           "id": "face-detection-service-123"
+         },
+         "duration": 1000,
+         "entries": {
+           { 
+             "text": "John", 
+             "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }], 
+             "image_url": "https://example.com/john.png" 
+           },
+           { 
+             "text": "Aaron", 
+             "appears": [{ "start": 5, "end": 10 }], 
+             "image_url": "https://example.com/aaron.png" 
+           }
+         }
+       },{
+         "type": "skill_card",
+         "skill_card_type": "status",
+         "skill_card_title": {
+           "code": "hold",
+           "message": "Please hold..."
+         },
+         "skill": {
+           "type": "service"
+           "id": "face-detection-service"
+         },
+         "invocation": {
+           "type": "skill_invocation"
+           "id": "face-detection-service-123"
+         },
+         "status": {
+           "code": "processing",
+           "message": "We are processing this file right now."
+         }
+       }],
+     }'
+```
+
+## Update Skill cards on file
+
+<!-- sample post_files_id_metadata_global_boxSkillsCards -->
+```bash
+curl -X PUT https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json-patch+json'
+     -d '[
+       "op": "replace",
+       "path": "/cards/0",
+       "value": {
+         "type": "skill_card",
+         "skill_card_type": "keyword",
+         "skill_card_title": {
+           "code": "license-plates",
+           "message": "Licence Plates"
+         },
+         "skill": {
+           "type": "service"
+           "id": "license-plates-service"
+         },
+         "invocation": {
+           "type": "skill_invocation"
+           "id": "license-plates-service-123"
+         },
+         "entries": {
+           { "text": "DD-26-YT" },
+           { "text": "DN86 BOX" }
+         }
+       }
+     ]'
+```
+
+## Delete Skill cards from file
+
+<!-- sample delete_files_id_metadata_global_boxSkillsCards -->
+```bash
+curl -X DELETE https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## <a name='Getalongpollendpoint'></a>Get a long poll endpoint
@@ -2372,8 +2625,8 @@ curl -X GET https://api.box.com/2.0/collections/926489/items \
 <!-- sample put_files_id add_to_collection -->
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "collections": [
           {
@@ -2388,8 +2641,8 @@ curl -X PUT https://api.box.com/2.0/files/12345 \
 <!-- sample put_folders_id add_to_collection -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "collections": [
           {
@@ -2404,8 +2657,8 @@ curl -X PUT https://api.box.com/2.0/folders/12345 \
 <!-- sample put_web_links_id add_to_collection -->
 ```bash
 curl -X PUT https://api.box.com/2.0/web_links/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "collections": [
           {
@@ -2420,8 +2673,8 @@ curl -X PUT https://api.box.com/2.0/web_links/12345 \
 <!-- sample put_files_id remove_from_collection -->
 ```bash
 curl -X PUT https://api.box.com/2.0/files/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "collections": []
      }'
@@ -2432,8 +2685,8 @@ curl -X PUT https://api.box.com/2.0/files/12345 \
 <!-- sample put_folders_id remove_from_collection -->
 ```bash
 curl -X PUT https://api.box.com/2.0/folders/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "collections": []
      }'
@@ -2444,8 +2697,8 @@ curl -X PUT https://api.box.com/2.0/folders/12345 \
 <!-- sample put_web_links_id remove_from_collection -->
 ```bash
 curl -X PUT https://api.box.com/2.0/web_links/12345 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "collections": []
      }'
@@ -2480,8 +2733,8 @@ Creates a retention policy.
 <!-- sample post_retention_policies -->
 ```bash
 curl -X POST https://api.box.com/2.0/retention_policies \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "policy_name": "Some Policy Name",
        "policy_type": "finite",
@@ -2507,8 +2760,8 @@ Updates a retention policy.
 <!-- sample put_retention_policies_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/retention_policies/982312 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "disposition_action": "permanently_delete"
      }'
@@ -2532,8 +2785,8 @@ Assigns a retention policy to an item.
 <!-- sample post_retention_policy_assignments -->
 ```bash
 curl -X POST https://api.box.com/2.0/retention_policy_assignments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "policy_id": "173463",
        "assign_to": {
@@ -2571,8 +2824,8 @@ Create a new legal hold policy.
 <!-- sample post_legal_hold_policies -->
 ```bash
 curl -X POST https://api.box.com/2.0/legal_hold_policies \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "policy_name": "Policy 3",
        "description": "Automatic created policy"
@@ -2596,8 +2849,8 @@ Update legal hold policy.
 <!-- sample put_legal_hold_policies_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/legal_hold_policies/324432 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "policy_name": "Policy 4"
      }'
@@ -2633,8 +2886,8 @@ Assign a legal hold to a file, file version, folder, or user.
 <!-- sample post_legal_hold_policy_assignments -->
 ```bash
 curl -X POST https://api.box.com/2.0/legal_hold_policy_assignments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "policy_id": "123244",
        "assign_to": {
@@ -2761,8 +3014,8 @@ and type of user.
 <!-- sample post_terms_of_services -->
 ```bash
 curl -X POST https://api.box.com/2.0/terms_of_services \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "status": "enabled",
        "text": "By collaborating on this file you are accepting..."
@@ -2786,8 +3039,8 @@ Updates a specific terms of service.
 <!-- sample put_terms_of_services_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/terms_of_services/324234 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "status": "enabled",
        "text": "By collaborating on this file you are accepting..."
@@ -2813,8 +3066,8 @@ Sets the status for a terms of service for a user.
 <!-- sample post_terms_of_service_user_statuses -->
 ```bash
 curl -X POST https://api.box.com/2.0/terms_of_service_user_statuses \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "tos": {
          "type": "terms_of_service",
@@ -2835,8 +3088,8 @@ Updates the status for a terms of service for a user.
 <!-- sample put_terms_of_service_user_statuses_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/terms_of_service_user_statuses/324234 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "is_accepted": true
      }'
@@ -2861,8 +3114,8 @@ and direction to allow collaboration for.
 <!-- sample post_collaboration_whitelist_entries -->
 ```bash
 curl -X POST https://api.box.com/2.0/collaboration_whitelist_entries \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "domain": "example.com",
        "direction": "inboud"
@@ -2908,8 +3161,8 @@ that is exempted from the whitelist.
 <!-- sample post_collaboration_whitelist_exempt_targets -->
 ```bash
 curl -X POST https://api.box.com/2.0/collaboration_whitelist_exempt_targets \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "user": {
          "id": "23522323"
@@ -2975,8 +3228,8 @@ Creates a storage policy assignment for an enterprise or user.
 <!-- sample post_storage_policy_assignments -->
 ```bash
 curl -X POST https://api.box.com/2.0/storage_policy_assignments \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "storage_policy": {
          "type": "storage_policy",
@@ -3006,8 +3259,8 @@ Updates a specific storage policy assignment.
 <!-- sample put_storage_policy_assignments_id -->
 ```bash
 curl -X PUT https://api.box.com/2.0/storage_policy_assignments/932483 \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>" '
-     -H 'Content-Type: application/json" '
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
+     -H 'Content-Type: application/json'
      -d '{
        "storage_policy": {
          "type": "storage_policy",
