@@ -1385,6 +1385,13 @@ curl -X POST https://api.box.com/2.0/files/12345 \
        "query_params": {        
          "value": 100    
        },    
+       "fields": [
+       	 "extension",
+	 "created_at",
+	 "item_status",
+	 "metadata.enterprise_1234.contracts",
+	 "metadata.enterprise_1234.regions.location"
+       ],
        "ancestor_folder_id": "5555",    
        "use_index": "amountAsc",    
        "order_by": [  
