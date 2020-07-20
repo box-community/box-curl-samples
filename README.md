@@ -397,7 +397,7 @@ before you upload the entire file.
 curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H “Content-Type: application/json” \
-     -d ‘{“name”:“Photo.jpg”, “parent”:{“id”:“11446498"}}’
+     -d '{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
 ```
 
 <!-- sample options_files_id_content -->
@@ -405,7 +405,7 @@ curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
 curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H “Content-Type: application/json” \
-     -d ‘{“name”:“Photo.jpg”, “parent”:{“id”:“11446498"}}’
+     -d '{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
 ```
 
 ## <a name='Uploadafile'></a>Upload a file
