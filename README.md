@@ -395,17 +395,17 @@ before you upload the entire file.
 <!-- sample options_files_content -->
 ```bash
 curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>'
-     -H "Content-Type: multipart/form-data" \
-     -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+     -H “Content-Type: application/json” \
+     -d ‘{“name”:“Photo.jpg”, “parent”:{“id”:“11446498"}}’
 ```
 
 <!-- sample options_files_id_content -->
 ```bash
 curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>'
-     -H "Content-Type: multipart/form-data" \
-     -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+     -H “Content-Type: application/json” \
+     -d ‘{“name”:“Photo.jpg”, “parent”:{“id”:“11446498"}}’
 ```
 
 ## <a name='Uploadafile'></a>Upload a file
