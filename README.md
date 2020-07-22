@@ -139,6 +139,10 @@
 * [Update webhook](#Updatewebhook)
 * [Delete webhook](#Deletewebhook)
 * [Update skill invocation](#Updateskillinvocation)
+* [List Skill cards on file](#ListSkillcardsonfile)
+* [Create Skill cards on file](#CreateSkillcardsonfile)
+* [Update Skill cards on file](#UpdateSkillcardsonfile)
+* [Delete Skill cards from file](#DeleteSkillcardsfromfile)
 * [Get a long poll endpoint](#Getalongpollendpoint)
 * [Get user and enterprise events](#Getuserandenterpriseevents)
 * [List all collections](#Listallcollections)
@@ -195,6 +199,9 @@
 * [Get policy assignment](#Getpolicyassignment-1)
 * [Update policy assignment](#Updatepolicyassignment)
 * [Unassign storage policy](#Unassignstoragepolicy)
+* [Create zip download](#Createzipdownload)
+* [Get zip download status](#Getzipdownloadstatus)
+* [Download zip archive](#Downloadziparchive)
 
 <!-- vscode-markdown-toc-config
 	numbering=false
@@ -2377,7 +2384,7 @@ curl -X PUT https://api.box.com/2.0/skill_invocations/33243242 \
      }'
 ```
 
-## List Skill cards on file
+## <a name='ListSkillcardsonfile'></a>List Skill cards on file
 
 <!-- sample get_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2385,7 +2392,7 @@ curl -X PUT https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
-## Create Skill cards on file
+## <a name='CreateSkillcardsonfile'></a>Create Skill cards on file
 
 <!-- sample post_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2489,7 +2496,7 @@ curl -X POST https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards 
      }'
 ```
 
-## Update Skill cards on file
+## <a name='UpdateSkillcardsonfile'></a>Update Skill cards on file
 
 <!-- sample put_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2522,7 +2529,7 @@ curl -X PUT https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards \
      ]'
 ```
 
-## Delete Skill cards from file
+## <a name='DeleteSkillcardsfromfile'></a>Delete Skill cards from file
 
 <!-- sample delete_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -3288,5 +3295,52 @@ twice per user in a 24 hour period.
 <!-- sample delete_storage_policy_assignments_id -->
 ```bash
 curl -X DELETE https://api.box.com/2.0/storage_policy_assignments/932483 \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+     -d '{
+       "items": {
+         "type": "storage_policy",
+         "id": "1434325"
+       }
+     }'
+```
+
+
+## <a name='Createzipdownload'></a>Create zip download
+
+<!-- sample post_zip_downloads -->
+```bash
+curl -X POST https://api.box.com/2.0/zip_downloads \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+     -d '{
+       "download_file_name": "January Financials",
+       "items": [
+         {
+           "type": "file",
+           "id": "12345"
+         },
+         {
+           "type": "file",
+           "id": "34325"
+         },
+         {
+           "type": "folder",
+           "id": "45678"
+         }
+       ]
+     }'
+```
+
+## <a name='Getzipdownloadstatus'></a>Get zip download status
+
+<!-- sample get_zip_downloads_id_status -->
+```bash
+curl -X GET https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/status \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
+```
+
+## <a name='Downloadziparchive'></a>Download zip archive
+
+<!-- sample get_zip_downloads_id_content -->
+```bash
+curl -X GET https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content
 ```
