@@ -409,7 +409,7 @@ curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
 
 <!-- sample options_files_id_content -->
 ```bash
-curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
+curl -X OPTIONS https://api.box.com/2.0/files/content \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H “Content-Type: application/json” \
      -d '{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
@@ -422,7 +422,7 @@ using the Chunk Upload APIs.
 
 <!-- sample post_files_content -->
 ```bash
-curl -X POST https://upload.box.com/api/2.0/files/content \
+curl -X POST https://api.box.com/2.0/files/content \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H "Content-Type: multipart/form-data" \
      -F attributes='{"name":"Photo.jpg", "parent":{"id":"11446498"}}' \
