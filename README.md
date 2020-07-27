@@ -401,7 +401,7 @@ before you upload the entire file.
 
 <!-- sample options_files_content -->
 ```bash
-curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
+curl -X OPTIONS https://api.box.com/2.0/files/content \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H “Content-Type: application/json” \
      -d '{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
@@ -409,7 +409,7 @@ curl -X OPTIONS https://upload.box.com/api/2.0/files/content \
 
 <!-- sample options_files_id_content -->
 ```bash
-curl -X OPTIONS https://api.box.com/2.0/files/content \
+curl -X OPTIONS https://api.box.com/2.0/files/12345/content \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H “Content-Type: application/json” \
      -d '{"name":"Photo.jpg", "parent":{"id":"11446498"}}'
