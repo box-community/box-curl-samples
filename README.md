@@ -306,7 +306,7 @@ Restores an file that has been moved to the trash.
 
 <!-- sample post_files_id -->
 ```bash
-curl -X POST https://api.box.com/2.0/files/12345 \
+curl -X POST https://upload.box.com/api/2.0/files/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H 'Content-Type: application/json' \
 ```
@@ -318,7 +318,7 @@ create a shared link, or lock a file.
 
 <!-- sample put_files_id -->
 ```bash
-curl -X PUT https://api.box.com/2.0/files/12345 \
+curl -X PUT https://upload.box.com/api/2.0/files/12345 \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H 'Content-Type: application/json' \
      -d '{
