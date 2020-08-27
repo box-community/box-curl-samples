@@ -1386,9 +1386,9 @@ curl -X POST https://api.box.com/2.0/files/12345 \
          "value": 100    
        },    
        "fields": [
-	 "created_at",
-	 "metadata.enterprise_123456.contractTemplate.amount",
-	 "metadata.enterprise_123456.contractTemplate.customerName"
+         "created_at",
+         "metadata.enterprise_123456.contractTemplate.amount",
+         "metadata.enterprise_123456.contractTemplate.customerName"
        ],
        "ancestor_folder_id": "5555",    
        "use_index": "amountAsc",    
