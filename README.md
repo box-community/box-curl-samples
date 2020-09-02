@@ -203,6 +203,18 @@
   - [<a name='Createzipdownload'></a>Create zip download](#create-zip-download)
   - [<a name='Getzipdownloadstatus'></a>Get zip download status](#get-zip-download-status)
   - [<a name='Downloadziparchive'></a>Download zip archive](#download-zip-archive)
+  - [List all classifications](#list-all-classifications)
+  - [Add classification](#add-classification)
+  - [Update classification](#update-classification)
+  - [Delete classification](#delete-classification)
+  - [Get classification on file](#get-classification-on-file)
+  - [Add classification to file](#add-classification-to-file)
+  - [Update classification on file](#update-classification-on-file)
+  - [Remove classification from file](#remove-classification-from-file)
+  - [Get classification on folder](#get-classification-on-folder)
+  - [Add classification to folder](#add-classification-to-folder)
+  - [Update classification on folder](#update-classification-on-folder)
+  - [Remove classification from folder](#remove-classification-from-folder)
 
 <!-- vscode-markdown-toc-config
 	numbering=false
@@ -1380,32 +1392,32 @@ curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies/21312/apply" 
      }'
 ```
 
-## <a name='Createametadataquery'></a>Create a metadata query 
+## <a name='Createametadataquery'></a>Create a metadata query
 
 <!-- sample post_metadata_queries_execute_read -->
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: application/json" \
-     -d '{    
-       "from": "enterprise_123456.contractTemplate",    
-       "query": "amount >= :value",    
-       "query_params": {        
-         "value": 100    
-       },    
+     -d '{
+       "from": "enterprise_123456.contractTemplate",
+       "query": "amount >= :value",
+       "query_params": {
+         "value": 100
+       },
        "fields": [
 	 "created_at",
 	 "metadata.enterprise_123456.contractTemplate.amount",
 	 "metadata.enterprise_123456.contractTemplate.customerName"
        ],
-       "ancestor_folder_id": "5555",    
-       "use_index": "amountAsc",    
-       "order_by": [  
+       "ancestor_folder_id": "5555",
+       "use_index": "amountAsc",
+       "order_by": [
          {
            "field_key": "amount",
            "direction": "asc"
          }
-       ],    
+       ],
        "limit": 100
      }'
 ```
@@ -2031,7 +2043,7 @@ curl -i -X POST "https://api.box.com/2.0/invites" \
          "id": "1232234"
        },
        "actionable_by": {
-         "login" : "freeuser@box.com" 
+         "login" : "freeuser@box.com"
        }
      }'
 ```
@@ -2205,9 +2217,9 @@ curl -i -X POST "https://api.box.com/2.0/webhooks" \
      -H "Content-Type: application/json" \
      -d '{
        "target": {
-         "id": "21322", 
+         "id": "21322",
          "type": "file"
-       }, 
+       },
        "address": "https://example.com/webhooks",
        "triggers": [
          "FILE.PREVIEWED"
@@ -2222,9 +2234,9 @@ curl -i -X POST "https://api.box.com/2.0/webhooks" \
      -H "Content-Type: application/json" \
      -d '{
        "target": {
-         "id": "234234", 
+         "id": "234234",
          "type": "folder"
-       }, 
+       },
        "address": "https://example.com/webhooks",
        "triggers": [
          "FILE.UPLOADED"
@@ -2317,13 +2329,13 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
             },
             "duration": 1000,
             "entries": {
-              { 
-                "text": "Hi John, have I told you about Box recently?", 
-                "appears": [{ "start": 0 }] 
+              {
+                "text": "Hi John, have I told you about Box recently?",
+                "appears": [{ "start": 0 }]
               },
-              { 
-                "text": "No Aaron, you have not. Tell me more!", 
-                "appears": [{ "start": 5 }] 
+              {
+                "text": "No Aaron, you have not. Tell me more!",
+                "appears": [{ "start": 5 }]
               }
             }
           },{
@@ -2343,15 +2355,15 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
             },
             "duration": 1000,
             "entries": {
-              { 
-                "text": "John", 
-                "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }], 
-                "image_url": "https://example.com/john.png" 
+              {
+                "text": "John",
+                "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }],
+                "image_url": "https://example.com/john.png"
               },
-              { 
-                "text": "Aaron", 
-                "appears": [{ "start": 5, "end": 10 }], 
-                "image_url": "https://example.com/aaron.png" 
+              {
+                "text": "Aaron",
+                "appears": [{ "start": 5, "end": 10 }],
+                "image_url": "https://example.com/aaron.png"
               }
             }
           },{
@@ -2437,13 +2449,13 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
          },
          "duration": 1000,
          "entries": {
-           { 
-             "text": "Hi John, have I told you about Box recently?", 
-             "appears": [{ "start": 0 }] 
+           {
+             "text": "Hi John, have I told you about Box recently?",
+             "appears": [{ "start": 0 }]
            },
-           { 
-             "text": "No Aaron, you have not. Tell me more!", 
-             "appears": [{ "start": 5 }] 
+           {
+             "text": "No Aaron, you have not. Tell me more!",
+             "appears": [{ "start": 5 }]
            }
          }
        },{
@@ -2463,15 +2475,15 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
          },
          "duration": 1000,
          "entries": {
-           { 
-             "text": "John", 
-             "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }], 
-             "image_url": "https://example.com/john.png" 
+           {
+             "text": "John",
+             "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }],
+             "image_url": "https://example.com/john.png"
            },
-           { 
-             "text": "Aaron", 
-             "appears": [{ "start": 5, "end": 10 }], 
-             "image_url": "https://example.com/aaron.png" 
+           {
+             "text": "Aaron",
+             "appears": [{ "start": 5, "end": 10 }],
+             "image_url": "https://example.com/aaron.png"
            }
          }
        },{
@@ -3344,4 +3356,151 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
 <!-- sample get_zip_downloads_id_content -->
 ```bash
 curl -i -X GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/conte"nt
+```
+
+## List all classifications
+
+<!-- get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Add classification
+
+<!-- put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#add -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json-patch+json" \
+     -d '[{
+       "op": "addEnumOption",
+       "fieldKey": "Box__Security__Classification__Key",
+       "data": {
+         "key": "Sensitive",
+         "classification": {
+           "classificationDefinition": "Sensitive information that must not be shared.",
+           "colorID": 4
+         }
+       }
+     }]'
+```
+
+## Update classification
+
+<!-- put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#update -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json-patch+json" \
+     -d '[{
+       "op": "editEnumOption",
+       "fieldKey": "Box__Security__Classification__Key",
+       "enumOptionKey": "Sensitive",
+       "data": {
+         "key": "Very Sensitive",
+         "classification": {
+           "classificationDefinition": "Sensitive information that must not be shared.",
+           "colorID": 4
+         }
+       }
+     }]'
+```
+
+## Delete classification
+
+<!-- put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#delete -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json-patch+json" \
+     -d '[{
+       "op": "removeEnumOption",
+       "fieldKey": "Box__Security__Classification__Key",
+       "enumOptionKey": "Sensitive"
+     }]'
+```
+
+## Get classification on file
+
+<!-- get_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Add classification to file
+
+<!-- post_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "Box__Security__Classification__Key": "Sensitive"
+     }'
+```
+
+## Update classification on file
+
+<!-- put_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json-patch+json" \
+     -d '[{
+       "op": "replace",
+       "path": "/Box__Security__Classification__Key",
+       "value": "Internal"
+     }]'
+```
+
+## Remove classification from file
+
+<!-- delete_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get classification on folder
+
+<!-- get_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Add classification to folder
+
+<!-- post_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "Box__Security__Classification__Key": "Sensitive"
+     }'
+```
+
+## Update classification on folder
+
+<!-- put_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json-patch+json" \
+     -d '[{
+       "op": "replace",
+       "path": "/Box__Security__Classification__Key",
+       "value": "Internal"
+     }]'
+```
+
+## Remove classification from folder
+
+<!-- delete_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
