@@ -3355,11 +3355,10 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
 
 <!-- sample get_zip_downloads_id_content -->
 ```bash
-curl -i -X GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/conte"nt
+curl -i -X GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content"
 ```
 
 ## List all classifications
-
 <!-- sample get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
