@@ -3142,7 +3142,42 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## Add classification
+## Add initial classifications
+
+<!-- sample post_metadata_templates_schema classifications -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/metadata_templates/schema" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "templateKey": "securityClassification-6VMVochwUWo",
+       "scope": "enterprise",
+       "displayName": "Classification",
+       "hidden": false,
+       "copyInstanceOnItemCopy": true,
+       "fields": [
+         {
+           "type": "enum",
+           "key": "Box__Security__Classification__Key",
+           "displayName": "Classification",
+           "hidden": false,
+           "options": [
+             {
+               "key": "Classified",
+               "staticConfig": {
+                 "classification": {
+                   "colorID": 7,
+                   "classificationDefinition": "Top Seret"
+                 }
+               }
+             }
+           ]
+         }
+       ]
+     }'
+```
+
+## Add another classification
 
 <!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema add -->
 ```bash
@@ -3195,6 +3230,14 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
        "fieldKey": "Box__Security__Classification__Key",
        "enumOptionKey": "Sensitive"
      }]'
+```
+
+## Delete all classifications
+
+<!-- sample delete_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Get classification on file
