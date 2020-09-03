@@ -3144,7 +3144,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 
 ## Add classification
 
-<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#add -->
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema add -->
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
@@ -3164,7 +3164,7 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 
 ## Update classification
 
-<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#update -->
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema update -->
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
@@ -3185,7 +3185,7 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 
 ## Delete classification
 
-<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#delete -->
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema delete -->
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
