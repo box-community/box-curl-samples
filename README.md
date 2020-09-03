@@ -1,229 +1,6 @@
 # Box cURL samples
 
-<!-- vscode-markdown-toc -->
-- [Box cURL samples](#box-curl-samples)
-  - [<a name='Authorizeauser'></a>Authorize a user](#authorize-a-user)
-  - [<a name='Requestanaccesstoken'></a>Request an access token](#request-an-access-token)
-  - [<a name='Refreshanaccesstoken'></a>Refresh an access token](#refresh-an-access-token)
-  - [<a name='Downscopeatoken'></a>Downscope a token](#downscope-a-token)
-  - [<a name='Revokeanaccesstoken'></a>Revoke an access token](#revoke-an-access-token)
-  - [<a name='Getafile'></a>Get a file](#get-a-file)
-  - [<a name='Restorefile'></a>Restore file](#restore-file)
-  - [<a name='Updateafile'></a>Update a file](#update-a-file)
-  - [<a name='Deleteafile'></a>Delete a file](#delete-a-file)
-  - [<a name='Downloadafile'></a>Download a file](#download-a-file)
-  - [<a name='Downloadafileversion'></a>Download a file version](#download-a-file-version)
-  - [<a name='GetdownloadURL'></a>Get download URL](#get-download-url)
-  - [<a name='Downloadasharedlink'></a>Download a shared link](#download-a-shared-link)
-  - [<a name='Uploadafileversion'></a>Upload a file version](#upload-a-file-version)
-  - [<a name='Preflightcheck'></a>Preflight check](#preflight-check)
-  - [<a name='Uploadafile'></a>Upload a file](#upload-a-file)
-  - [<a name='Createuploadsession'></a>Create upload session](#create-upload-session)
-  - [<a name='Createuploadsessionforexistingfile'></a>Create upload session for existing file](#create-upload-session-for-existing-file)
-  - [<a name='Getuploadsession'></a>Get upload session](#get-upload-session)
-  - [<a name='Uploadapart'></a>Upload a part](#upload-a-part)
-  - [<a name='Abortuploadsession'></a>Abort upload session](#abort-upload-session)
-  - [<a name='Listparts'></a>List parts](#list-parts)
-  - [<a name='Commituploadsession'></a>Commit upload session](#commit-upload-session)
-  - [<a name='Copyafile'></a>Copy a file](#copy-a-file)
-  - [<a name='Getafilethumbnail'></a>Get a file thumbnail](#get-a-file-thumbnail)
-  - [<a name='Getfilecollaborations'></a>Get file collaborations](#get-file-collaborations)
-  - [<a name='Listafilescomments'></a>List a file's comments](#list-a-files-comments)
-  - [<a name='Getfiletasks'></a>Get file tasks](#get-file-tasks)
-  - [<a name='Gettrashedfile'></a>Get trashed file](#get-trashed-file)
-  - [<a name='Permanentlydeletefile'></a>Permanently delete file](#permanently-delete-file)
-  - [<a name='Listallfileversions'></a>List all file versions](#list-all-file-versions)
-  - [<a name='Getafileversion'></a>Get a file version](#get-a-file-version)
-  - [<a name='Deletefileversion'></a>Delete file version](#delete-file-version)
-  - [<a name='Revertfileversion'></a>Revert file version](#revert-file-version)
-  - [<a name='Listfilesmetadata'></a>List file's metadata](#list-files-metadata)
-  - [<a name='Getspecificfilemetadata'></a>Get specific file metadata](#get-specific-file-metadata)
-  - [<a name='Createmetadataonfile'></a>Create metadata on file](#create-metadata-on-file)
-  - [<a name='Updatefilemetadata'></a>Update file metadata](#update-file-metadata)
-  - [<a name='Deletefilemetadata'></a>Delete file metadata](#delete-file-metadata)
-  - [<a name='Getfilewatermark'></a>Get file watermark](#get-file-watermark)
-  - [<a name='Applywatermarktofile'></a>Apply watermark to file](#apply-watermark-to-file)
-  - [<a name='Removefilewatermark'></a>Remove file watermark](#remove-file-watermark)
-  - [<a name='Getafolder'></a>Get a folder](#get-a-folder)
-  - [<a name='Restorefolder'></a>Restore folder](#restore-folder)
-  - [<a name='Updateafolder'></a>Update a folder](#update-a-folder)
-  - [<a name='Moveafolder'></a>Move a folder](#move-a-folder)
-  - [<a name='Renameafolder'></a>Rename a folder](#rename-a-folder)
-  - [<a name='Changefolderowner'></a>Change folder owner](#change-folder-owner)
-  - [<a name='Deleteafolder'></a>Delete a folder](#delete-a-folder)
-  - [<a name='Getitemsinfolder'></a>Get items in folder](#get-items-in-folder)
-  - [<a name='Createafolder'></a>Create a folder](#create-a-folder)
-  - [<a name='Copyafolder'></a>Copy a folder](#copy-a-folder)
-  - [<a name='Getfoldercollaborations'></a>Get folder collaborations](#get-folder-collaborations)
-  - [<a name='Gettrashedfolder'></a>Get trashed folder](#get-trashed-folder)
-  - [<a name='Permanentlydeletefolder'></a>Permanently delete folder](#permanently-delete-folder)
-  - [<a name='Listfoldersmetadata'></a>List folder's metadata](#list-folders-metadata)
-  - [<a name='Getspecificfoldermetadata'></a>Get specific folder metadata](#get-specific-folder-metadata)
-  - [<a name='Createmetadataonfolder'></a>Create metadata on folder](#create-metadata-on-folder)
-  - [<a name='Updatefoldermetadata'></a>Update folder metadata](#update-folder-metadata)
-  - [<a name='Deletefoldermetadata'></a>Delete folder metadata](#delete-folder-metadata)
-  - [<a name='Listtrasheditems'></a>List trashed items](#list-trashed-items)
-  - [<a name='Getfolderwatermark'></a>Get folder watermark](#get-folder-watermark)
-  - [<a name='Applywatermarktofolder'></a>Apply watermark to folder](#apply-watermark-to-folder)
-  - [<a name='Removefolderwatermark'></a>Remove folder watermark](#remove-folder-watermark)
-  - [<a name='Gettemplatebyname'></a>Get template by name](#get-template-by-name)
-  - [<a name='Updatemetadatatemplate'></a>Update metadata template](#update-metadata-template)
-  - [<a name='Deletemetadatatemplate'></a>Delete metadata template](#delete-metadata-template)
-  - [<a name='GetatemplatebyID'></a>Get a template by ID](#get-a-template-by-id)
-  - [<a name='Listenterprisetemplates'></a>List enterprise templates](#list-enterprise-templates)
-  - [<a name='Listglobaltemplates'></a>List global templates](#list-global-templates)
-  - [<a name='Createmetadatatemplate'></a>Create metadata template](#create-metadata-template)
-  - [<a name='Listcascadepolicies'></a>List cascade policies](#list-cascade-policies)
-  - [<a name='Createcascadepolicy'></a>Create cascade policy](#create-cascade-policy)
-  - [<a name='Getcascadepolicy'></a>Get cascade policy](#get-cascade-policy)
-  - [<a name='Deletecascadepolicy'></a>Delete cascade policy](#delete-cascade-policy)
-  - [<a name='Forceapplycascadepolicy'></a>Force apply cascade policy](#force-apply-cascade-policy)
-  - [<a name='Createametadataquery'></a>Create a metadata query](#create-a-metadata-query)
-  - [<a name='Getcomment'></a>Get comment](#get-comment)
-  - [<a name='Updatecomment'></a>Update comment](#update-comment)
-  - [<a name='Deletecomment'></a>Delete comment](#delete-comment)
-  - [<a name='Createcomment'></a>Create comment](#create-comment)
-  - [<a name='Createreply'></a>Create reply](#create-reply)
-  - [<a name='TagUserinComment'></a>Tag User in Comment](#tag-user-in-comment)
-  - [<a name='TagUserinReply'></a>Tag User in Reply](#tag-user-in-reply)
-  - [<a name='Getcollaboration'></a>Get collaboration](#get-collaboration)
-  - [<a name='Updatecollaboration'></a>Update collaboration](#update-collaboration)
-  - [<a name='Deletecollaboration'></a>Delete collaboration](#delete-collaboration)
-  - [<a name='Listpendingcollaborations'></a>List pending collaborations](#list-pending-collaborations)
-  - [<a name='Createcollaboration'></a>Create collaboration](#create-collaboration)
-  - [<a name='Searchforcontent'></a>Search for content](#search-for-content)
-  - [<a name='Createtask'></a>Create task](#create-task)
-  - [<a name='Gettask'></a>Get task](#get-task)
-  - [<a name='Updatetask'></a>Update task](#update-task)
-  - [<a name='Deletetask'></a>Delete task](#delete-task)
-  - [<a name='Listtasksassignments'></a>List task's assignments](#list-tasks-assignments)
-  - [<a name='Assigntask'></a>Assign task](#assign-task)
-  - [<a name='Gettaskassignment'></a>Get task assignment](#get-task-assignment)
-  - [<a name='Updatetaskassignment'></a>Update task assignment](#update-task-assignment)
-  - [<a name='Unassigntask'></a>Unassign task](#unassign-task)
-  - [<a name='Finditemforsharedlink'></a>Find item for shared link](#find-item-for-shared-link)
-  - [<a name='Createweblink'></a>Create web link](#create-web-link)
-  - [<a name='Getweblink'></a>Get web link](#get-web-link)
-  - [<a name='Restoreweblink'></a>Restore web link](#restore-web-link)
-  - [<a name='Updateweblink'></a>Update web link](#update-web-link)
-  - [<a name='Deleteweblink'></a>Delete web link](#delete-web-link)
-  - [<a name='Gettrashedweblink'></a>Get trashed web link](#get-trashed-web-link)
-  - [<a name='Permanentlydeleteweblink'></a>Permanently delete web link](#permanently-delete-web-link)
-  - [<a name='Listenterpriseusers'></a>List enterprise users](#list-enterprise-users)
-  - [<a name='Createuser'></a>Create user](#create-user)
-  - [<a name='Getauthenticateduser'></a>Get authenticated user](#get-authenticated-user)
-  - [<a name='Getuser'></a>Get user](#get-user)
-  - [<a name='Updateuser'></a>Update user](#update-user)
-  - [<a name='Deleteuser'></a>Delete user](#delete-user)
-  - [<a name='Getuseravatar'></a>Get user avatar](#get-user-avatar)
-  - [<a name='Transferownedfolders'></a>Transfer owned folders](#transfer-owned-folders)
-  - [<a name='Listusersemailaliases'></a>List user's email aliases](#list-users-email-aliases)
-  - [<a name='Createemailalias'></a>Create email alias](#create-email-alias)
-  - [<a name='Removeemailalias'></a>Remove email alias](#remove-email-alias)
-  - [<a name='Listusersgroups'></a>List user's groups](#list-users-groups)
-  - [<a name='Inviteuser'></a>Invite user](#invite-user)
-  - [<a name='Getuserinvitestatus'></a>Get user invite status](#get-user-invite-status)
-  - [<a name='Listenterprisegroups'></a>List enterprise groups](#list-enterprise-groups)
-  - [<a name='Creategroup'></a>Create group](#create-group)
-  - [<a name='Getgroup'></a>Get group](#get-group)
-  - [<a name='Updategroup'></a>Update group](#update-group)
-  - [<a name='Deletegroup'></a>Delete group](#delete-group)
-  - [<a name='Listgroupsmembers'></a>List group's members](#list-groups-members)
-  - [<a name='Listgroupscollaborations'></a>List group's collaborations](#list-groups-collaborations)
-  - [<a name='Addusertogroup'></a>Add user to group](#add-user-to-group)
-  - [<a name='Getgroupmembership'></a>Get group membership](#get-group-membership)
-  - [<a name='Updateusersmembership'></a>Update user's membership](#update-users-membership)
-  - [<a name='Removeuserfromgroup'></a>Remove user from group](#remove-user-from-group)
-  - [<a name='Listallwebhooks'></a>List all webhooks](#list-all-webhooks)
-  - [<a name='Createwebhook'></a>Create webhook](#create-webhook)
-  - [<a name='Getwebhook'></a>Get webhook](#get-webhook)
-  - [<a name='Updatewebhook'></a>Update webhook](#update-webhook)
-  - [<a name='Deletewebhook'></a>Delete webhook](#delete-webhook)
-  - [<a name='Updateskillinvocation'></a>Update skill invocation](#update-skill-invocation)
-  - [<a name='ListSkillcardsonfile'></a>List Skill cards on file](#list-skill-cards-on-file)
-  - [<a name='CreateSkillcardsonfile'></a>Create Skill cards on file](#create-skill-cards-on-file)
-  - [<a name='UpdateSkillcardsonfile'></a>Update Skill cards on file](#update-skill-cards-on-file)
-  - [<a name='DeleteSkillcardsfromfile'></a>Delete Skill cards from file](#delete-skill-cards-from-file)
-  - [<a name='Getalongpollendpoint'></a>Get a long poll endpoint](#get-a-long-poll-endpoint)
-  - [<a name='Getuserandenterpriseevents'></a>Get user and enterprise events](#get-user-and-enterprise-events)
-  - [<a name='Listallcollections'></a>List all collections](#list-all-collections)
-  - [<a name='Listcollectionitems'></a>List collection items](#list-collection-items)
-  - [<a name='Addfiletocollection'></a>Add file to collection](#add-file-to-collection)
-  - [<a name='Addfoldertocollection'></a>Add folder to collection](#add-folder-to-collection)
-  - [<a name='Addweblinktocollection'></a>Add web link to collection](#add-web-link-to-collection)
-  - [<a name='Removefilefromcollection'></a>Remove file from collection](#remove-file-from-collection)
-  - [<a name='Removefolderfromcollection'></a>Remove folder from collection](#remove-folder-from-collection)
-  - [<a name='Removeweblinkfromcollection'></a>Remove web link from collection](#remove-web-link-from-collection)
-  - [<a name='Listrecentitems'></a>List recent items](#list-recent-items)
-  - [<a name='Listretentionpolicies'></a>List retention policies](#list-retention-policies)
-  - [<a name='Createretentionpolicy'></a>Create retention policy](#create-retention-policy)
-  - [<a name='Getretentionpolicy'></a>Get retention policy](#get-retention-policy)
-  - [<a name='Updateretentionpolicy'></a>Update retention policy](#update-retention-policy)
-  - [<a name='Listpolicysassignments'></a>List policy's assignments](#list-policys-assignments)
-  - [<a name='Assignretentionpolicy'></a>Assign retention policy](#assign-retention-policy)
-  - [<a name='Getpolicyassignment'></a>Get policy assignment](#get-policy-assignment)
-  - [<a name='Listalllegalholdpolicies'></a>List all legal hold policies](#list-all-legal-hold-policies)
-  - [<a name='Createlegalholdpolicy'></a>Create legal hold policy](#create-legal-hold-policy)
-  - [<a name='Getlegalholdpolicy'></a>Get legal hold policy](#get-legal-hold-policy)
-  - [<a name='Updatelegalholdpolicy'></a>Update legal hold policy](#update-legal-hold-policy)
-  - [<a name='Deletelegalholdpolicy'></a>Delete legal hold policy](#delete-legal-hold-policy)
-  - [<a name='Listpolicysassignments-1'></a>List policy's assignments](#list-policys-assignments-1)
-  - [<a name='Assignlegalholdpolicy'></a>Assign legal hold policy](#assign-legal-hold-policy)
-  - [<a name='Getpolicyassignment-1'></a>Get policy assignment](#get-policy-assignment-1)
-  - [<a name='Unassignlegalholdpolicy'></a>Unassign legal hold policy](#unassign-legal-hold-policy)
-  - [<a name='Getretentionforfile'></a>Get retention for file](#get-retention-for-file)
-  - [<a name='Listretentionsonfiles'></a>List retentions on files](#list-retentions-on-files)
-  - [<a name='Inspectlegalholdonfile'></a>Inspect legal hold on file](#inspect-legal-hold-on-file)
-  - [<a name='Listlegalholdsforpolicy'></a>List legal holds for policy](#list-legal-holds-for-policy)
-  - [<a name='Getdevicepin'></a>Get device pin](#get-device-pin)
-  - [<a name='Deletedevicepin'></a>Delete device pin](#delete-device-pin)
-  - [<a name='Listenterprisedevicepins'></a>List enterprise device pins](#list-enterprise-device-pins)
-  - [<a name='Listtermsofservices'></a>List terms of services](#list-terms-of-services)
-  - [<a name='Createtermsofservice'></a>Create terms of service](#create-terms-of-service)
-  - [<a name='Gettermsofservice'></a>Get terms of service](#get-terms-of-service)
-  - [<a name='Updatetermsofservice'></a>Update terms of service](#update-terms-of-service)
-  - [<a name='ListToSuserstatuses'></a>List ToS user statuses](#list-tos-user-statuses)
-  - [<a name='Setstatusfornewuser'></a>Set status for new user](#set-status-for-new-user)
-  - [<a name='Setstatusforexistinguser'></a>Set status for existing user](#set-status-for-existing-user)
-  - [<a name='Listwhitelistentries'></a>List whitelist entries](#list-whitelist-entries)
-  - [<a name='Createwhitelistentry'></a>Create whitelist entry](#create-whitelist-entry)
-  - [<a name='Getwhitelistentry'></a>Get whitelist entry](#get-whitelist-entry)
-  - [<a name='Deletewhitelistentry'></a>Delete whitelist entry](#delete-whitelist-entry)
-  - [<a name='Listwhitelistexemptions'></a>List whitelist exemptions](#list-whitelist-exemptions)
-  - [<a name='Createwhitelistexemption'></a>Create whitelist exemption](#create-whitelist-exemption)
-  - [<a name='Getwhitelistexemption'></a>Get whitelist exemption](#get-whitelist-exemption)
-  - [<a name='Removewhitelistexemption'></a>Remove whitelist exemption](#remove-whitelist-exemption)
-  - [<a name='Liststoragepolicies'></a>List storage policies](#list-storage-policies)
-  - [<a name='Getstoragepolicy'></a>Get storage policy](#get-storage-policy)
-  - [<a name='Listpolicyassignments'></a>List policy assignments](#list-policy-assignments)
-  - [<a name='Assignstoragepolicy'></a>Assign storage policy](#assign-storage-policy)
-  - [<a name='Getpolicyassignment-1'></a>Get policy assignment](#get-policy-assignment-2)
-  - [<a name='Updatepolicyassignment'></a>Update policy assignment](#update-policy-assignment)
-  - [<a name='Unassignstoragepolicy'></a>Unassign storage policy](#unassign-storage-policy)
-  - [<a name='Createzipdownload'></a>Create zip download](#create-zip-download)
-  - [<a name='Getzipdownloadstatus'></a>Get zip download status](#get-zip-download-status)
-  - [<a name='Downloadziparchive'></a>Download zip archive](#download-zip-archive)
-  - [List all classifications](#list-all-classifications)
-  - [Add classification](#add-classification)
-  - [Update classification](#update-classification)
-  - [Delete classification](#delete-classification)
-  - [Get classification on file](#get-classification-on-file)
-  - [Add classification to file](#add-classification-to-file)
-  - [Update classification on file](#update-classification-on-file)
-  - [Remove classification from file](#remove-classification-from-file)
-  - [Get classification on folder](#get-classification-on-folder)
-  - [Add classification to folder](#add-classification-to-folder)
-  - [Update classification on folder](#update-classification-on-folder)
-  - [Remove classification from folder](#remove-classification-from-folder)
-
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
-
-
-## <a name='Authorizeauser'></a>Authorize a user
+## Authorize a user
 
 Authorize a user by sending them through the [Box](https://box.com)
 website and request their permission to act on their behalf.
@@ -238,7 +15,7 @@ format.
 curl -i -X GET "https://account.box.com/api/oauth2/authorize?response_type=code&client_id=ly1nj6n11vionaie65emwzk575hnnmrk&redirect_uri=http://example.com/auth/callback"
 ```
 
-## <a name='Requestanaccesstoken'></a>Request an access token
+## Request an access token
 
 Request an Access Token using either a client-side obtained OAuth2
 authorization code or a server-side JWT assertion.
@@ -263,7 +40,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "grant_type=authorization_code"
 ```
 
-## <a name='Refreshanaccesstoken'></a>Refresh an access token
+## Refresh an access token
 
 <!-- sample post_oauth2_token refresh -->
 ```bash
@@ -275,7 +52,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "grant_type=refresh_token"
 ```
 
-## <a name='Downscopeatoken'></a>Downscope a token
+## Downscope a token
 
 <!-- sample post_oauth2_token downscope_token -->
 ```bash
@@ -289,7 +66,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 ```
 
 
-## <a name='Revokeanaccesstoken'></a>Revoke an access token
+## Revoke an access token
 
 Revoke an active Access Token, effectively logging a user out
 that has been previously authenticated.
@@ -303,7 +80,7 @@ curl -i -X POST "https://api.box.com/oauth2/revoke" \
      -d "token=[ACCESS_TOKEN]"
 ```
 
-## <a name='Getafile'></a>Get a file
+## Get a file
 
 Retrieves the details about a file.
 
@@ -313,7 +90,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Restorefile'></a>Restore file
+## Restore file
 
 Restores an file that has been moved to the trash.
 
@@ -324,7 +101,7 @@ curl -i -X POST "https://upload.box.com/api/2.0/files/12345" \
      -H "Content-Type: application/json" \
 ```
 
-## <a name='Updateafile'></a>Update a file
+## Update a file
 
 Updates a file. This can be used to rename or move a file,
 create a shared link, or lock a file.
@@ -339,7 +116,7 @@ curl -i -X PUT "https://upload.box.com/api/2.0/files/12345" \
      }'
 ```
 
-## <a name='Deleteafile'></a>Delete a file
+## Delete a file
 
 Deletes a file, either permanently or by moving it to
 the trash.
@@ -353,7 +130,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Downloadafile'></a>Download a file
+## Download a file
 
 Returns the contents of a file in binary format.
 
@@ -364,7 +141,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/content" \
      -L
 ```
 
-## <a name='Downloadafileversion'></a>Download a file version
+## Download a file version
 
 <!-- sample get_files_id_content for_version -->
 ```bash
@@ -373,7 +150,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
      -L
 ```
 
-## <a name='GetdownloadURL'></a>Get download URL
+## Get download URL
 
 <!-- sample get_files_id_content get_url -->
 ```bash
@@ -381,7 +158,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Downloadasharedlink'></a>Download a shared link
+## Download a shared link
 
 Returns the contents of a file in binary format.
 
@@ -393,7 +170,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/content" \
      -L
 ```
 
-## <a name='Uploadafileversion'></a>Upload a file version
+## Upload a file version
 
 Update a file's content. For file sizes over 50MB we recommend
 using the Chunk Upload APIs.
@@ -407,7 +184,7 @@ curl -i -X POST "https://upload.box.com/api/2.0/files/12345/content" \
      -F file=@<FILE_NAME>
 ```
 
-## <a name='Preflightcheck'></a>Preflight check
+## Preflight check
 
 Performs a check to verify that a file will be accepted by Box
 before you upload the entire file.
@@ -428,7 +205,7 @@ curl -i -X OPTIONS "https://api.box.com/2.0/files/12345/content" \
      -d '{"name":"Contract.pdf", "parent":{"id":"11446498"}}'
 ```
 
-## <a name='Uploadafile'></a>Upload a file
+## Upload a file
 
 Uploads a small file to Box. For file sizes over 50MB we recommend
 using the Chunk Upload APIs.
@@ -442,7 +219,7 @@ curl -i -X POST "https://api.box.com/2.0/files/content" \
      -F file=@<FILE_NAME>
 ```
 
-## <a name='Createuploadsession'></a>Create upload session
+## Create upload session
 
 Creates an upload session for a new file.
 
@@ -458,7 +235,7 @@ curl -i -X POST "https://upload.box.com/api/2.0/files/upload_sessions" \
      }'
 ```
 
-## <a name='Createuploadsessionforexistingfile'></a>Create upload session for existing file
+## Create upload session for existing file
 
 Creates an upload session for an existing file.
 
@@ -472,7 +249,7 @@ curl -i -X POST "https://upload.box.com/api/2.0/files/12345/upload_sessions" \
      }'
 ```
 
-## <a name='Getuploadsession'></a>Get upload session
+## Get upload session
 
 Return information about an upload session.
 
@@ -482,7 +259,7 @@ curl -i -X GET "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Uploadapart'></a>Upload a part
+## Upload a part
 
 Updates a chunk of an upload session for a file.
 
@@ -496,7 +273,7 @@ curl -i -X PUT "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A
      --data-binary @<FILE_NAME>
 ```
 
-## <a name='Abortuploadsession'></a>Abort upload session
+## Abort upload session
 
 Abort an upload session and discard all data uploaded.
 
@@ -508,7 +285,7 @@ curl -i -X DELETE "https://upload.box.com/api/2.0/files/upload_sessions/F9719647
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listparts'></a>List parts
+## List parts
 
 Return a list of the chunks uploaded to the upload
 session so far.
@@ -519,7 +296,7 @@ curl -i -X GET "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Commituploadsession'></a>Commit upload session
+## Commit upload session
 
 Close an upload session and create a file from the
 uploaded chunks.
@@ -551,7 +328,7 @@ curl -i -X POST "https://upload.box.com/api/2.0/files/upload_sessions/F971964745
      }'
 ```
 
-## <a name='Copyafile'></a>Copy a file
+## Copy a file
 
 Creates a copy of a file.
 
@@ -567,7 +344,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/copy" \
      }'
 ```
 
-## <a name='Getafilethumbnail'></a>Get a file thumbnail
+## Get a file thumbnail
 
 Retrieves a thumbnail, or smaller image representation, of a file.
 
@@ -586,7 +363,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/thumbnail.png" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getfilecollaborations'></a>Get file collaborations
+## Get file collaborations
 
 Retrieves a list of collaborations for a file. This
 returns all the users that have access to the file.
@@ -597,7 +374,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/collaborations" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listafilescomments'></a>List a file's comments
+## List a file's comments
 
 Retrieves a list of comments for a file.
 
@@ -607,7 +384,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/comments" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getfiletasks'></a>Get file tasks
+## Get file tasks
 
 Retrieves a list of all the tasks for a file. This
 endpoint does not support paging.
@@ -618,7 +395,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/tasks" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Gettrashedfile'></a>Get trashed file
+## Get trashed file
 
 Retrieves a file that has been moved to the trash.
 
@@ -628,7 +405,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/trash" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Permanentlydeletefile'></a>Permanently delete file
+## Permanently delete file
 
 Permanently deletes a file that is in the trash.
 This action cannot be undone.
@@ -639,7 +416,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/trash" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listallfileversions'></a>List all file versions
+## List all file versions
 
 Retrieve information on all version of a file. This endpoint can be used to
 retrieve information about older versions of a file.
@@ -652,7 +429,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/versions" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getafileversion'></a>Get a file version
+## Get a file version
 
 Retrieve a specific older version of a file.
 
@@ -664,7 +441,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/versions/456456" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Deletefileversion'></a>Delete file version
+## Delete file version
 
 Move a file version to the trash.
 
@@ -676,7 +453,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/versions/456456" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Revertfileversion'></a>Revert file version
+## Revert file version
 
 Revert to a previous version of a file.
 
@@ -703,7 +480,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/versions/current" \
      }'
 ```
 
-## <a name='Listfilesmetadata'></a>List file's metadata
+## List file's metadata
 
 Retrieves all metadata for a given file.
 
@@ -713,7 +490,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/metadata" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getspecificfilemetadata'></a>Get specific file metadata
+## Get specific file metadata
 
 Retrieve a specific metadata template instance for a file
 
@@ -723,7 +500,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/bl
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createmetadataonfile'></a>Create metadata on file
+## Create metadata on file
 
 Creates a piece of metadata on a file based on the specified template.
 
@@ -746,7 +523,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/b
 
 ```
 
-## <a name='Updatefilemetadata'></a>Update file metadata
+## Update file metadata
 
 Updates a piece of metadata on a file.
 
@@ -810,7 +587,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/bl
       ]'
 ```
 
-## <a name='Deletefilemetadata'></a>Delete file metadata
+## Delete file metadata
 
 Deletes a piece of file metadata.
 
@@ -820,7 +597,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/enterprise_27335
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getfilewatermark'></a>Get file watermark
+## Get file watermark
 
 Retrieve the watermark for a file.
 
@@ -830,7 +607,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/watermark" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Applywatermarktofile'></a>Apply watermark to file
+## Apply watermark to file
 
 Applies or update a watermark on a file.
 
@@ -846,7 +623,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/watermark" \
      }'
 ```
 
-## <a name='Removefilewatermark'></a>Remove file watermark
+## Remove file watermark
 
 Removes the watermark from a file.
 
@@ -856,7 +633,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/watermark" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getafolder'></a>Get a folder
+## Get a folder
 
 Retrieves details for a folder, including the first 100 entries
 in the folder.
@@ -870,7 +647,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Restorefolder'></a>Restore folder
+## Restore folder
 
 Restores a folder that has been moved to the trash.
 
@@ -880,7 +657,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updateafolder'></a>Update a folder
+## Update a folder
 
 Updates a folder. This can be also be used to move the folder,
 create shared links, update collaborations, and more.
@@ -895,7 +672,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      }'
 ```
 
-## <a name='Moveafolder'></a>Move a folder
+## Move a folder
 
 <!-- sample put_folders_id move -->
 ```bash
@@ -910,7 +687,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      }'
 ```
 
-## <a name='Renameafolder'></a>Rename a folder
+## Rename a folder
 
 <!-- sample put_folders_id rename -->
 ```bash
@@ -922,7 +699,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      }'
 ```
 
-## <a name='Changefolderowner'></a>Change folder owner
+## Change folder owner
 
 <!-- sample put_folders_id transfer -->
 ```bash
@@ -936,7 +713,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      }'
 ```
 
-## <a name='Deleteafolder'></a>Delete a folder
+## Delete a folder
 
 Deletes a folder, either permanently or by moving it to
 the trash.
@@ -947,7 +724,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getitemsinfolder'></a>Get items in folder
+## Get items in folder
 
 Retrieves a page of items in a folder. These items can be files,
 folders, and web links.
@@ -961,7 +738,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/0/items" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createafolder'></a>Create a folder
+## Create a folder
 
 Creates a new empty folder within the specified parent folder.
 
@@ -978,7 +755,7 @@ curl -i -X POST "https://api.box.com/2.0/folders" \
      }'
 ```
 
-## <a name='Copyafolder'></a>Copy a folder
+## Copy a folder
 
 Creates a copy of a folder within a destination folder.
 
@@ -996,7 +773,7 @@ curl -i -X POST "https://api.box.com/2.0/folders/4353455/copy" \
      }'
 ```
 
-## <a name='Getfoldercollaborations'></a>Get folder collaborations
+## Get folder collaborations
 
 Retrieves a list of collaborations for a folder. This
 returns all the users that have access to the folder.
@@ -1007,7 +784,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/collaborations" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Gettrashedfolder'></a>Get trashed folder
+## Get trashed folder
 
 Retrieves a folder that has been moved to the trash.
 
@@ -1017,7 +794,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/trash" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Permanentlydeletefolder'></a>Permanently delete folder
+## Permanently delete folder
 
 Permanently deletes a folder that is in the trash.
 This action cannot be undone.
@@ -1028,7 +805,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/trash" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listfoldersmetadata'></a>List folder's metadata
+## List folder's metadata
 
 Retrieves all metadata for a given folder.
 
@@ -1038,7 +815,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/metadata" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getspecificfoldermetadata'></a>Get specific folder metadata
+## Get specific folder metadata
 
 Retrieve a specific metadata template instance for a folder
 
@@ -1048,7 +825,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/metadata/enterprise_2733
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createmetadataonfolder'></a>Create metadata on folder
+## Create metadata on folder
 
 Creates a piece of metadata on a folder based on the specified template.
 
@@ -1070,7 +847,7 @@ curl -i -X POST "https://api.box.com/2.0/folders/4353455/metadata/enterprise_273
      }'
 ```
 
-## <a name='Updatefoldermetadata'></a>Update folder metadata
+## Update folder metadata
 
 Updates a piece of metadata on a folder based.
 
@@ -1134,7 +911,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455/metadata/enterprise_2733
       ]'
 ```
 
-## <a name='Deletefoldermetadata'></a>Delete folder metadata
+## Delete folder metadata
 
 Deletes a piece of folder metadata.
 
@@ -1144,7 +921,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/metadata/enterprise_2
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listtrasheditems'></a>List trashed items
+## List trashed items
 
 Retrieves the files and folders that have been moved
 to the trash.
@@ -1159,7 +936,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/trash/items" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getfolderwatermark'></a>Get folder watermark
+## Get folder watermark
 
 Retrieve the watermark for a folder.
 
@@ -1169,7 +946,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/watermark" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Applywatermarktofolder'></a>Apply watermark to folder
+## Apply watermark to folder
 
 Applies or update a watermark on a folder.
 
@@ -1185,7 +962,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455/watermark" \
      }'
 ```
 
-## <a name='Removefolderwatermark'></a>Remove folder watermark
+## Remove folder watermark
 
 Removes the watermark from a folder.
 
@@ -1195,7 +972,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/watermark" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Gettemplatebyname'></a>Get template by name
+## Get template by name
 
 Retrieves a metadata template by its scope and template name.
 
@@ -1205,7 +982,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/blueprintT
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatemetadatatemplate'></a>Update metadata template
+## Update metadata template
 
 Updates a metadata template.
 
@@ -1231,7 +1008,7 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/blueprintT
      ]'
 ```
 
-## <a name='Deletemetadatatemplate'></a>Delete metadata template
+## Delete metadata template
 
 Delete a metadata template and its instances.
 This deletion is permanent and can not be reversed.
@@ -1242,7 +1019,7 @@ curl -i -X DELETE "https://api.box.com/2.0/metadata_templates/enterprise/bluepri
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='GetatemplatebyID'></a>Get a template by ID
+## Get a template by ID
 
 Retrieves a metadata template by its ID.
 
@@ -1252,7 +1029,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/d9671692-3df6-11ea-b7
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listenterprisetemplates'></a>List enterprise templates
+## List enterprise templates
 
 Used to retrieve all metadata templates within a user's enterprise
 
@@ -1262,7 +1039,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listglobaltemplates'></a>List global templates
+## List global templates
 
 Used to retrieve all globally available metadata templates.
 
@@ -1272,7 +1049,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/global" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createmetadatatemplate'></a>Create metadata template
+## Create metadata template
 
 Creates a new metadata template that can be applied to files and folders.
 
@@ -1325,7 +1102,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_templates/schema" \
     }'
 ```
 
-## <a name='Listcascadepolicies'></a>List cascade policies
+## List cascade policies
 
 Retrieve a collection of metadata cascade policies
 within a given folder for the current enterprise.
@@ -1336,7 +1113,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_cascade_policies?folder_id=3123
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createcascadepolicy'></a>Create cascade policy
+## Create cascade policy
 
 Creates a new metadata cascade policy that applies a given
 metadata template to a given folder and automatically
@@ -1357,7 +1134,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies" \
      }'
 ```
 
-## <a name='Getcascadepolicy'></a>Get cascade policy
+## Get cascade policy
 
 Retrieve a metadata cascade policy.
 
@@ -1367,7 +1144,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_cascade_policies/324324" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Deletecascadepolicy'></a>Delete cascade policy
+## Delete cascade policy
 
 Deletes a metadata cascade policy.
 
@@ -1377,7 +1154,7 @@ curl -i -X DELETE "https://api.box.com/2.0/metadata_cascade_policies/324324" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Forceapplycascadepolicy'></a>Force apply cascade policy
+## Force apply cascade policy
 
 If a policy already exists on a folder, this will apply that policy
 to all existing files and sub-folders within the target folder.
@@ -1392,7 +1169,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies/21312/apply" 
      }'
 ```
 
-## <a name='Createametadataquery'></a>Create a metadata query
+## Create a metadata query
 
 <!-- sample post_metadata_queries_execute_read -->
 ```bash
@@ -1422,7 +1199,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345" \
      }'
 ```
 
-## <a name='Getcomment'></a>Get comment
+## Get comment
 
 Retrieves the message and metadata for a specific comment, as well
 as information on the user who created the comment.
@@ -1433,7 +1210,7 @@ curl -i -X GET "https://api.box.com/2.0/comments/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatecomment'></a>Update comment
+## Update comment
 
 Update the message of a comment.
 
@@ -1447,7 +1224,7 @@ curl -i -X PUT "https://api.box.com/2.0/comments/12345" \
      }'
 ```
 
-## <a name='Deletecomment'></a>Delete comment
+## Delete comment
 
 Permanently deletes a comment.
 
@@ -1457,7 +1234,7 @@ curl -i -X DELETE "https://api.box.com/2.0/comments/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createcomment'></a>Create comment
+## Create comment
 
 Adds a comment comment by the user to a specific file, or
 as a reply to an other comment.
@@ -1476,7 +1253,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
      }'
 ```
 
-## <a name='Createreply'></a>Create reply
+## Create reply
 
 <!-- sample post_comments as_reply  -->
 ```bash
@@ -1492,7 +1269,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
      }
 ```
 
-## <a name='TagUserinComment'></a>Tag User in Comment
+## Tag User in Comment
 
 <!-- sample post_comments tag_user -->
 ```bash
@@ -1509,7 +1286,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
 ```
 
 
-## <a name='TagUserinReply'></a>Tag User in Reply
+## Tag User in Reply
 
 <!-- sample post_comments as_reply_tag_user -->
 ```bash
@@ -1525,7 +1302,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
      }
 ```
 
-## <a name='Getcollaboration'></a>Get collaboration
+## Get collaboration
 
 Retrieves a single collaboration.
 
@@ -1535,7 +1312,7 @@ curl -i -X GET "https://api.box.com/2.0/collaborations/1234" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatecollaboration'></a>Update collaboration
+## Update collaboration
 
 Updates a collaboration.
 
@@ -1552,7 +1329,7 @@ curl -i -X PUT "https://api.box.com/2.0/collaborations/1234" \
      }'
 ```
 
-## <a name='Deletecollaboration'></a>Delete collaboration
+## Delete collaboration
 
 Deletes a single collaboration.
 
@@ -1562,7 +1339,7 @@ curl -i -X DELETE "https://api.box.com/2.0/collaborations/1234" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listpendingcollaborations'></a>List pending collaborations
+## List pending collaborations
 
 Retrieves all pending collaboration invites for this user.
 
@@ -1572,7 +1349,7 @@ curl -i -X GET "https://api.box.com/2.0/collaborations?status=pending" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createcollaboration'></a>Create collaboration
+## Create collaboration
 
 Adds a collaboration for a single user or a single group to a file
 or folder.
@@ -1601,7 +1378,7 @@ curl -i -X POST "https://api.box.com/2.0/collaborations" \
      }'
 ```
 
-## <a name='Searchforcontent'></a>Search for content
+## Search for content
 
 Searches for items that are available to the user or an entire enterprise.
 
@@ -1611,7 +1388,7 @@ curl -i -X GET "https://api.box.com/2.0/search?query=sales" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createtask'></a>Create task
+## Create task
 
 Creates a single task on a file.
 
@@ -1629,7 +1406,7 @@ curl -i -X POST "https://api.box.com/2.0/tasks" \
      }'
 ```
 
-## <a name='Gettask'></a>Get task
+## Get task
 
 Fetches a specific task.
 
@@ -1639,7 +1416,7 @@ curl -i -X GET "https://api.box.com/2.0/tasks/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatetask'></a>Update task
+## Update task
 
 Updates a specific task.
 
@@ -1653,7 +1430,7 @@ curl -i -X PUT "https://api.box.com/2.0/tasks/12345" \
      }'
 ```
 
-## <a name='Deletetask'></a>Delete task
+## Delete task
 
 Deletes a specific task.
 
@@ -1663,7 +1440,7 @@ curl -i -X DELETE "https://api.box.com/2.0/tasks/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listtasksassignments'></a>List task's assignments
+## List task's assignments
 
 Retrieves all of the assignments for a given task.
 
@@ -1673,7 +1450,7 @@ curl -i -X GET "https://api.box.com/2.0/tasks/12345/assignments" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Assigntask'></a>Assign task
+## Assign task
 
 Assigns a task to a user.
 
@@ -1696,7 +1473,7 @@ curl -i -X POST "https://api.box.com/2.0/task_assignments" \
      }'
 ```
 
-## <a name='Gettaskassignment'></a>Get task assignment
+## Get task assignment
 
 Fetches a specific task assignment.
 
@@ -1706,7 +1483,7 @@ curl -i -X GET "https://api.box.com/2.0/task_assignments/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatetaskassignment'></a>Update task assignment
+## Update task assignment
 
 Updates a task assignment. This endpoint can be
 used to update the state of a task.
@@ -1722,7 +1499,7 @@ curl -i -X PUT "https://api.box.com/2.0/task_assignments/12345" \
      }'
 ```
 
-## <a name='Unassigntask'></a>Unassign task
+## Unassign task
 
 Deletes a specific task assignment.
 
@@ -1732,7 +1509,7 @@ curl -i -X DELETE "https://api.box.com/2.0/task_assignments/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Finditemforsharedlink'></a>Find item for shared link
+## Find item for shared link
 
 Return the file or folder represented by a shared link.
 
@@ -1749,7 +1526,7 @@ curl -i -X GET "https://api.box.com/2.0/shared_items" \
      -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
 ```
 
-## <a name='Createweblink'></a>Create web link
+## Create web link
 
 Creates a web link object within a folder.
 
@@ -1767,7 +1544,7 @@ curl -i -X POST "https://api.box.com/2.0/web_links" \
      }'
 ```
 
-## <a name='Getweblink'></a>Get web link
+## Get web link
 
 Retrieve information about a web link.
 
@@ -1777,7 +1554,7 @@ curl -i -X GET "https://api.box.com/2.0/web_links/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Restoreweblink'></a>Restore web link
+## Restore web link
 
 Restores an web link that has been moved to the trash.
 
@@ -1788,7 +1565,7 @@ curl -i -X POST "https://api.box.com/2.0/web_links/12345" \
      -H "Content-Type: application/json" \
 ```
 
-## <a name='Updateweblink'></a>Update web link
+## Update web link
 
 Updates a web link object.
 
@@ -1802,7 +1579,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
      }'
 ```
 
-## <a name='Deleteweblink'></a>Delete web link
+## Delete web link
 
 Deletes a web link.
 
@@ -1812,7 +1589,7 @@ curl -i -X DELETE "https://api.box.com/2.0/web_links/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Gettrashedweblink'></a>Get trashed web link
+## Get trashed web link
 
 Retrieves a web link that has been moved to the trash.
 
@@ -1822,7 +1599,7 @@ curl -i -X GET "https://api.box.com/2.0/web_links/12345/trash" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Permanentlydeleteweblink'></a>Permanently delete web link
+## Permanently delete web link
 
 Permanently deletes a web link that is in the trash.
 This action cannot be undone.
@@ -1833,7 +1610,7 @@ curl -i -X DELETE "https://api.box.com/2.0/web_links/12345/trash" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listenterpriseusers'></a>List enterprise users
+## List enterprise users
 
 Returns a list of all users for the Enterprise along with their user_id,
 public_name, and login.
@@ -1848,7 +1625,7 @@ curl -i -X GET "https://api.box.com/2.0/users" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createuser'></a>Create user
+## Create user
 
 Creates a new managed user in an enterprise. This endpoint
 is only available to users and applications with the right
@@ -1865,7 +1642,7 @@ curl -i -X POST "https://api.box.com/2.0/users" \
      }'
 ```
 
-## <a name='Getauthenticateduser'></a>Get authenticated user
+## Get authenticated user
 
 Retrieves information about the user who is currently authenticated.
 
@@ -1884,7 +1661,7 @@ curl -i -X GET "https://api.box.com/2.0/users/me" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getuser'></a>Get user
+## Get user
 
 Retrieves information about a user in the enterprise.
 
@@ -1904,7 +1681,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updateuser'></a>Update user
+## Update user
 
 Updates a managed user in an enterprise. This endpoint
 is only available to users and applications with the right
@@ -1920,7 +1697,7 @@ curl -i -X PUT "https://api.box.com/2.0/users/12345" \
      }'
 ```
 
-## <a name='Deleteuser'></a>Delete user
+## Delete user
 
 Deletes a user. By default this will fail if the user
 still owns any content. Move their owned content first
@@ -1933,7 +1710,7 @@ curl -i -X DELETE "https://api.box.com/2.0/users/12345" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getuseravatar'></a>Get user avatar
+## Get user avatar
 
 Retrieves an image of a the user's avatar.
 
@@ -1943,7 +1720,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/avatar" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Transferownedfolders'></a>Transfer owned folders
+## Transfer owned folders
 
 Move all of the items owned by a user into a
 new folder in another user’s account.
@@ -1974,7 +1751,7 @@ curl -i -X PUT "https://api.box.com/2.0/users/12345/folders/0" \
      }'
 ```
 
-## <a name='Listusersemailaliases'></a>List user's email aliases
+## List user's email aliases
 
 Retrieves all email aliases for a user. The collection
 does not include the primary login for the user.
@@ -1985,7 +1762,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/email_aliases" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createemailalias'></a>Create email alias
+## Create email alias
 
 Adds a new email alias to a user account..
 
@@ -1999,7 +1776,7 @@ curl -i -X POST "https://api.box.com/2.0/users/12345/email_aliases" \
      }'
 ```
 
-## <a name='Removeemailalias'></a>Remove email alias
+## Remove email alias
 
 Removes an email alias from a user.
 
@@ -2009,7 +1786,7 @@ curl -i -X DELETE "https://api.box.com/2.0/users/12345/email_aliases/23432" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listusersgroups'></a>List user's groups
+## List user's groups
 
 Retrieves all the groups for a user. The user making
 an API call must have admin permissions to inspect the
@@ -2021,7 +1798,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/memberships" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Inviteuser'></a>Invite user
+## Invite user
 
 Invites an existing external user to join an enterprise.
 
@@ -2048,7 +1825,7 @@ curl -i -X POST "https://api.box.com/2.0/invites" \
      }'
 ```
 
-## <a name='Getuserinvitestatus'></a>Get user invite status
+## Get user invite status
 
 Returns the status of a user invite.
 
@@ -2058,7 +1835,7 @@ curl -i -X GET "https://api.box.com/2.0/invites/213723" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listenterprisegroups'></a>List enterprise groups
+## List enterprise groups
 
 Retrieves all of the groups for a given enterprise. The user
 must have admin permissions to inspect enterprise's groups.
@@ -2069,7 +1846,7 @@ curl -i -X GET "https://api.box.com/2.0/groups" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Creategroup'></a>Create group
+## Create group
 
 Creates a new group of users in an enterprise. Only users with admin
 permissions can create new groups.
@@ -2084,7 +1861,7 @@ curl -i -X POST "https://api.box.com/2.0/groups" \
      }'
 ```
 
-## <a name='Getgroup'></a>Get group
+## Get group
 
 Retrieves information about a group.
 
@@ -2094,7 +1871,7 @@ curl -i -X GET "https://api.box.com/2.0/groups/57645" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updategroup'></a>Update group
+## Update group
 
 Updates a specific group.
 
@@ -2108,7 +1885,7 @@ curl -i -X PUT "https://api.box.com/2.0/groups/57645" \
      }'
 ```
 
-## <a name='Deletegroup'></a>Delete group
+## Delete group
 
 Permanently deletes a group.
 
@@ -2118,7 +1895,7 @@ curl -i -X DELETE "https://api.box.com/2.0/groups/57645" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listgroupsmembers'></a>List group's members
+## List group's members
 
 Retrieves all the members for a group. The user
 must have admin permissions to inspect enterprise's groups.
@@ -2129,7 +1906,7 @@ curl -i -X GET "https://api.box.com/2.0/groups/57645/memberships" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listgroupscollaborations'></a>List group's collaborations
+## List group's collaborations
 
 Retrieves all the collaborations for a group. The user
 must have admin permissions to inspect enterprise's groups.
@@ -2143,7 +1920,7 @@ curl -i -X GET "https://api.box.com/2.0/groups/57645/collaborations" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Addusertogroup'></a>Add user to group
+## Add user to group
 
 Creates a group membership
 
@@ -2162,7 +1939,7 @@ curl -i -X POST "https://api.box.com/2.0/group_memberships" \
      }'
 ```
 
-## <a name='Getgroupmembership'></a>Get group membership
+## Get group membership
 
 Retrieves a specific group membership.
 
@@ -2172,7 +1949,7 @@ curl -i -X GET "https://api.box.com/2.0/group_memberships/434534" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updateusersmembership'></a>Update user's membership
+## Update user's membership
 
 Updates a user's group membership.
 
@@ -2186,7 +1963,7 @@ curl -i -X PUT "https://api.box.com/2.0/group_memberships/434534" \
      }'
 ```
 
-## <a name='Removeuserfromgroup'></a>Remove user from group
+## Remove user from group
 
 Deletes a specific group membership.
 
@@ -2196,7 +1973,7 @@ curl -i -X DELETE "https://api.box.com/2.0/group_memberships/434534" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listallwebhooks'></a>List all webhooks
+## List all webhooks
 
 Returns all defined webhooks for the requesting application.
 
@@ -2206,7 +1983,7 @@ curl -i -X GET "https://api.box.com/2.0/webhooks" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createwebhook'></a>Create webhook
+## Create webhook
 
 Creates a webhook.
 
@@ -2244,7 +2021,7 @@ curl -i -X POST "https://api.box.com/2.0/webhooks" \
      }'
 ```
 
-## <a name='Getwebhook'></a>Get webhook
+## Get webhook
 
 Retrieves a specific webhook
 
@@ -2254,7 +2031,7 @@ curl -i -X GET "https://api.box.com/2.0/webhooks/3321123" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatewebhook'></a>Update webhook
+## Update webhook
 
 Updates a webhook.
 
@@ -2270,7 +2047,7 @@ curl -i -X PUT "https://api.box.com/2.0/webhooks/3321123" \
      }'
 ```
 
-## <a name='Deletewebhook'></a>Delete webhook
+## Delete webhook
 
 Deletes a webhook.
 
@@ -2280,7 +2057,7 @@ curl -i -X DELETE "https://api.box.com/2.0/webhooks/3321123" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updateskillinvocation'></a>Update skill invocation
+## Update skill invocation
 
 Updates the status, usage and response metadata of a
 skill invocation.
@@ -2397,7 +2174,7 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
      }'
 ```
 
-## <a name='ListSkillcardsonfile'></a>List Skill cards on file
+## List Skill cards on file
 
 <!-- sample get_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2405,7 +2182,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCar
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='CreateSkillcardsonfile'></a>Create Skill cards on file
+## Create Skill cards on file
 
 <!-- sample post_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2509,7 +2286,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
      }'
 ```
 
-## <a name='UpdateSkillcardsonfile'></a>Update Skill cards on file
+## Update Skill cards on file
 
 <!-- sample put_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2542,7 +2319,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCar
      ]'
 ```
 
-## <a name='DeleteSkillcardsfromfile'></a>Delete Skill cards from file
+## Delete Skill cards from file
 
 <!-- sample delete_files_id_metadata_global_boxSkillsCards -->
 ```bash
@@ -2550,7 +2327,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/global/boxSkills
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getalongpollendpoint'></a>Get a long poll endpoint
+## Get a long poll endpoint
 
 Returns a list of real-time servers that can be used for long-polling updates
 to the [event stream](#get-events).
@@ -2592,7 +2369,7 @@ curl -i -X OPTIONS "https://api.box.com/2.0/events" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getuserandenterpriseevents'></a>Get user and enterprise events
+## Get user and enterprise events
 
 Returns up to a year of past events for a given user
 or for the entire enterprise.
@@ -2621,7 +2398,7 @@ curl https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAIL
   -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listallcollections'></a>List all collections
+## List all collections
 
 Retrieves all collections for a given user.
 
@@ -2634,7 +2411,7 @@ curl -i -X GET "https://api.box.com/2.0/collections" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listcollectionitems'></a>List collection items
+## List collection items
 
 Retrieves the files and/or folders contained within
 this collection.
@@ -2645,7 +2422,7 @@ curl -i -X GET "https://api.box.com/2.0/collections/926489/items" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Addfiletocollection'></a>Add file to collection
+## Add file to collection
 
 <!-- sample put_files_id add_to_collection -->
 ```bash
@@ -2661,7 +2438,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345" \
      }'
 ```
 
-## <a name='Addfoldertocollection'></a>Add folder to collection
+## Add folder to collection
 
 <!-- sample put_folders_id add_to_collection -->
 ```bash
@@ -2677,7 +2454,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/12345" \
      }'
 ```
 
-## <a name='Addweblinktocollection'></a>Add web link to collection
+## Add web link to collection
 
 <!-- sample put_web_links_id add_to_collection -->
 ```bash
@@ -2693,7 +2470,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
      }'
 ```
 
-## <a name='Removefilefromcollection'></a>Remove file from collection
+## Remove file from collection
 
 <!-- sample put_files_id remove_from_collection -->
 ```bash
@@ -2705,7 +2482,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345" \
      }'
 ```
 
-## <a name='Removefolderfromcollection'></a>Remove folder from collection
+## Remove folder from collection
 
 <!-- sample put_folders_id remove_from_collection -->
 ```bash
@@ -2717,7 +2494,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/12345" \
      }'
 ```
 
-## <a name='Removeweblinkfromcollection'></a>Remove web link from collection
+## Remove web link from collection
 
 <!-- sample put_web_links_id remove_from_collection -->
 ```bash
@@ -2729,7 +2506,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
      }'
 ```
 
-## <a name='Listrecentitems'></a>List recent items
+## List recent items
 
 Returns information about the recent items accessed
 by a user, either in the last 90 days or up to the last
@@ -2741,7 +2518,7 @@ curl -i -X GET "https://api.box.com/2.0/recent_items" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listretentionpolicies'></a>List retention policies
+## List retention policies
 
 Retrieves all of the retention policies for an enterprise.
 
@@ -2751,7 +2528,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policies" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createretentionpolicy'></a>Create retention policy
+## Create retention policy
 
 Creates a retention policy.
 
@@ -2768,7 +2545,7 @@ curl -i -X POST "https://api.box.com/2.0/retention_policies" \
      }'
 ```
 
-## <a name='Getretentionpolicy'></a>Get retention policy
+## Get retention policy
 
 Retrieves a retention policy.
 
@@ -2778,7 +2555,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policies/982312" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updateretentionpolicy'></a>Update retention policy
+## Update retention policy
 
 Updates a retention policy.
 
@@ -2792,7 +2569,7 @@ curl -i -X PUT "https://api.box.com/2.0/retention_policies/982312" \
      }'
 ```
 
-## <a name='Listpolicysassignments'></a>List policy's assignments
+## List policy's assignments
 
 Returns a list of all retention policy assignments associated with a specified
 retention policy.
@@ -2803,7 +2580,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policies/982312/assignments" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Assignretentionpolicy'></a>Assign retention policy
+## Assign retention policy
 
 Assigns a retention policy to an item.
 
@@ -2821,7 +2598,7 @@ curl -i -X POST "https://api.box.com/2.0/retention_policy_assignments" \
      }'
 ```
 
-## <a name='Getpolicyassignment'></a>Get policy assignment
+## Get policy assignment
 
 Retrieves a retention policy assignment
 
@@ -2831,7 +2608,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policy_assignments/1233123" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listalllegalholdpolicies'></a>List all legal hold policies
+## List all legal hold policies
 
 Retrieves a list of legal hold policies that belong to
 an enterprise.
@@ -2842,7 +2619,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policies" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createlegalholdpolicy'></a>Create legal hold policy
+## Create legal hold policy
 
 Create a new legal hold policy.
 
@@ -2857,7 +2634,7 @@ curl -i -X POST "https://api.box.com/2.0/legal_hold_policies" \
      }'
 ```
 
-## <a name='Getlegalholdpolicy'></a>Get legal hold policy
+## Get legal hold policy
 
 Retrieve a legal hold policy.
 
@@ -2867,7 +2644,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policies/324432" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatelegalholdpolicy'></a>Update legal hold policy
+## Update legal hold policy
 
 Update legal hold policy.
 
@@ -2881,7 +2658,7 @@ curl -i -X PUT "https://api.box.com/2.0/legal_hold_policies/324432" \
      }'
 ```
 
-## <a name='Deletelegalholdpolicy'></a>Delete legal hold policy
+## Delete legal hold policy
 
 Delete an existing legal hold policy.
 
@@ -2894,7 +2671,7 @@ curl -i -X DELETE "https://api.box.com/2.0/legal_hold_policies/324432" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listpolicysassignments-1'></a>List policy's assignments
+## List policy's assignments
 
 Retrieves a list of items a legal hold policy has been assigned to.
 
@@ -2904,7 +2681,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments?policy_id=
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Assignlegalholdpolicy'></a>Assign legal hold policy
+## Assign legal hold policy
 
 Assign a legal hold to a file, file version, folder, or user.
 
@@ -2922,7 +2699,7 @@ curl -i -X POST "https://api.box.com/2.0/legal_hold_policy_assignments" \
      }'
 ```
 
-## <a name='Getpolicyassignment-1'></a>Get policy assignment
+## Get policy assignment
 
 Retrieve a legal hold policy assignment.
 
@@ -2932,7 +2709,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments/753465" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Unassignlegalholdpolicy'></a>Unassign legal hold policy
+## Unassign legal hold policy
 
 Remove a legal hold from an item.
 
@@ -2945,7 +2722,7 @@ curl -i -X DELETE "https://api.box.com/2.0/legal_hold_policy_assignments/753465"
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getretentionforfile'></a>Get retention for file
+## Get retention for file
 
 Returns information about a file version retention.
 
@@ -2955,7 +2732,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_retentions/3424234" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listretentionsonfiles'></a>List retentions on files
+## List retentions on files
 
 Retrieves all file version retentions for the given enterprise.
 
@@ -2965,7 +2742,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_retentions" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Inspectlegalholdonfile'></a>Inspect legal hold on file
+## Inspect legal hold on file
 
 Retrieves information about the legal hold policies
 assigned to a file version.
@@ -2976,7 +2753,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_legal_holds/2348213" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listlegalholdsforpolicy'></a>List legal holds for policy
+## List legal holds for policy
 
 Get list of non-deleted legal holds for a single legal
 hold policy.
@@ -2987,7 +2764,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_legal_holds?policy_id=13387
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getdevicepin'></a>Get device pin
+## Get device pin
 
 Retrieves information about an individual device pin.
 
@@ -2997,7 +2774,7 @@ curl -i -X GET "https://api.box.com/2.0/device_pinners/2324234" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Deletedevicepin'></a>Delete device pin
+## Delete device pin
 
 Deletes an individual device pin.
 
@@ -3007,7 +2784,7 @@ curl -i -X DELETE "https://api.box.com/2.0/device_pinners/2324234" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listenterprisedevicepins'></a>List enterprise device pins
+## List enterprise device pins
 
 Retrieves all the device pins within an enterprise.
 
@@ -3020,7 +2797,7 @@ curl -i -X GET "https://api.box.com/2.0/enterprises/3442311/device_pinners" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listtermsofservices'></a>List terms of services
+## List terms of services
 
 Returns the current terms of service text and settings
 for the enterprise.
@@ -3031,7 +2808,7 @@ curl -i -X GET "https://api.box.com/2.0/terms_of_services" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createtermsofservice'></a>Create terms of service
+## Create terms of service
 
 Creates a terms of service for a given enterprise
 and type of user.
@@ -3047,7 +2824,7 @@ curl -i -X POST "https://api.box.com/2.0/terms_of_services" \
      }'
 ```
 
-## <a name='Gettermsofservice'></a>Get terms of service
+## Get terms of service
 
 Fetches a specific terms of service.
 
@@ -3057,7 +2834,7 @@ curl -i -X GET "https://api.box.com/2.0/terms_of_services/324234" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatetermsofservice'></a>Update terms of service
+## Update terms of service
 
 Updates a specific terms of service.
 
@@ -3072,7 +2849,7 @@ curl -i -X PUT "https://api.box.com/2.0/terms_of_services/324234" \
      }'
 ```
 
-## <a name='ListToSuserstatuses'></a>List ToS user statuses
+## List ToS user statuses
 
 Retrieves an overview of users and their status for a
 terms of service, including Whether they have accepted
@@ -3084,7 +2861,7 @@ curl -i -X GET "https://api.box.com/2.0/terms_of_service_user_statuses?tos_id=32
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Setstatusfornewuser'></a>Set status for new user
+## Set status for new user
 
 Sets the status for a terms of service for a user.
 
@@ -3106,7 +2883,7 @@ curl -i -X POST "https://api.box.com/2.0/terms_of_service_user_statuses" \
      }'
 ```
 
-## <a name='Setstatusforexistinguser'></a>Set status for existing user
+## Set status for existing user
 
 Updates the status for a terms of service for a user.
 
@@ -3120,7 +2897,7 @@ curl -i -X PUT "https://api.box.com/2.0/terms_of_service_user_statuses/324234" \
      }'
 ```
 
-## <a name='Listwhitelistentries'></a>List whitelist entries
+## List whitelist entries
 
 Returns the list of whitelist entries which specify what domains can
 collaborate with the current enterprise.
@@ -3131,7 +2908,7 @@ curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_entries" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createwhitelistentry'></a>Create whitelist entry
+## Create whitelist entry
 
 Creates a collaboration whitelist entry, specifying a domain
 and direction to allow collaboration for.
@@ -3147,7 +2924,7 @@ curl -i -X POST "https://api.box.com/2.0/collaboration_whitelist_entries" \
      }'
 ```
 
-## <a name='Getwhitelistentry'></a>Get whitelist entry
+## Get whitelist entry
 
 Returns a specific collaboration whitelist entry.
 
@@ -3157,7 +2934,7 @@ curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_entries/213123" 
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Deletewhitelistentry'></a>Delete whitelist entry
+## Delete whitelist entry
 
 Deletes a specific collaboration whitelist entry.
 
@@ -3167,7 +2944,7 @@ curl -i -X DELETE "https://api.box.com/2.0/collaboration_whitelist_entries/21312
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listwhitelistexemptions'></a>List whitelist exemptions
+## List whitelist exemptions
 
 Returns a list of users who have been exempt from the collaboration
 whitelist.
@@ -3178,7 +2955,7 @@ curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_exempt_targets" 
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Createwhitelistexemption'></a>Create whitelist exemption
+## Create whitelist exemption
 
 Creates a collaboration whitelist entry exemption, specifying a user
 that is exempted from the whitelist.
@@ -3195,7 +2972,7 @@ curl -i -X POST "https://api.box.com/2.0/collaboration_whitelist_exempt_targets"
      }'
 ```
 
-## <a name='Getwhitelistexemption'></a>Get whitelist exemption
+## Get whitelist exemption
 
 Returns a users who has been exempt from the collaboration
 whitelist.
@@ -3206,7 +2983,7 @@ curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_exempt_targets/9
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Removewhitelistexemption'></a>Remove whitelist exemption
+## Remove whitelist exemption
 
 Deletes a specific collaboration whitelist exemption.
 
@@ -3216,7 +2993,7 @@ curl -i -X DELETE "https://api.box.com/2.0/collaboration_whitelist_exempt_target
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Liststoragepolicies'></a>List storage policies
+## List storage policies
 
 Fetches all the storage policies in the enterprise.
 
@@ -3226,7 +3003,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policies" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Getstoragepolicy'></a>Get storage policy
+## Get storage policy
 
 Fetches a specific storage policy.
 
@@ -3236,7 +3013,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policies/34342" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Listpolicyassignments'></a>List policy assignments
+## List policy assignments
 
 Fetches all the storage policy assignment for an enterprise or user.
 
@@ -3246,7 +3023,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments?resolved_for_
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Assignstoragepolicy'></a>Assign storage policy
+## Assign storage policy
 
 Creates a storage policy assignment for an enterprise or user.
 
@@ -3267,7 +3044,7 @@ curl -i -X POST "https://api.box.com/2.0/storage_policy_assignments" \
      }'
 ```
 
-## <a name='Getpolicyassignment-1'></a>Get policy assignment
+## Get policy assignment
 
 Fetches a specific storage policy assignment.
 
@@ -3277,7 +3054,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments/932483" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Updatepolicyassignment'></a>Update policy assignment
+## Update policy assignment
 
 Updates a specific storage policy assignment.
 
@@ -3294,7 +3071,7 @@ curl -i -X PUT "https://api.box.com/2.0/storage_policy_assignments/932483" \
      }'
 ```
 
-## <a name='Unassignstoragepolicy'></a>Unassign storage policy
+## Unassign storage policy
 
 Delete a storage policy assignment.
 
@@ -3318,7 +3095,7 @@ curl -i -X DELETE "https://api.box.com/2.0/storage_policy_assignments/932483" \
 ```
 
 
-## <a name='Createzipdownload'></a>Create zip download
+## Create zip download
 
 <!-- sample post_zip_downloads -->
 ```bash
@@ -3343,7 +3120,7 @@ curl -i -X POST "https://api.box.com/2.0/zip_downloads" \
      }'
 ```
 
-## <a name='Getzipdownloadstatus'></a>Get zip download status
+## Get zip download status
 
 <!-- sample get_zip_downloads_id_status -->
 ```bash
@@ -3351,7 +3128,7 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## <a name='Downloadziparchive'></a>Download zip archive
+## Download zip archive
 
 <!-- sample get_zip_downloads_id_content -->
 ```bash
