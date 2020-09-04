@@ -3323,3 +3323,52 @@ curl -i -X PUT "https://api.box.com/2.0/folders/12345/metadata/enterprise/securi
 curl -i -X DELETE "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+## Copy a file request
+
+<!-- sample post_file_requests_id_copy -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/file_requests/42037322/copy" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+       "title": "Please upload required documents",
+       "description": "Please upload required documents",
+       "status": "ACTIVE",
+       "is_email_required": true,
+       "is_description_required": false,
+       "folder": {
+         "id": "2233212"
+       }
+     }'
+```
+
+## Update a file request
+
+<!-- sample put_file_requests_id -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/file_requests/42037322" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+       "title": "Please upload required documents",
+       "description": "Please upload required documents",
+       "status": "ACTIVE",
+       "is_email_required": true,
+       "is_description_required": false
+     }'
+```
+
+## Get a file request
+
+<!-- sample get_file_requests_id -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/file_requests/42037322" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Delete a file request
+
+<!-- sample delete_file_requests_id -->
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/file_requests/42037322" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
