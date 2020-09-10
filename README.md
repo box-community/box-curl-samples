@@ -3333,7 +3333,7 @@ curl -i -X POST "https://api.box.com/2.0/file_requests/42037322/copy" \
      -d '{
        "title": "Please upload required documents",
        "description": "Please upload required documents",
-       "status": "ACTIVE",
+       "status": "active",
        "is_email_required": true,
        "is_description_required": false,
        "folder": {
@@ -3351,7 +3351,7 @@ curl -i -X PUT "https://api.box.com/2.0/file_requests/42037322" \
      -d '{
        "title": "Please upload required documents",
        "description": "Please upload required documents",
-       "status": "ACTIVE",
+       "status": "active",
        "is_email_required": true,
        "is_description_required": false
      }'
