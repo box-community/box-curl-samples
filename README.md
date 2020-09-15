@@ -3375,7 +3375,7 @@ curl -i -X DELETE "https://api.box.com/2.0/file_requests/42037322" \
 
 ## Get shared link on an item
 
-<!-- sample get_id_id get-shared-link -->
+<!-- sample get_id_id get_shared_link -->
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
@@ -3383,7 +3383,7 @@ curl -i -X GET "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 
 ## Add shared link to an item
 
-<!-- sample put_id_id add-shared-link -->
+<!-- sample put_id_id add_shared_link -->
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
@@ -3401,7 +3401,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 
 ## Update shared link on an item
 
-<!-- sample put_id_id update-shared-link -->
+<!-- sample put_id_id update_shared_link -->
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
@@ -3419,7 +3419,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 
 ## Remove shared link from an item
 
-<!-- sample put_id_id remove-shared-link -->
+<!-- sample put_id_id remove_shared_link -->
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
