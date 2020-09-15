@@ -1519,11 +1519,20 @@ which can originate within the current enterprise or within another one.
 This endpoint allows an application to retrieve information about a
 shared item when only given a shared link.
 
-<!-- sample get_shared_items -->
+<!-- sample get_shared_items files -->
 ```bash
 curl -i -X GET "https://api.box.com/2.0/shared_items" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "BoxApi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
+     -H "BoxApi: shared_link=https://app.box.com/s/gjasdasjhasd&shared_link_password=letmein"
+```
+
+The syntax is the same regardless of wether the shared link is a file or a folder.
+
+<!-- sample get_shared_items folders -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/shared_items" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "BoxApi: shared_link=https://app.box.com/s/jsasdsd8sad24&shared_link_password=letmein"
 ```
 
 ## Create web link
