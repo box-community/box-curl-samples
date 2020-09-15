@@ -1519,7 +1519,7 @@ which can originate within the current enterprise or within another one.
 This endpoint allows an application to retrieve information about a
 shared item when only given a shared link.
 
-<!-- sample get_shared_items files -->
+<!-- sample get_shared_items -->
 ```bash
 curl -i -X GET "https://api.box.com/2.0/shared_items" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
