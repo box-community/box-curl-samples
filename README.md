@@ -212,7 +212,7 @@ using the Chunk Upload APIs.
 
 <!-- sample post_files_content -->
 ```bash
-curl -i -X POST "https://api.box.com/2.0/files/content" \
+curl -i -X POST "https://upload.box.com/api/2.0/files/content" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: multipart/form-data" \
      -F attributes="{"name":"Contract.pdf", "parent":{"id":"11446498"}}" \
