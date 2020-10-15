@@ -972,6 +972,47 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/watermark" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
+## Get folder lock
+
+Retrieve locks applied to a folder.
+
+<!-- sample get_folder_locks -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/folder_locks?folder_id=33552487093" \
+     -H "Authorization: Bearer poDub1CUJSXm1TZb4oV6lsIOHPf0DgJu"
+```
+
+## Create folder lock
+
+Creates a lock on a folder to prevent move and / or delete operations.
+
+<!-- sample post_folder_locks -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/folder_locks" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "folder": {
+         "type": "folder",
+         "id": "33552487093"
+       },
+       "locked_operations": {
+         "move": true,
+         "delete": true
+       }
+     }'
+```
+
+## Delete folder lock
+
+Deletes a lock on a folder.
+
+<!-- sample delete_folder_locks_id -->
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/folder_locks/93134" \ 
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
 ## Get template by name
 
 Retrieves a metadata template by its scope and template name.
