@@ -979,7 +979,7 @@ Retrieve locks applied to a folder.
 <!-- sample get_folder_locks -->
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folder_locks?folder_id=33552487093" \
-     -H "Authorization: Bearer poDub1CUJSXm1TZb4oV6lsIOHPf0DgJu"
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Create folder lock
