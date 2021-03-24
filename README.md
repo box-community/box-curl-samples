@@ -1239,6 +1239,14 @@ curl -i -X POST "https://api.box.com/2.0/files/12345" \
      }'
 ```
 
+## Get metadata query indices
+
+<!-- sample get_metadata_query_indices -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_query_indices?scope=enterprise&template_key=properties" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
 ## Get comment
 
 Retrieves the message and metadata for a specific comment, as well
