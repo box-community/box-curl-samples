@@ -1408,7 +1408,7 @@ group IDs.
 If a collaboration is being created with a group, access to
 this endpoint is dependent on the group's ability to be invited.
 
-<!-- sample post_collaborations -->
+<!-- sample post_collaborations-->
 ```bash
 curl -i -X POST "https://api.box.com/2.0/collaborations" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
@@ -1421,6 +1421,24 @@ curl -i -X POST "https://api.box.com/2.0/collaborations" \
        "accessible_by": {
          "type": "user",
          "login": "user@example.com"
+       },
+       "role": "editor"
+     }'
+```
+
+<!-- sample post_collaborations group-->
+```bash
+curl -i -X POST "https://api.box.com/2.0/collaborations" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "item": {
+         "type": "file",
+         "id": "11446498"
+       },
+       "accessible_by": {
+         "type": "group",
+         "id": "845344"
        },
        "role": "editor"
      }'
