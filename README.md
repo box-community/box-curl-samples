@@ -3559,3 +3559,56 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      }'
 ```
 
+## Start a relay workflow of type WORKFLOW_MANUAL_START
+
+<!-- sample post_workflows_id_start -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+       "type": "workflow_parameters",
+       "flow": {
+        "id": "8937625", 
+        "type": "flow"
+       },
+       "files": [{
+          "type": "file",
+          "id": "389047572"
+        }, 
+        {
+          "type": "file",
+          "id": "389047578"
+        }],
+       "folder": {
+         "id": "2233212",
+         "type": "folder" 
+       }, 
+       "outcomes: [{
+          "129038402": {
+            "task_collaborators": {
+                "type": "variable",
+                "variable_type": "user_list",
+                "variable_value": [{ "type": "user", "id": "890273642" }]
+            },
+            "completion_rule": {
+                "type": "variable",
+                "variable_type": "task_completion_rule",
+                "variable_value": "all_assignees"
+            },
+            "file_collaborator_role": {
+                "type": "variable",
+                "variable_type": "collaborator_role",
+                "variable_value": "viewer"
+            }
+          }
+        }]
+     }'
+```
+
+## Gets a relay workflow of type WORKFLOW_MANUAL_START
+
+<!-- sample get_workflows -->
+```bash
+curl -i -X GET 'https://api.box.com/2.0/workflows?folder_id=324234&trigger_type=WORKFLOW_MANUAL_START' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+```
