@@ -3559,7 +3559,15 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      }'
 ```
 
-## Start a relay workflow of type WORKFLOW_MANUAL_START
+## Gets a relay workflow with flows that are of type WORKFLOW_MANUAL_START
+
+<!-- sample get_workflows -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/workflows?folder_id=324234&trigger_type=WORKFLOW_MANUAL_START" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+```
+
+## Start a flow in a relay workflow of type WORKFLOW_MANUAL_START
 
 <!-- sample post_workflows_id_start -->
 ```bash
@@ -3603,12 +3611,4 @@ curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
           }
         }]
      }'
-```
-
-## Gets a relay workflow of type WORKFLOW_MANUAL_START
-
-<!-- sample get_workflows -->
-```bash
-curl -i -X GET 'https://api.box.com/2.0/workflows?folder_id=324234&trigger_type=WORKFLOW_MANUAL_START' \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
 ```
