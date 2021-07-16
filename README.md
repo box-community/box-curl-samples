@@ -3563,8 +3563,8 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
 
 <!-- sample get_workflows -->
 ```bash
-curl -i -X GET "https://api.box.com/2.0/workflows?folder_id=324234&trigger_type=WORKFLOW_MANUAL_START" \
-     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+curl -i -X GET "https://api.box.com/2.0/workflows?folder_id=324234" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" 
 ```
 
 ## Start a flow in a relay workflow of type WORKFLOW_MANUAL_START
@@ -3591,8 +3591,10 @@ curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
          "id": "2233212",
          "type": "folder" 
        }, 
-       "outcomes: [{
-          "129038402": {
+       "outcomes": [
+          {
+            "id": "34895783",
+            "type": "outcome",
             "task_collaborators": {
                 "type": "variable",
                 "variable_type": "user_list",
@@ -3609,6 +3611,6 @@ curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
                 "variable_value": "viewer"
             }
           }
-        }]
+        ]
      }'
 ```
