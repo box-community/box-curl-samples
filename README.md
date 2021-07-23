@@ -3640,3 +3640,35 @@ curl -i -X PUT "https://api.box.com/2.0/sign_requests" \
           }
      }'
 ```
+
+## Get Box Sign requests
+
+<!-- sample get_sign_requests -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/sign_requests" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get Box Sign request by ID
+
+<!-- sample get_sign_requests_id -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Cancel Box Sign request
+
+<!-- sample post_sign_requests_id_cancel -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Resend Box Sign request
+
+<!-- sample post_sign_requests_id_resend -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
