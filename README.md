@@ -3618,7 +3618,7 @@ curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
 
 <!-- sample post_sign_requests -->
 ```bash
-curl -i -X PUT "https://api.box.com/2.0/sign_requests" \
+curl -i -X POST "https://api.box.com/2.0/sign_requests" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
        "signers": [
@@ -3661,7 +3661,7 @@ curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>" \
 
 <!-- sample post_sign_requests_id_cancel -->
 ```bash
-curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel" \
+curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -3669,6 +3669,6 @@ curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel" 
 
 <!-- sample post_sign_requests_id_resend -->
 ```bash
-curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend" \
+curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
