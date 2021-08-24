@@ -2817,6 +2817,26 @@ curl -i -X GET "https://api.box.com/2.0/file_version_retentions" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
+## List files under retention for a retention policy
+
+Retrieves all files for the given retention policy id.
+
+<!-- sample get_retention_policy_assignments_id_files_under_retention -->
+```bash
+curl -i -X GET "https://app.box.com/api/2.0/retention_policy_assignments/3424234/files_under_retention" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List file versions under retention for a retention policy
+
+Retrieves all file versions for the given retention policy id.
+
+<!-- sample get_retention_policy_assignments_id_file_versions_under_retention -->
+```bash
+curl -i -X GET "https://app.box.com/api/2.0/retention_policy_assignments/3424234/file_versions_under_retention" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
 ## Inspect legal hold on file
 
 Retrieves information about the legal hold policies
