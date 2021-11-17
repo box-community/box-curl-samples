@@ -2450,10 +2450,11 @@ Returns up to a year of past events for a given user
 or for the entire enterprise.
 
 By default this returns events for the authenticated user. To retrieve
-events for the entire enterprise, set the `stream_type` to `admin_logs`.
-The user making the API call will need to have admin privileges, and
-the application will need to have the permission to access the event feed
-to get the enterprise event feed.
+events for the entire enterprise, set the `stream_type` to `admin_logs`
+(historical - 1 year) or `admin_logs_streaming` (live - two weeks). The user
+making the API call will need to have admin privileges, and the application will
+need to have the permission to access the event feed to get the enterprise event
+feed.
 
 <!-- sample get_events -->
 ```bash
@@ -2463,14 +2464,26 @@ curl -i -X GET "https://api.box.com/2.0/events" \
 
 <!-- sample get_events enterprise -->
 ```bash
-curl https://api.box.com/2.0/events?stream_type=admin_logs \
-  -H "authorization: Bearer <ACCESS_TOKEN>"
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_filter -->
 ```bash
-curl https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAILED_LOGIN \
-  -H "authorization: Bearer <ACCESS_TOKEN>"
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAILED_LOGIN" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+<!-- sample get_events enterprise_stream -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs_streaming" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+<!-- sample get_events enterprise_stream_filter -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs_streaming&event_type=LOGIN,FAILED_LOGIN" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## List all collections
