@@ -2460,11 +2460,13 @@ to get the enterprise event feed.
 curl -i -X GET "https://api.box.com/2.0/events" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
 <!-- sample get_events enterprise -->
 ```bash
 curl https://api.box.com/2.0/events?stream_type=admin_logs \
   -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
+
 <!-- sample get_events enterprise_filter -->
 ```bash
 curl https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAILED_LOGIN \
