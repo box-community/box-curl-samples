@@ -2464,25 +2464,25 @@ curl -i -X GET "https://api.box.com/2.0/events" \
 
 <!-- sample get_events enterprise -->
 ```bash
-curl https://api.box.com/2.0/events?stream_type=admin_logs \
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs" \
   -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_filter -->
 ```bash
-curl https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAILED_LOGIN \
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAILED_LOGIN" \
   -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_stream -->
 ```bash
-curl https://api.box.com/2.0/events?stream_type=admin_logs_streaming \
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs_streaming" \
   -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_stream_filter -->
 ```bash
-curl https://api.box.com/2.0/events?stream_type=admin_logs_streaming&event_type=LOGIN,FAILED_LOGIN \
+curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs_streaming&event_type=LOGIN,FAILED_LOGIN" \
   -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
