@@ -180,7 +180,7 @@ using the Chunk Upload APIs.
 curl -i -X POST "https://upload.box.com/api/2.0/files/12345/content" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: multipart/form-data" \
-     -F attributes="{"name":"Contract.pdf", "parent":{"id":"11446498"}}" \
+     -F attributes='{"name":"Contract.pdf", "parent":{"id":"11446498"}}' \
      -F file=@<FILE_NAME>
 ```
 
@@ -215,7 +215,7 @@ using the Chunk Upload APIs.
 curl -i -X POST "https://upload.box.com/api/2.0/files/content" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -H "Content-Type: multipart/form-data" \
-     -F attributes="{"name":"Contract.pdf", "parent":{"id":"11446498"}}" \
+     -F attributes='{"name":"Contract.pdf", "parent":{"id":"11446498"}}' \
      -F file=@<FILE_NAME>
 ```
 
