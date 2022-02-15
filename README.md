@@ -80,6 +80,21 @@ curl -i -X POST "https://api.box.com/oauth2/revoke" \
      -d "token=[ACCESS_TOKEN]"
 ```
 
+## Authentication with Client Credentials
+
+Creates a token using Client Credentials Grant
+
+<!-- sample x_auth with_client_credentials-->
+```bash
+curl -i -X POST "https://api.box.com/oauth2/token" \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "client_id=[CLIENT_ID]" \
+     -d "client_secret=[CLIENT_SECRET]" \
+     -d "grant_type=client_credentials" \
+     -d "box_subject_type=enterprise"  \
+     -d "box_subject_id=[ENTERPRISE_ID]"
+```
+
 ## Get a file
 
 Retrieves the details about a file.
