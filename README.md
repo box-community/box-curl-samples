@@ -111,9 +111,8 @@ Restores an file that has been moved to the trash.
 
 <!-- sample post_files_id -->
 ```bash
-curl -i -X POST "https://upload.box.com/api/2.0/files/12345" \
-     -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json" \
+curl -i -X POST "https://api.box.com/2.0/files/12345" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" 
 ```
 
 ## Update a file
@@ -668,7 +667,7 @@ Restores a folder that has been moved to the trash.
 
 <!-- sample post_folders_id -->
 ```bash
-curl -i -X GET "https://api.box.com/2.0/folders/4353455" \
+curl -i -X POST "https://api.box.com/2.0/folders/4353455" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -1651,8 +1650,7 @@ Restores an web link that has been moved to the trash.
 <!-- sample post_web_links_id -->
 ```bash
 curl -i -X POST "https://api.box.com/2.0/web_links/12345" \
-     -H "Authorization: Bearer <ACCESS_TOKEN>" \
-     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" 
 ```
 
 ## Update web link
