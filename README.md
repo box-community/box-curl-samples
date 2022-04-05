@@ -3607,6 +3607,61 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      }'
 ```
 
+## Get shared link on a web link
+
+<!-- sample get_web_links_id get_shared_link -->
+```bash
+curl -i -X GET "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Add shared link to a web link
+
+<!-- sample put_web_links_id add_shared_link -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+       "shared_link": {
+         "access": "open",
+         "password": "mypassword",
+         "unshared_at": "2012-12-12T10:53:43-08:00",
+         "permissions": {
+           "can_download": false
+         }
+       }
+     }'
+```
+
+## Update shared link on a web link
+
+<!-- sample put_web_links_id update_shared_link -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+       "shared_link": {
+         "access": "open",
+         "password": "mypassword",
+         "unshared_at": "2012-12-12T10:53:43-08:00",
+         "permissions": {
+           "can_download": false
+         }
+       }
+     }'
+```
+
+## Remove shared link from a web link
+
+<!-- sample put_web_links_id remove_shared_link -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+       "shared_link": null
+     }'
+```
+
 ## Gets a relay workflow with flows that are of type WORKFLOW_MANUAL_START
 
 <!-- sample get_workflows -->
