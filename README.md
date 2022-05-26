@@ -1808,6 +1808,27 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/avatar" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
+## Add or update user avatar
+
+Uploads or updates a user avatar.
+
+<!-- sample post_users_id_avatar -->
+```bash
+curl -i -X POST -L "https://api.box.net/2.0/users/12345/avatar" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
+    --form 'pic=@"path/to/file/file.jpeg"'
+```
+
+## Delete user avatar
+
+Deletes a user avatar.
+
+<!-- sample delete_users_id_avatar -->
+```bash
+curl -i -X DELETE -L "https://api.box.net/2.0/users/12345/avatar" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" 
+```
+
 ## Transfer owned folders
 
 Move all of the items owned by a user into a
@@ -1852,7 +1873,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/email_aliases" \
 
 ## Create email alias
 
-Adds a new email alias to a user account..
+Adds a new email alias to a user account.
 
 <!-- sample post_users_id_email_aliases -->
 ```bash
