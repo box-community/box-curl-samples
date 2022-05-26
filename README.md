@@ -1815,8 +1815,8 @@ Uploads or updates a user avatar.
 <!-- sample post_users_id_avatar -->
 ```bash
 curl -i -X POST -L "https://api.box.net/2.0/users/12345/avatar" \
-    -H "Authorization: Bearer <ACCESS_TOKEN>" \
-    --form 'pic=@"path/to/file/file.jpeg"'
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     --form 'pic=@"path/to/file/file.jpeg"'
 ```
 
 ## Delete user avatar
@@ -1826,7 +1826,7 @@ Deletes a user avatar.
 <!-- sample delete_users_id_avatar -->
 ```bash
 curl -i -X DELETE -L "https://api.box.net/2.0/users/12345/avatar" \
-    -H "Authorization: Bearer <ACCESS_TOKEN>" 
+     -H "Authorization: Bearer <ACCESS_TOKEN>" 
 ```
 
 ## Transfer owned folders
