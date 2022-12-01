@@ -3794,3 +3794,35 @@ curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel"
 curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+## Terminate user sessions
+
+<!-- sample post_users_terminate_sessions -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions"
+    -H "Authorization: Bearer <ACCESS_TOKEN>"
+    -H "Content-Type: application/json"
+    -H "Accept: application/json"
+    -d 
+  {
+      user_ids: ["6178859178", "4824866571",]
+  },
+  {    
+      user_logins: []
+  }
+```
+
+## Terminate groups sessions
+
+<!-- sample post_groups_terminate_sessions -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions"
+    -H "Authorization: Bearer <ACCESS_TOKEN>"
+    -H "Content-Type: application/json" 
+    -H "Accept: application/json"
+    -d
+  {
+  "group_ids": ["6178859178", "4824866571",],
+
+  }
+```
