@@ -3808,7 +3808,7 @@ curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions"
       user_ids: ["6178859178", "4824866571",]
   },
   {    
-      user_logins: []
+      user_logins: [user@example.com, user2@example.com,]
   }
 ```
 
