@@ -467,9 +467,9 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/versions/456456" \
      -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## Revert file version
+## Promote file version
 
-Revert to a previous version of a file.
+Promote a specific version of a file.
 
 
 If previous versions exist, this method can be used to
@@ -482,6 +482,8 @@ as the original.
 
 Other properties such as comments do not get updated to their
 former values.
+Don't use this endpoint to restore Box Notes, 
+as it works with file formats such as PDF, DOC, PPTX or similar.
 
 <!-- sample post_files_id_versions_current -->
 ```bash
@@ -491,6 +493,21 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/versions/current" \
      -d '{
        "type": "file_version",
        "id": "456456"
+     }'
+```
+## Restore file version
+
+Restores a specific version of a file after it was deleted. 
+Don't use this endpoint to restore Box Notes, 
+as it works with file formats such as PDF, DOC, PPTX or similar.
+
+<!-- sample put_files_id_versions_id -->
+```bash
+curl -i -X POST "https://api.box.com/2.0/files/12345/versions/456456" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "trashed_at": null
      }'
 ```
 
@@ -3808,7 +3825,7 @@ curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions"
       user_ids: ["6178859178", "4824866571"]
   },
   {    
-      user_logins: [user@example.com, user2@example.com]
+      user_logins: ["user@example.com", "user2@example.com",]
   }
 ```
 
