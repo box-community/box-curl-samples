@@ -3348,9 +3348,11 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
        "fieldKey": "Box__Security__Classification__Key",
        "data": {
          "key": "Sensitive",
-         "classification": {
-           "classificationDefinition": "Sensitive information that must not be shared.",
-           "colorID": 4
+         "staticConfig":{
+          "classification": {
+            "classificationDefinition": "Sensitive information that must not be shared.",
+            "colorID": 4
+            }
          }
        }
      }]'
@@ -3369,9 +3371,11 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
        "enumOptionKey": "Sensitive",
        "data": {
          "key": "Very Sensitive",
-         "classification": {
-           "classificationDefinition": "Sensitive information that must not be shared.",
-           "colorID": 4
+         "staticConfig": {
+           "classification": {
+            "classificationDefinition": "Sensitive information that must not be shared.",
+            "colorID": 4
+           }
          }
        }
      }]'
@@ -3416,6 +3420,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/enterprise/securit
      -H "Content-Type: application/json" \
      -d '{
        "Box__Security__Classification__Key": "Sensitive"
+        
      }'
 ```
 
