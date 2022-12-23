@@ -3827,9 +3827,7 @@ curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions"
     -H "Accept: application/json"
     -d 
   {
-      user_ids: ["6178859178", "4824866571"]
-  },
-  {    
+      user_ids: ["6178859178", "4824866571"]  
       user_logins: ["user@example.com", "user2@example.com",]
   }
 ```
@@ -3845,6 +3843,5 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions"
     -d
   {
   "group_ids": ["6178859178", "4824866571"],
-
   }
 ```
