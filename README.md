@@ -718,6 +718,24 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      }'
 ```
 
+## Move a subfolder to a private folder
+
+<!-- sample put_folders_id move_private -->
+```bash
+curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "New folder name",
+       "parent": {
+         "id": "123"
+       }
+        "owned_by": {
+         "id": "123456"
+       }
+     }'
+```
+
 ## Rename a folder
 
 <!-- sample put_folders_id rename -->
