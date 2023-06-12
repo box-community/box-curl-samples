@@ -1846,7 +1846,7 @@ Uploads or updates a user avatar.
 
 <!-- sample post_users_id_avatar -->
 ```bash
-curl -i -X POST -L "https://api.box.net/2.0/users/12345/avatar" \
+curl -i -X -L POST "https://api.box.net/2.0/users/12345/avatar" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      --form 'pic=@"path/to/file/file.jpeg"'
 ```
@@ -3306,7 +3306,7 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
 
 <!-- sample get_zip_downloads_id_content -->
 ```bash
-curl -L "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
+curl -L GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
      -o sample_curl.zip
 ```
@@ -3861,4 +3861,76 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions"
   {
   "group_ids": ["6178859178", "4824866571"],
   }
+```
+
+## List integration mappings
+
+<!-- sample get_integration_mappings_slack -->
+```bash
+curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789"
+    -H "Authorization: Bearer <ACCESS_TOKEN>" 
+```
+
+## Create integration mapping
+
+<!-- sample post_integration_mappings_slack -->
+```bash
+curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "partner_item": {
+            "id": "C987654321",
+            "type": "channel",
+            "slack_workspace_id": "T5555555"
+        },
+        "box_item": {
+            "id": "123456789",
+            "type": "folder"
+        }
+    }'
+```
+
+## Update integration mapping
+
+<!-- sample put_integration_mappings_slack -->
+
+```bash
+curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>"  \
+    -H 'Content-Type: application/json'  \
+    -d'{
+        "options": {
+            "is_access_management_disabled": true
+        }
+    }'
+```
+
+## Delete integration mapping 
+
+<!-- sample delete_integration_mappings_slack -->
+
+```bash
+curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
+  -H "Authorization: Bearer <ACCESS_TOKEN>"  \
+  -d ''
+```
+
+## Get Box Sign template by ID
+
+<!-- sample get_sign_template_id -->
+
+```bash
+curl -L -X GET "https://api.box.com/2.0/sign_templates/:12345678" \
+    -H "Accept: application/json" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
+```
+
+## Get Box Sign templates
+
+<!-- sample get_sign_templates -->
+
+```bash
+curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii&limit=1000" 
+   -H "Authorization: Bearer <ACCESS_TOKEN>" 
 ```
