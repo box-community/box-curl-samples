@@ -3842,10 +3842,10 @@ curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend"
 
 <!-- sample post_users_terminate_sessions -->
 ```bash
-curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions"
-    -H "Authorization: Bearer <ACCESS_TOKEN>"
-    -H "Content-Type: application/json"
-    -H "Accept: application/json"
+curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions" \
+    -H "Authorization: Bearer <ACCESS_TOKEN>" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
     -d 
   {
       user_ids: ["6178859178", "4824866571"]  
@@ -3857,22 +3857,22 @@ curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions"
 
 <!-- sample post_groups_terminate_sessions -->
 ```bash
-curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions"
-    -H "Authorization: Bearer <ACCESS_TOKEN>"
-    -H "Content-Type: application/json" 
-    -H "Accept: application/json"
-    -d
-  {
-  "group_ids": ["6178859178", "4824866571"],
-  }
+curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Content-Type: application/json" \
+     -H "Accept: application/json" \
+     -d
+    {
+    "group_ids": ["6178859178", "4824866571"],
+    }
 ```
 
 ## List integration mappings
 
 <!-- sample get_integration_mappings_slack -->
 ```bash
-curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789"
-    -H "Authorization: Bearer <ACCESS_TOKEN>" 
+curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
 ```
 
 ## Create integration mapping
@@ -3880,19 +3880,19 @@ curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_
 <!-- sample post_integration_mappings_slack -->
 ```bash
 curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
-    -H "Authorization: Bearer <ACCESS_TOKEN>" \
-    -H 'Content-Type: application/json' \
-    -d '{
-        "partner_item": {
-            "id": "C987654321",
-            "type": "channel",
-            "slack_workspace_id": "T5555555"
-        },
-        "box_item": {
-            "id": "123456789",
-            "type": "folder"
-        }
-    }'
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H 'Content-Type: application/json' \
+     -d '{
+          "partner_item": {
+              "id": "C987654321",
+              "type": "channel",
+              "slack_workspace_id": "T5555555"
+          },
+          "box_item": {
+              "id": "123456789",
+              "type": "folder"
+          }
+      }'
 ```
 
 ## Update integration mapping
@@ -3901,10 +3901,10 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
 
 ```bash
 curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
-    -H "Authorization: Bearer <ACCESS_TOKEN>"  \
-    -H 'Content-Type: application/json'  \
-    -d'{
-        "options": {
+     -H "Authorization: Bearer <ACCESS_TOKEN>"  \
+     -H 'Content-Type: application/json'  \
+     -d'{
+         "options": {
             "is_access_management_disabled": true
         }
     }'
@@ -3916,8 +3916,8 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
 
 ```bash
 curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
-  -H "Authorization: Bearer <ACCESS_TOKEN>"  \
-  -d ''
+     -H "Authorization: Bearer <ACCESS_TOKEN>"  \
+     -d ''
 ```
 
 ## Get Box Sign template by ID
@@ -3926,8 +3926,8 @@ curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
 
 ```bash
 curl -L -X GET "https://api.box.com/2.0/sign_templates/:12345678" \
-    -H "Accept: application/json" \
-    -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     -H "Accept: application/json" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
 ```
 
 ## Get Box Sign templates
@@ -3935,6 +3935,6 @@ curl -L -X GET "https://api.box.com/2.0/sign_templates/:12345678" \
 <!-- sample get_sign_templates -->
 
 ```bash
-curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii&limit=1000" 
-   -H "Authorization: Bearer <ACCESS_TOKEN>" 
+curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii&limit=1000" \
+     -H "Authorization: Bearer <ACCESS_TOKEN>" \
 ```
