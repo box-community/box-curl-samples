@@ -3897,7 +3897,7 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
 
 ## Update integration mapping
 
-<!-- sample put_integration_mappings_slack -->
+<!-- sample put_integration_mappings_slack_id -->
 
 ```bash
 curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
@@ -3912,7 +3912,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
 
 ## Delete integration mapping 
 
-<!-- sample delete_integration_mappings_slack -->
+<!-- sample delete_integration_mappings_slack_id -->
 
 ```bash
 curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
@@ -3920,9 +3920,10 @@ curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
      -d ''
 ```
 
+
 ## Get Box Sign template by ID
 
-<!-- sample get_sign_template_id -->
+<!-- sample get_sign_templates_id -->
 
 ```bash
 curl -L -X GET "https://api.box.com/2.0/sign_templates/:12345678" \
