@@ -3926,7 +3926,7 @@ curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
 <!-- sample get_sign_templates_id -->
 
 ```bash
-curl -L -X GET "https://api.box.com/2.0/sign_templates/:12345678" \
+curl -L -X GET "https://api.box.com/2.0/sign_templates/12345678" \
      -H "Accept: application/json" \
      -H "Authorization: Bearer <ACCESS_TOKEN>" \
 ```
