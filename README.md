@@ -126,7 +126,7 @@ create a shared link, or lock a file.
 
 <!-- sample put_files_id -->
 ```bash
-curl -i -X PUT "https://upload.box.com/api/2.0/files/12345" \
+curl -i -X PUT "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
@@ -192,7 +192,7 @@ using the Chunk Upload APIs.
 
 <!-- sample post_files_id_content -->
 ```bash
-curl -i -X POST "https://upload.box.com/api/2.0/files/12345/content" \
+curl -i -X POST "https://api.box.com/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: multipart/form-data" \
      -F attributes='{"name":"Contract.pdf", "parent":{"id":"11446498"}}' \
@@ -227,7 +227,7 @@ using the Chunk Upload APIs.
 
 <!-- sample post_files_content -->
 ```bash
-curl -i -X POST "https://upload.box.com/api/2.0/files/content" \
+curl -i -X POST "https://api.box.com/2.0/files/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: multipart/form-data" \
      -F attributes='{"name":"Contract.pdf", "parent":{"id":"11446498"}}' \
@@ -240,7 +240,7 @@ Creates an upload session for a new file.
 
 <!-- sample post_files_upload_sessions -->
 ```bash
-curl -i -X POST "https://upload.box.com/api/2.0/files/upload_sessions" \
+curl -i -X POST "https://api.box.com/2.0/files/upload_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
@@ -256,7 +256,7 @@ Creates an upload session for an existing file.
 
 <!-- sample post_files_id_upload_sessions -->
 ```bash
-curl -i -X POST "https://upload.box.com/api/2.0/files/12345/upload_sessions" \
+curl -i -X POST "https://api.box.com/2.0/files/12345/upload_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
@@ -270,7 +270,7 @@ Return information about an upload session.
 
 <!-- sample get_files_upload_sessions_id -->
 ```bash
-curl -i -X GET "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
+curl -i -X GET "https://api.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -280,7 +280,7 @@ Updates a chunk of an upload session for a file.
 
 <!-- sample put_files_upload_sessions_id -->
 ```bash
-curl -i -X PUT "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
+curl -i -X PUT "https://api.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
      -H "content-range: bytes 8388608-16777215/445856194" \
@@ -296,7 +296,7 @@ This cannot be reversed.
 
 <!-- sample delete_files_upload_sessions_id -->
 ```bash
-curl -i -X DELETE "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
+curl -i -X DELETE "https://api.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -307,7 +307,7 @@ session so far.
 
 <!-- sample get_files_upload_sessions_id_parts -->
 ```bash
-curl -i -X GET "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/parts" \
+curl -i -X GET "https://api.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/parts" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -318,7 +318,7 @@ uploaded chunks.
 
 <!-- sample post_files_upload_sessions_id_commit -->
 ```bash
-curl -i -X POST "https://upload.box.com/api/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/commit" \
+curl -i -X POST "https://api.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/commit" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "digest: sha=fpRyg5eVQletdZqEKaFlqwBXJzM=" \
      -H "content-type: application/json" \
