@@ -99,6 +99,71 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "box_subject_id=[ENTERPRISE_ID]"
 ```
 
+## Send request to AI
+
+<!-- sample post_ai_ask-->
+```bash
+curl -i -X POST "https://api.box.com/ask/ai" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+         "mode": "single_item_qa",
+         "prompt": "Could you summarize this?",
+         "items": [
+        {
+            "type": "file",
+            "id": "9842787262"
+        }
+       ],
+     }'
+```
+## Send request to AI (text gen)
+
+<!-- sample post_ai_text_gen-->
+```bash
+curl -i -X POST "https://api.box.com/ask/ai" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+         "mode": "single_item_qa",
+         "prompt": "Could you summarize this?",
+         "items": [
+        {
+            "id": "123",
+            "type": "file", // enum: file (eventually we will support other types like folder)
+            "content": "string"
+        },
+        {
+            "id": "123",
+            "type": "file",
+            "content": "string"
+        },
+        {
+            "id": "123",
+            "type": "hub",
+            "content": "string"
+        },
+        {
+            "id": "123",
+            "type": "folder",
+            "content": "string"
+        }
+    ],
+    "dialogue_history": [
+        {
+            "prompt": "What is this content about?",
+            "answer": "This is about public API schemas",
+            "created_at": "2012-12-12T10:53:43-08:00"
+        },
+        {
+            "prompt": "What is this content about?",
+            "answer": "This is about public API schemas",
+            "created_at": "2012-12-12T10:53:43-08:00"
+        }
+    ],
+  }'
+```
+
 ## Get a file
 
 Retrieves the details about a file.
