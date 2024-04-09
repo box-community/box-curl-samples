@@ -108,7 +108,7 @@ curl -i -X POST "https://api.box.com/ask/ai" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
          "mode": "single_item_qa",
-         "prompt": "Could you summarize this?",
+         "prompt": "Could you summarize this article?",
          "items": [
         {
             "type": "file",
@@ -117,7 +117,7 @@ curl -i -X POST "https://api.box.com/ask/ai" \
        ],
      }'
 ```
-## Send request to AI (text gen)
+## Send text generation request to AI 
 
 <!-- sample post_ai_text_gen-->
 ```bash
@@ -126,11 +126,11 @@ curl -i -X POST "https://api.box.com/ask/ai" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
          "mode": "single_item_qa",
-         "prompt": "Could you summarize this?",
+         "prompt": "Could you create a template from this article?",
          "items": [
         {
             "id": "123",
-            "type": "file", // enum: file (eventually we will support other types like folder)
+            "type": "file",
             "content": "string"
         },
         {
