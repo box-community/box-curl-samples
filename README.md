@@ -125,29 +125,18 @@ curl -i -X POST "https://api.box.com/ask/ai" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
-         "mode": "single_item_qa",
          "prompt": "Could you create a template from this article?",
          "items": [
         {
-            "id": "123",
+            "id": "12345678",
             "type": "file",
             "content": "string"
         },
         {
-            "id": "123",
+            "id": "87654321",
             "type": "file",
             "content": "string"
         },
-        {
-            "id": "123",
-            "type": "hub",
-            "content": "string"
-        },
-        {
-            "id": "123",
-            "type": "folder",
-            "content": "string"
-        }
     ],
     "dialogue_history": [
         {
