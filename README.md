@@ -108,7 +108,7 @@ curl -i -X POST "https://api.box.com/ai/ask" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
          "mode": "single_item_qa",
-         "prompt": "Could you summarize this article?",
+         "prompt": "What is the value provided by public APIs based on this document?",
          "items": [
         {
             "type": "file",
@@ -125,27 +125,26 @@ curl -i -X POST "https://api.box.com/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
-         "prompt": "Why are public APIs important? Provide several arguments.",
+         "prompt": "Write an email to a client about the importance of public APIs.",
          "items": [
         {
             "id": "12345678",
             "type": "file",
-            "content": "string"
+            "content": "More information about public APIs"
         },
         {
             "id": "87654321",
             "type": "file",
-            "content": "string"
         },
     ],
     "dialogue_history": [
         {
-            "prompt": "What is this content about?",
-            "answer": "This is about public API schemas",
+            "prompt": "Make my email about public APIs sound more professional",
+            "answer": "Here is the first draft of your professional email about public APIs",
             "created_at": "2013-12-12T10:53:43-08:00"
         },
         {
-            "prompt": "Can you provide more information?",
+            "prompt": "Can you add some more information?",
             "answer": "Public API schemas provide necessary information to integrate with APIs...",
             "created_at": "2013-12-12T11:20:43-08:00"
         }
