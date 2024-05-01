@@ -125,7 +125,7 @@ curl -i -X POST "https://api.box.com/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
-         "prompt": "Could you create a template from this article?",
+         "prompt": "Why are public APIs important? Provide several arguments.",
          "items": [
         {
             "id": "12345678",
