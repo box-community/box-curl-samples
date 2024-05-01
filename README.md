@@ -103,7 +103,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 
 <!-- sample post_ai_ask-->
 ```bash
-curl -i -X POST "https://api.box.com/ask/ai" \
+curl -i -X POST "https://api.box.com/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -121,7 +121,7 @@ curl -i -X POST "https://api.box.com/ask/ai" \
 
 <!-- sample post_ai_text_gen-->
 ```bash
-curl -i -X POST "https://api.box.com/ask/ai" \
+curl -i -X POST "https://api.box.com/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -142,12 +142,12 @@ curl -i -X POST "https://api.box.com/ask/ai" \
         {
             "prompt": "What is this content about?",
             "answer": "This is about public API schemas",
-            "created_at": "2012-12-12T10:53:43-08:00"
+            "created_at": "2013-12-12T10:53:43-08:00"
         },
         {
-            "prompt": "What is this content about?",
-            "answer": "This is about public API schemas",
-            "created_at": "2012-12-12T10:53:43-08:00"
+            "prompt": "Can you provide more information?",
+            "answer": "Public API schemas provide necessary information to integrate with APIs...",
+            "created_at": "2013-12-12T11:20:43-08:00"
         }
     ],
   }'
