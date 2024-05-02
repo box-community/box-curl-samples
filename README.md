@@ -99,6 +99,59 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "box_subject_id=[ENTERPRISE_ID]"
 ```
 
+## Send request to AI
+
+<!-- sample post_ai_ask-->
+```bash
+curl -i -X POST "https://api.box.com/ai/ask" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+         "mode": "single_item_qa",
+         "prompt": "What is the value provided by public APIs based on this document?",
+         "items": [
+        {
+            "type": "file",
+            "id": "9842787262"
+        }
+       ],
+     }'
+```
+## Send text generation request to AI 
+
+<!-- sample post_ai_text_gen-->
+```bash
+curl -i -X POST "https://api.box.com/ai/text_gen" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+         "prompt": "Write an email to a client about the importance of public APIs.",
+         "items": [
+        {
+            "id": "12345678",
+            "type": "file",
+            "content": "More information about public APIs"
+        },
+        {
+            "id": "87654321",
+            "type": "file",
+        },
+    ],
+    "dialogue_history": [
+        {
+            "prompt": "Make my email about public APIs sound more professional",
+            "answer": "Here is the first draft of your professional email about public APIs",
+            "created_at": "2013-12-12T10:53:43-08:00"
+        },
+        {
+            "prompt": "Can you add some more information?",
+            "answer": "Public API schemas provide necessary information to integrate with APIs...",
+            "created_at": "2013-12-12T11:20:43-08:00"
+        }
+    ],
+  }'
+```
+
 ## Get a file
 
 Retrieves the details about a file.
