@@ -623,7 +623,7 @@ application of the operations, the metadata instance remains unchanged.
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
-     -H "content-type: application/json" \
+     -H "content-type: application/json-patch+json" \
      -d '[
         {
           "op": "test",
@@ -965,7 +965,7 @@ application of the operations, the metadata instance remains unchanged.
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
-     -H "content-type: application/json" \
+     -H "content-type: application/json-patch+json" \
      -d '[
         {
           "op": "test",
