@@ -1140,7 +1140,7 @@ application of the operations, the metadata template remains unchanged.
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
-     -H "content-type: application/json" \
+     -H "content-type: application/json-patch+json" \
      -d '[
        {
          "op": "editField",
