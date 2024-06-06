@@ -132,10 +132,6 @@ curl -i -X POST "https://api.box.com/2.0/ai/text_gen" \
             "type": "file",
             "content": "More information about public APIs"
         },
-        {
-            "id": "87654321",
-            "type": "file",
-        },
     ],
     "dialogue_history": [
         {
