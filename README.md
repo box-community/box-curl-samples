@@ -193,7 +193,7 @@ curl -i -X POST "https://api.box.com/2.0/ai/ask" \
                     "presence_penalty": 1.5,
                     "stop": "<|im_end|>"
                   }
-              },
+               }
             }'
 ```
 
@@ -251,7 +251,7 @@ curl -i -X POST "https://api.box.com/2.0/ai/text_gen" \
               "content_template": "---{content}---"
            }
         }
-    }'
+     }'
 ```
 
 ## Get default agent config
@@ -275,17 +275,17 @@ curl -L 'https://api.box.com/2.0/ai_agent_default?mode=text_gen' \
                 "frequency_penalty": 0.75,
                 "presence_penalty": 0.75,
                 "stop": "<|im_end|>"
-          },
-           "embeddings": {
+           },
+            "embeddings": {
               "model": "azure__openai__text_embedding_ada_002",
               "strategy": {
                   "id": "basic",
                   "num_tokens_per_chunk": 64
               }
-          },
-        "content_template": "---{content}---"
+           },
+            "content_template": "---{content}---"
+       }
     }
-}
 ```
 
 ## Get a file
