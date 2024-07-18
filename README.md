@@ -110,7 +110,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 <!-- sample post_ai_ask-->
 
 ```bash
-curl -i -X POST "https://api.box.com/2.0/ai/ask" \
+curl -i -L POST "https://api.box.com/2.0/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -202,7 +202,7 @@ curl -i -X POST "https://api.box.com/2.0/ai/ask" \
 <!-- sample post_ai_text_gen-->
 
 ```bash
-curl -i -X POST "https://api.box.com/2.0/ai/text_gen" \
+curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -259,7 +259,7 @@ curl -i -X POST "https://api.box.com/2.0/ai/text_gen" \
 <!-- sample get_ai_agent_default-->
 
 ```bash
-curl -L 'https://api.box.com/2.0/ai_agent_default?mode=text_gen' \
+curl -L GET 'https://api.box.com/2.0/ai_agent_default?mode=text_gen' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
      -d '{
           "type": "ai_agent_text_gen",
