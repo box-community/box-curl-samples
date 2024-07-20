@@ -261,31 +261,6 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 ```bash
 curl -L GET 'https://api.box.com/2.0/ai_agent_default?mode=text_gen' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-     -d '{
-          "type": "ai_agent_text_gen",
-          "basic_gen": {
-            "model": "azure__openai__gpt_3_5_turbo_16k",
-            "system_message": "If you need to know today's date to respond, it is {current_date}.The user is working in a collaborative document creation editor called Box Notes. Assume that you are helping a business user create documents or to help the user revise existing text.If the user asks to improve the text, then simplify the language and remove jargon, unless the user specifies otherwise.Do not open with a preamble to the response, just respond.",
-            "prompt_template": "{user_question}",
-            "num_tokens_for_completion": 12000,
-            "llm_endpoint_params": {
-                "type": "openai_params",
-                "temperature": 0.1,
-                "top_p": 1,
-                "frequency_penalty": 0.75,
-                "presence_penalty": 0.75,
-                "stop": "<|im_end|>"
-           },
-            "embeddings": {
-              "model": "azure__openai__text_embedding_ada_002",
-              "strategy": {
-                  "id": "basic",
-                  "num_tokens_per_chunk": 64
-              }
-           },
-            "content_template": "---{content}---"
-       }
-    }
 ```
 
 ## Get a file
