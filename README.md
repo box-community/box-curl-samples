@@ -2,6 +2,7 @@
 alt= “box-dev-logo” 
 style="margin-left:-10px;"
 width=40%;>
+
 # Box cURL samples
 
 ## Authorize a user
@@ -15,6 +16,7 @@ on their behalf you will need to send a user to the URL with this
 format.
 
 <!-- sample get_authorize -->
+
 ```bash
 curl -i -X GET "https://account.box.com/api/oauth2/authorize?response_type=code&client_id=ly1nj6n11vionaie65emwzk575hnnmrk&redirect_uri=http://example.com/auth/callback"
 ```
@@ -35,6 +37,7 @@ an Access Token. The returned Access Token can then be used to to make
 Box API calls.
 
 <!-- sample post_oauth2_token -->
+
 ```bash
 curl -i -X POST "https://api.box.com/oauth2/token" \
      -H "content-type: application/x-www-form-urlencoded" \
@@ -47,6 +50,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 ## Refresh an access token
 
 <!-- sample post_oauth2_token refresh -->
+
 ```bash
 curl -i -X POST "https://api.box.com/oauth2/token" \
      -H "content-type: application/x-www-form-urlencoded" \
@@ -59,6 +63,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 ## Downscope a token
 
 <!-- sample post_oauth2_token downscope_token -->
+
 ```bash
 curl -i -X POST "https://api.box.com/oauth2/token" \
      -H "content-type: application/x-www-form-urlencoded" \
@@ -69,13 +74,13 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "grant_type=urn:ietf:params:oauth:grant-type:token-exchange"
 ```
 
-
 ## Revoke an access token
 
 Revoke an active Access Token, effectively logging a user out
 that has been previously authenticated.
 
 <!-- sample post_oauth2_revoke -->
+
 ```bash
 curl -i -X POST "https://api.box.com/oauth2/revoke" \
      -H "content-type: application/x-www-form-urlencoded" \
@@ -89,6 +94,7 @@ curl -i -X POST "https://api.box.com/oauth2/revoke" \
 Creates a token using Client Credentials Grant
 
 <!-- sample x_auth with_client_credentials-->
+
 ```bash
 curl -i -X POST "https://api.box.com/oauth2/token" \
      -H "content-type: application/x-www-form-urlencoded" \
@@ -102,8 +108,9 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 ## Send request to AI
 
 <!-- sample post_ai_ask-->
+
 ```bash
-curl -i -X POST "https://api.box.com/2.0/ai/ask" \
+curl -i -L POST "https://api.box.com/2.0/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -115,37 +122,145 @@ curl -i -X POST "https://api.box.com/2.0/ai/ask" \
             "id": "9842787262"
         }
        ],
-     }'
+          "ai_agent": {
+            "type": "ai_agent_ask",
+            "long_text": {
+              "model": "openai__gpt_3_5_turbo",
+              "system_message": "You are a helpful travel assistant specialized in budget travel",
+              "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+              "num_tokens_for_completion": 8400,
+              "llm_endpoint_params": {
+                "type": "openai_params",
+                "temperature": 0.0,
+                "top_p": 1.0,
+                "frequency_penalty": 1.5,
+                "presence_penalty": 1.5,
+                "stop": "<|im_end|>"
+              },
+              "embeddings": {
+                "model": "openai__text_embedding_ada_002",
+                "strategy": {
+                  "id": "basic",
+                  "num_tokens_per_chunk": 8400
+                }
+              }
+            },
+            "basic_text": {
+              "model": ""openai__gpt_3_5_turbo"",
+              "system_message": "You are a helpful travel assistant specialized in budget travel",
+              "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+              "num_tokens_for_completion": 8400,
+              "llm_endpoint_params": {
+                "type": "openai_params",
+                "temperature": 0.0,
+                "top_p": 1.0,
+                "frequency_penalty": 1.5,
+                "presence_penalty": 1.5,
+                "stop": "<|im_end|>"
+              }
+            },
+              "long_text_multi": {
+                "model": "openai__gpt_3_5_turbo",
+                "system_message": "You are a helpful travel assistant specialized in budget travel",
+                "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+                "num_tokens_for_completion": 8400,
+                "llm_endpoint_params": {
+                  "type": "openai_params",
+                  "temperature": 0.0,
+                  "top_p": 1.0,
+                  "frequency_penalty": 1.5,
+                  "presence_penalty": 1.5,
+                  "stop": "<|im_end|>"
+                },
+                "embeddings": {
+                  "model": "openai__text_embedding_ada_002",
+                  "strategy": {
+                    "id": "basic",
+                    "num_tokens_per_chunk": 8400
+                  }
+                }
+              },
+              "basic_text_multi": {
+                "model": ""openai__gpt_3_5_turbo"",
+                "system_message": "You are a helpful travel assistant specialized in budget travel",
+                "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+                "num_tokens_for_completion": 8400,
+                  "llm_endpoint_params": {
+                    "type": "openai_params",
+                    "temperature": 0.0,
+                    "top_p": 1.0,
+                    "frequency_penalty": 1.5,
+                    "presence_penalty": 1.5,
+                    "stop": "<|im_end|>"
+                  }
+               }
+            }'
 ```
-## Send text generation request to AI 
+
+## Send text generation request to AI
 
 <!-- sample post_ai_text_gen-->
+
 ```bash
-curl -i -X POST "https://api.box.com/2.0/ai/text_gen" \
+curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
-         "prompt": "Write an email to a client about the importance of public APIs.",
-         "items": [
-        {
+          "prompt": "Write an email to a client about the importance of public APIs.",
+          "items": [
+         {
             "id": "12345678",
             "type": "file",
             "content": "More information about public APIs"
         },
-    ],
-    "dialogue_history": [
-        {
-            "prompt": "Make my email about public APIs sound more professional",
-            "answer": "Here is the first draft of your professional email about public APIs",
-            "created_at": "2013-12-12T10:53:43-08:00"
-        },
-        {
-            "prompt": "Can you add some more information?",
-            "answer": "Public API schemas provide necessary information to integrate with APIs...",
-            "created_at": "2013-12-12T11:20:43-08:00"
+        ],
+          "dialogue_history": [
+            {
+                "prompt": "Make my email about public APIs sound more professional",
+                "answer": "Here is the first draft of your professional email about public APIs",
+                "created_at": "2013-12-12T10:53:43-08:00"
+            },
+            {
+                "prompt": "Can you add some more information?",
+                "answer": "Public API schemas provide necessary information to integrate with APIs...",
+                "created_at": "2013-12-12T11:20:43-08:00"
+            }
+        ],
+          "ai_agent": {
+            "type": "ai_agent_text_gen",
+            "basic_gen": {
+              "model": "openai__gpt_3_5_turbo",
+              "system_message": "You are a helpful travel assistant specialized in budget travel",
+              "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in Azores. What should I see?",
+              "num_tokens_for_completion": 8400,
+              "llm_endpoint_params": {
+                "type": "openai_params",
+                "temperature": 2.0,
+                "top_p": 1.0,
+                "frequency_penalty": 1.5,
+                "presence_penalty": 1.5,
+                "stop": "<|im_end|>"
+              },
+              "embeddings": {
+                "model": " openai__text_embedding_ada_002",
+                "strategy": {
+                  "id": "basic",
+                  "num_tokens_per_chunk": 64
+                }
+              },
+              "content_template": "---{content}---"
+           }
         }
-    ],
-  }'
+     }'
+```
+
+## Get default agent config
+
+<!-- sample get_ai_agent_default-->
+
+```bash
+curl -L GET 'https://api.box.com/2.0/ai_agent_default?mode=text_gen' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Get a file
@@ -153,6 +268,7 @@ curl -i -X POST "https://api.box.com/2.0/ai/text_gen" \
 Retrieves the details about a file.
 
 <!-- sample get_files_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -163,9 +279,10 @@ curl -i -X GET "https://api.box.com/2.0/files/12345" \
 Restores an file that has been moved to the trash.
 
 <!-- sample post_files_id -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" 
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Update a file
@@ -174,6 +291,7 @@ Updates a file. This can be used to rename or move a file,
 create a shared link, or lock a file.
 
 <!-- sample put_files_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -192,6 +310,7 @@ The the enterprise settings determine whether the item will
 be permanently deleted from Box or moved to the trash.
 
 <!-- sample delete_files_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -202,6 +321,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345" \
 Returns the contents of a file in binary format.
 
 <!-- sample get_files_id_content -->
+
 ```bash
 curl -i -L -X GET "https://api.box.com/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -210,6 +330,7 @@ curl -i -L -X GET "https://api.box.com/2.0/files/12345/content" \
 ## Download a file version
 
 <!-- sample get_files_id_content for_version -->
+
 ```bash
 curl -i -L -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -218,6 +339,7 @@ curl -i -L -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
 ## Get download URL
 
 <!-- sample get_files_id_content get_url -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -228,6 +350,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
 Returns the contents of a file in binary format.
 
 <!-- sample get_files_id_content for_shared_file -->
+
 ```bash
 curl -i -L -X GET "https://api.box.com/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -240,6 +363,7 @@ Update a file's content. For file sizes over 50MB we recommend
 using the Chunk Upload APIs.
 
 <!-- sample post_files_id_content -->
+
 ```bash
 curl -i -X POST "https://upload.box.com/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -254,6 +378,7 @@ Performs a check to verify that a file will be accepted by Box
 before you upload the entire file.
 
 <!-- sample options_files_content -->
+
 ```bash
 curl -i -X OPTIONS "https://api.box.com/2.0/files/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -262,6 +387,7 @@ curl -i -X OPTIONS "https://api.box.com/2.0/files/content" \
 ```
 
 <!-- sample options_files_id_content -->
+
 ```bash
 curl -i -X OPTIONS "https://api.box.com/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -275,6 +401,7 @@ Uploads a small file to Box. For file sizes over 50MB we recommend
 using the Chunk Upload APIs.
 
 <!-- sample post_files_content -->
+
 ```bash
 curl -i -X POST "https://upload.box.com/2.0/files/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -288,6 +415,7 @@ curl -i -X POST "https://upload.box.com/2.0/files/content" \
 Creates an upload session for a new file.
 
 <!-- sample post_files_upload_sessions -->
+
 ```bash
 curl -i -X POST "https://upload.box.com/2.0/files/upload_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -304,6 +432,7 @@ curl -i -X POST "https://upload.box.com/2.0/files/upload_sessions" \
 Creates an upload session for an existing file.
 
 <!-- sample post_files_id_upload_sessions -->
+
 ```bash
 curl -i -X POST "https://upload.box.com/2.0/files/12345/upload_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -318,6 +447,7 @@ curl -i -X POST "https://upload.box.com/2.0/files/12345/upload_sessions" \
 Return information about an upload session.
 
 <!-- sample get_files_upload_sessions_id -->
+
 ```bash
 curl -i -X GET "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -328,6 +458,7 @@ curl -i -X GET "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD0
 Updates a chunk of an upload session for a file.
 
 <!-- sample put_files_upload_sessions_id -->
+
 ```bash
 curl -i -X PUT "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -344,6 +475,7 @@ Abort an upload session and discard all data uploaded.
 This cannot be reversed.
 
 <!-- sample delete_files_upload_sessions_id -->
+
 ```bash
 curl -i -X DELETE "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -355,6 +487,7 @@ Return a list of the chunks uploaded to the upload
 session so far.
 
 <!-- sample get_files_upload_sessions_id_parts -->
+
 ```bash
 curl -i -X GET "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/parts" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -366,6 +499,7 @@ Close an upload session and create a file from the
 uploaded chunks.
 
 <!-- sample post_files_upload_sessions_id_commit -->
+
 ```bash
 curl -i -X POST "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD0C001BBE4E58196BFD/commit" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -397,6 +531,7 @@ curl -i -X POST "https://upload.box.com/2.0/files/upload_sessions/F971964745A5CD
 Creates a copy of a file.
 
 <!-- sample post_files_id_copy -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345/copy" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -417,11 +552,12 @@ the `.png` format and sizes of `32x32`, `94x94`, `160x160`, and `320x320`
 can be returned in the `.jpg` format.
 
 Thumbnails can be generated for the image and video file formats listed
-[found on our community site](http://community.box.com/t5/Managing-\
-Your-Content/What-file-types-are-supported-by-Box-s-Content-Preview/\
+[found on our community site](http://community.box.com/t5/Managing-
+Your-Content/What-file-types-are-supported-by-Box-s-Content-Preview/
 ta-p/327).
 
 <!-- sample get_files_id_thumbnail_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/thumbnail.png" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -433,6 +569,7 @@ Retrieves a list of collaborations for a file. This
 returns all the users that have access to the file.
 
 <!-- sample get_files_id_collaborations -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/collaborations" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -443,6 +580,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/collaborations" \
 Retrieves a list of comments for a file.
 
 <!-- sample get_files_id_comments -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/comments" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -454,6 +592,7 @@ Retrieves a list of all the tasks for a file. This
 endpoint does not support paging.
 
 <!-- sample get_files_id_tasks -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/tasks" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -464,6 +603,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/tasks" \
 Retrieves a file that has been moved to the trash.
 
 <!-- sample get_files_id_trash -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/trash" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -475,6 +615,7 @@ Permanently deletes a file that is in the trash.
 This action cannot be undone.
 
 <!-- sample delete_files_id_trash -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345/trash" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -488,6 +629,7 @@ retrieve information about older versions of a file.
 Versions are only tracked for Box users with premium accounts.
 
 <!-- sample get_files_id_versions -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/versions" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -500,6 +642,7 @@ Retrieve a specific older version of a file.
 Versions are only tracked for Box users with premium accounts.
 
 <!-- sample get_files_id_versions_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/versions/456456" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -512,6 +655,7 @@ Move a file version to the trash.
 Versions are only tracked for Box users with premium accounts.
 
 <!-- sample delete_files_id_versions_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345/versions/456456" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -520,7 +664,6 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/versions/456456" \
 ## Promote file version
 
 Promote a specific version of a file.
-
 
 If previous versions exist, this method can be used to
 promote one of the older versions to the top of the version history.
@@ -532,10 +675,11 @@ as the original.
 
 Other properties such as comments do not get updated to their
 former values.
-Don't use this endpoint to restore Box Notes, 
+Don't use this endpoint to restore Box Notes,
 as it works with file formats such as PDF, DOC, PPTX or similar.
 
 <!-- sample post_files_id_versions_current -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345/versions/current" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -545,13 +689,15 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/versions/current" \
        "id": "456456"
      }'
 ```
+
 ## Restore file version
 
-Restores a specific version of a file after it was deleted. 
-Don't use this endpoint to restore Box Notes, 
+Restores a specific version of a file after it was deleted.
+Don't use this endpoint to restore Box Notes,
 as it works with file formats such as PDF, DOC, PPTX or similar.
 
 <!-- sample put_files_id_versions_id -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345/versions/456456" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -566,6 +712,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/versions/456456" \
 Retrieves all metadata for a given file.
 
 <!-- sample get_files_id_metadata -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/metadata" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -576,6 +723,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/metadata" \
 Retrieve a specific metadata template instance for a file
 
 <!-- sample get_files_id_metadata_id_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -589,6 +737,7 @@ Only values that are present in the metadata template
 will be accepted.
 
 <!-- sample post_files_id_metadata_id_id -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -616,6 +765,7 @@ The update is applied atomically. If any errors occur during the
 application of the operations, the metadata instance remains unchanged.
 
 <!-- sample put_files_id_metadata_id_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -673,6 +823,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/bl
 Deletes a piece of file metadata.
 
 <!-- sample delete_files_id_metadata_id_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -683,6 +834,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/enterprise_27335
 Retrieve the watermark for a file.
 
 <!-- sample get_files_id_watermark -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/watermark" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -693,6 +845,7 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/watermark" \
 Applies or update a watermark on a file.
 
 <!-- sample put_files_id_watermark -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345/watermark" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -709,6 +862,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/watermark" \
 Removes the watermark from a file.
 
 <!-- sample delete_files_id_watermark -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345/watermark" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -723,6 +877,7 @@ To fetch more items within the folder, please use the
 [Get items in a folder](#get-folders-id-items) endpoint.
 
 <!-- sample get_folders_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -733,6 +888,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455" \
 Restores a folder that has been moved to the trash.
 
 <!-- sample post_folders_id -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -744,6 +900,7 @@ Updates a folder. This can be also be used to move the folder,
 create shared links, update collaborations, and more.
 
 <!-- sample put_folders_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -756,6 +913,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
 ## Move a folder
 
 <!-- sample put_folders_id move -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -771,6 +929,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
 ## Move a subfolder to a private folder
 
 <!-- sample put_folders_id move_private -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -789,6 +948,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
 ## Rename a folder
 
 <!-- sample put_folders_id rename -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -801,6 +961,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
 ## Change folder owner
 
 <!-- sample put_folders_id transfer -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -818,6 +979,7 @@ Deletes a folder, either permanently or by moving it to
 the trash.
 
 <!-- sample delete_folders_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/folders/4353455" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -832,6 +994,7 @@ To request more information about the folder itself, like its size,
 please use the [Get a folder](#get-folders-id) endpoint instead.
 
 <!-- sample get_folders_id_items -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/0/items" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -842,6 +1005,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/0/items" \
 Creates a new empty folder within the specified parent folder.
 
 <!-- sample post_folders -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/folders" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -861,6 +1025,7 @@ Creates a copy of a folder within a destination folder.
 The original folder will not be changed.
 
 <!-- sample post_folders_id_copy -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/folders/4353455/copy" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -878,6 +1043,7 @@ Retrieves a list of collaborations for a folder. This
 returns all the users that have access to the folder.
 
 <!-- sample get_folders_id_collaborations -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/4353455/collaborations" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -888,6 +1054,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/collaborations" \
 Retrieves a folder that has been moved to the trash.
 
 <!-- sample get_folders_id_trash -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/4353455/trash" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -899,6 +1066,7 @@ Permanently deletes a folder that is in the trash.
 This action cannot be undone.
 
 <!-- sample delete_folders_id_trash -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/trash" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -909,6 +1077,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/trash" \
 Retrieves all metadata for a given folder.
 
 <!-- sample get_folders_id_metadata -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/4353455/metadata" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -919,6 +1088,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/metadata" \
 Retrieve a specific metadata template instance for a folder
 
 <!-- sample get_folders_id_metadata_id_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -932,6 +1102,7 @@ Only values that are present in the metadata template
 will be accepted.
 
 <!-- sample post_folders_id_metadata_id_id -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -958,6 +1129,7 @@ The update is applied atomically. If any errors occur during the
 application of the operations, the metadata instance remains unchanged.
 
 <!-- sample put_folders_id_metadata_id_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1015,6 +1187,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455/metadata/enterprise_2733
 Deletes a piece of folder metadata.
 
 <!-- sample delete_folders_id_metadata_id_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/metadata/enterprise_27335/blueprintTemplate" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1030,6 +1203,7 @@ in with the `fields` parameter to retrieve those specific
 attributes that are not returned by default.
 
 <!-- sample get_folders_trash_items -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/trash/items" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1040,6 +1214,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/trash/items" \
 Retrieve the watermark for a folder.
 
 <!-- sample get_folders_id_watermark -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/4353455/watermark" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1050,6 +1225,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/4353455/watermark" \
 Applies or update a watermark on a folder.
 
 <!-- sample put_folders_id_watermark -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/4353455/watermark" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1066,6 +1242,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455/watermark" \
 Removes the watermark from a folder.
 
 <!-- sample delete_folders_id_watermark -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/watermark" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1076,6 +1253,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/4353455/watermark" \
 Retrieve locks applied to a folder.
 
 <!-- sample get_folder_locks -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folder_locks?folder_id=33552487093" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1086,6 +1264,7 @@ curl -i -X GET "https://api.box.com/2.0/folder_locks?folder_id=33552487093" \
 Creates a lock on a folder to prevent move and / or delete operations.
 
 <!-- sample post_folder_locks -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/folder_locks" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1107,8 +1286,9 @@ curl -i -X POST "https://api.box.com/2.0/folder_locks" \
 Deletes a lock on a folder.
 
 <!-- sample delete_folder_locks_id -->
+
 ```bash
-curl -i -X DELETE "https://api.box.com/2.0/folder_locks/93134" \ 
+curl -i -X DELETE "https://api.box.com/2.0/folder_locks/93134" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -1117,6 +1297,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folder_locks/93134" \
 Retrieves a metadata template by its scope and template name.
 
 <!-- sample get_metadata_templates_id_id_schema -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1133,6 +1314,7 @@ The update is applied atomically. If any errors occur during the
 application of the operations, the metadata template remains unchanged.
 
 <!-- sample put_metadata_templates_id_id_schema -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1154,6 +1336,7 @@ Delete a metadata template and its instances.
 This deletion is permanent and can not be reversed.
 
 <!-- sample delete_metadata_templates_id_id_schema -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/metadata_templates/enterprise/blueprintTemplate/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1164,6 +1347,7 @@ curl -i -X DELETE "https://api.box.com/2.0/metadata_templates/enterprise/bluepri
 Retrieves a metadata template by its ID.
 
 <!-- sample get_metadata_templates_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_templates/d9671692-3df6-11ea-b77f-2e728ce88125" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1174,6 +1358,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/d9671692-3df6-11ea-b7
 Used to retrieve all metadata templates within a user's enterprise
 
 <!-- sample get_metadata_templates_enterprise -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1184,6 +1369,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise" \
 Used to retrieve all globally available metadata templates.
 
 <!-- sample get_metadata_templates_global -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_templates/global" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1194,6 +1380,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/global" \
 Creates a new metadata template that can be applied to files and folders.
 
 <!-- sample post_metadata_templates_schema -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/metadata_templates/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1248,6 +1435,7 @@ Retrieve a collection of metadata cascade policies
 within a given folder for the current enterprise.
 
 <!-- sample get_metadata_cascade_policies -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_cascade_policies?folder_id=31232" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1263,6 +1451,7 @@ In order for the policy to work, a metadata instance must first
 be applied to the folder.
 
 <!-- sample post_metadata_cascade_policies -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1279,6 +1468,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies" \
 Retrieve a metadata cascade policy.
 
 <!-- sample get_metadata_cascade_policies_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_cascade_policies/324324" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1289,6 +1479,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_cascade_policies/324324" \
 Deletes a metadata cascade policy.
 
 <!-- sample delete_metadata_cascade_policies_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/metadata_cascade_policies/324324" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1300,6 +1491,7 @@ If a policy already exists on a folder, this will apply that policy
 to all existing files and sub-folders within the target folder.
 
 <!-- sample post_metadata_cascade_policies_id_apply -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies/21312/apply" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1312,6 +1504,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies/21312/apply" 
 ## Create a metadata query
 
 <!-- sample post_metadata_queries_execute_read -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1341,6 +1534,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345" \
 ## Get metadata query indices
 
 <!-- sample get_metadata_query_indices -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_query_indices?scope=enterprise&template_key=properties" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1352,6 +1546,7 @@ Retrieves the message and metadata for a specific comment, as well
 as information on the user who created the comment.
 
 <!-- sample get_comments_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/comments/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1362,6 +1557,7 @@ curl -i -X GET "https://api.box.com/2.0/comments/12345" \
 Update the message of a comment.
 
 <!-- sample put_comments_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/comments/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1376,6 +1572,7 @@ curl -i -X PUT "https://api.box.com/2.0/comments/12345" \
 Permanently deletes a comment.
 
 <!-- sample delete_comments_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/comments/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1387,6 +1584,7 @@ Adds a comment comment by the user to a specific file, or
 as a reply to an other comment.
 
 <!-- sample post_comments -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/comments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1403,6 +1601,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
 ## Create reply
 
 <!-- sample post_comments as_reply  -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/comments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1419,6 +1618,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
 ## Tag User in Comment
 
 <!-- sample post_comments tag_user -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/comments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1432,10 +1632,10 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
      }
 ```
 
-
 ## Tag User in Reply
 
 <!-- sample post_comments as_reply_tag_user -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/comments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1454,6 +1654,7 @@ curl -i -X POST "https://api.box.com/2.0/comments" \
 Retrieves a single collaboration.
 
 <!-- sample get_collaborations_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collaborations/1234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1467,6 +1668,7 @@ Can be used to change the owner of an item, or to
 accept collaboration invites.
 
 <!-- sample put_collaborations_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/collaborations/1234" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1481,6 +1683,7 @@ curl -i -X PUT "https://api.box.com/2.0/collaborations/1234" \
 Deletes a single collaboration.
 
 <!-- sample delete_collaborations_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/collaborations/1234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1491,6 +1694,7 @@ curl -i -X DELETE "https://api.box.com/2.0/collaborations/1234" \
 Retrieves all pending collaboration invites for this user.
 
 <!-- sample get_collaborations -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collaborations?status=pending" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1508,6 +1712,7 @@ If a collaboration is being created with a group, access to
 this endpoint is dependent on the group's ability to be invited.
 
 <!-- sample post_collaborations-->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/collaborations" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1526,6 +1731,7 @@ curl -i -X POST "https://api.box.com/2.0/collaborations" \
 ```
 
 <!-- sample post_collaborations group-->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/collaborations" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1548,6 +1754,7 @@ curl -i -X POST "https://api.box.com/2.0/collaborations" \
 Searches for items that are available to the user or an entire enterprise.
 
 <!-- sample get_search -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/search?query=sales" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1558,6 +1765,7 @@ curl -i -X GET "https://api.box.com/2.0/search?query=sales" \
 Creates a single task on a file.
 
 <!-- sample post_tasks -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/tasks" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1576,6 +1784,7 @@ curl -i -X POST "https://api.box.com/2.0/tasks" \
 Fetches a specific task.
 
 <!-- sample get_tasks_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/tasks/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1586,6 +1795,7 @@ curl -i -X GET "https://api.box.com/2.0/tasks/12345" \
 Updates a specific task.
 
 <!-- sample put_tasks_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/tasks/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1600,6 +1810,7 @@ curl -i -X PUT "https://api.box.com/2.0/tasks/12345" \
 Deletes a specific task.
 
 <!-- sample delete_tasks_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/tasks/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1610,6 +1821,7 @@ curl -i -X DELETE "https://api.box.com/2.0/tasks/12345" \
 Retrieves all of the assignments for a given task.
 
 <!-- sample get_tasks_id_assignments -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/tasks/12345/assignments" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1623,6 +1835,7 @@ Multiple assignments to different users
 are allowed per task.
 
 <!-- sample post_task_assignments -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/task_assignments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1643,6 +1856,7 @@ curl -i -X POST "https://api.box.com/2.0/task_assignments" \
 Fetches a specific task assignment.
 
 <!-- sample get_task_assignments_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/task_assignments/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1654,6 +1868,7 @@ Updates a task assignment. This endpoint can be
 used to update the state of a task.
 
 <!-- sample put_task_assignments_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/task_assignments/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1669,6 +1884,7 @@ curl -i -X PUT "https://api.box.com/2.0/task_assignments/12345" \
 Deletes a specific task assignment.
 
 <!-- sample delete_task_assignments_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/task_assignments/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1685,6 +1901,7 @@ This endpoint allows an application to retrieve information about a
 shared item when only given a shared link.
 
 <!-- sample get_shared_items -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/shared_items" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1694,6 +1911,7 @@ curl -i -X GET "https://api.box.com/2.0/shared_items" \
 The syntax is the same regardless of wether the shared link is a file or a folder.
 
 <!-- sample get_shared_items folders -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/shared_items" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1705,6 +1923,7 @@ curl -i -X GET "https://api.box.com/2.0/shared_items" \
 Creates a web link object within a folder.
 
 <!-- sample post_web_links -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/web_links" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1723,6 +1942,7 @@ curl -i -X POST "https://api.box.com/2.0/web_links" \
 Retrieve information about a web link.
 
 <!-- sample get_web_links_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/web_links/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1733,9 +1953,10 @@ curl -i -X GET "https://api.box.com/2.0/web_links/12345" \
 Restores an web link that has been moved to the trash.
 
 <!-- sample post_web_links_id -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/web_links/12345" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" 
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Update web link
@@ -1743,6 +1964,7 @@ curl -i -X POST "https://api.box.com/2.0/web_links/12345" \
 Updates a web link object.
 
 <!-- sample put_web_links_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1757,6 +1979,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
 Deletes a web link.
 
 <!-- sample delete_web_links_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/web_links/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1767,6 +1990,7 @@ curl -i -X DELETE "https://api.box.com/2.0/web_links/12345" \
 Retrieves a web link that has been moved to the trash.
 
 <!-- sample get_web_links_id_trash -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/web_links/12345/trash" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1778,6 +2002,7 @@ Permanently deletes a web link that is in the trash.
 This action cannot be undone.
 
 <!-- sample delete_web_links_id_trash -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/web_links/12345/trash" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1793,6 +2018,7 @@ have the permission to look up users in the entire
 enterprise.
 
 <!-- sample get_users -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/users" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1805,6 +2031,7 @@ is only available to users and applications with the right
 admin permissions.
 
 <!-- sample post_users -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/users" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1829,6 +2056,7 @@ by default.
 Use the `As-User` header to change who this API call is made on behalf of.
 
 <!-- sample get_users_me -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/users/me" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1849,6 +2077,7 @@ right scopes. In this case, disallowed fields will return
 null instead.
 
 <!-- sample get_users_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/users/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1861,6 +2090,7 @@ is only available to users and applications with the right
 admin permissions.
 
 <!-- sample put_users_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/users/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1878,6 +2108,7 @@ before proceeding, or use the `force` field to delete
 the user and their files.
 
 <!-- sample delete_users_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/users/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1888,6 +2119,7 @@ curl -i -X DELETE "https://api.box.com/2.0/users/12345" \
 Retrieves an image of a the user's avatar.
 
 <!-- sample get_users_id_avatar -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/users/12345/avatar" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1898,6 +2130,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/avatar" \
 Uploads or updates a user avatar.
 
 <!-- sample post_users_id_avatar -->
+
 ```bash
 curl -i -X -L POST "https://api.box.net/2.0/users/12345/avatar" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1909,9 +2142,10 @@ curl -i -X -L POST "https://api.box.net/2.0/users/12345/avatar" \
 Deletes a user avatar.
 
 <!-- sample delete_users_id_avatar -->
+
 ```bash
 curl -i -X DELETE -L "https://api.box.net/2.0/users/12345/avatar" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" 
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Transfer owned folders
@@ -1934,6 +2168,7 @@ asynchronously.
 There is currently no way to check for when this operation is finished.
 
 <!-- sample put_users_id_folders_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/users/12345/folders/0" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1951,6 +2186,7 @@ Retrieves all email aliases for a user. The collection
 does not include the primary login for the user.
 
 <!-- sample get_users_id_email_aliases -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/users/12345/email_aliases" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1961,6 +2197,7 @@ curl -i -X GET "https://api.box.com/2.0/users/12345/email_aliases" \
 Adds a new email alias to a user account.
 
 <!-- sample post_users_id_email_aliases -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/users/12345/email_aliases" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -1975,6 +2212,7 @@ curl -i -X POST "https://api.box.com/2.0/users/12345/email_aliases" \
 Removes an email alias from a user.
 
 <!-- sample delete_users_id_email_aliases_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/users/12345/email_aliases/23432" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -1987,6 +2225,7 @@ an API call must have admin permissions to inspect the
 enterprise's groups.
 
 <!-- sample get_users_id_memberships -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/users/12345/memberships" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2005,6 +2244,7 @@ This method requires the "Manage An Enterprise" scope enabled for
 the application, which can be enabled within the developer console.
 
 <!-- sample post_invites -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/invites" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2024,6 +2264,7 @@ curl -i -X POST "https://api.box.com/2.0/invites" \
 Returns the status of a user invite.
 
 <!-- sample get_invites_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/invites/213723" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2035,6 +2276,7 @@ Retrieves all of the groups for a given enterprise. The user
 must have admin permissions to inspect enterprise's groups.
 
 <!-- sample get_groups -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/groups" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2046,6 +2288,7 @@ Creates a new group of users in an enterprise. Only users with admin
 permissions can create new groups.
 
 <!-- sample post_groups -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/groups" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2060,6 +2303,7 @@ curl -i -X POST "https://api.box.com/2.0/groups" \
 Retrieves information about a group.
 
 <!-- sample get_groups_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/groups/57645" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2070,6 +2314,7 @@ curl -i -X GET "https://api.box.com/2.0/groups/57645" \
 Updates a specific group.
 
 <!-- sample put_groups_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/groups/57645" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2084,6 +2329,7 @@ curl -i -X PUT "https://api.box.com/2.0/groups/57645" \
 Permanently deletes a group.
 
 <!-- sample delete_groups_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/groups/57645" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2095,6 +2341,7 @@ Retrieves all the members for a group. The user
 must have admin permissions to inspect enterprise's groups.
 
 <!-- sample get_groups_id_memberships -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/groups/57645/memberships" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2109,6 +2356,7 @@ Each collaboration object has details on which files or
 folders the group has access to and with what role.
 
 <!-- sample get_groups_id_collaborations -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/groups/57645/collaborations" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2119,6 +2367,7 @@ curl -i -X GET "https://api.box.com/2.0/groups/57645/collaborations" \
 Creates a group membership
 
 <!-- sample post_group_memberships -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/group_memberships" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2138,6 +2387,7 @@ curl -i -X POST "https://api.box.com/2.0/group_memberships" \
 Retrieves a specific group membership.
 
 <!-- sample get_group_memberships_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/group_memberships/434534" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2148,6 +2398,7 @@ curl -i -X GET "https://api.box.com/2.0/group_memberships/434534" \
 Updates a user's group membership.
 
 <!-- sample put_group_memberships_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/group_memberships/434534" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2162,6 +2413,7 @@ curl -i -X PUT "https://api.box.com/2.0/group_memberships/434534" \
 Deletes a specific group membership.
 
 <!-- sample delete_group_memberships_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/group_memberships/434534" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2172,6 +2424,7 @@ curl -i -X DELETE "https://api.box.com/2.0/group_memberships/434534" \
 Returns all defined webhooks for the requesting application.
 
 <!-- sample get_webhooks -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/webhooks" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2182,6 +2435,7 @@ curl -i -X GET "https://api.box.com/2.0/webhooks" \
 Creates a webhook.
 
 <!-- sample post_webhooks -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/webhooks" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2199,6 +2453,7 @@ curl -i -X POST "https://api.box.com/2.0/webhooks" \
 ```
 
 <!-- sample post_webhooks for_folder -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/webhooks" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2220,6 +2475,7 @@ curl -i -X POST "https://api.box.com/2.0/webhooks" \
 Retrieves a specific webhook
 
 <!-- sample get_webhooks_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/webhooks/3321123" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2230,6 +2486,7 @@ curl -i -X GET "https://api.box.com/2.0/webhooks/3321123" \
 Updates a webhook.
 
 <!-- sample put_webhooks_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/webhooks/3321123" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2246,6 +2503,7 @@ curl -i -X PUT "https://api.box.com/2.0/webhooks/3321123" \
 Deletes a webhook.
 
 <!-- sample delete_webhooks_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/webhooks/3321123" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2257,6 +2515,7 @@ Updates the status, usage and response metadata of a
 skill invocation.
 
 <!-- sample put_skill_invocations_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2371,6 +2630,7 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
 ## List Skill cards on file
 
 <!-- sample get_files_id_metadata_global_boxSkillsCards -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2379,6 +2639,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCar
 ## Create Skill cards on file
 
 <!-- sample post_files_id_metadata_global_boxSkillsCards -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2483,6 +2744,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
 ## Update Skill cards on file
 
 <!-- sample put_files_id_metadata_global_boxSkillsCards -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2516,6 +2778,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCar
 ## Delete Skill cards from file
 
 <!-- sample delete_files_id_metadata_global_boxSkillsCards -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2558,6 +2821,7 @@ real-time server, you should start over by making a call to this endpoint
 first.
 
 <!-- sample options_events -->
+
 ```bash
 curl -i -X OPTIONS "https://api.box.com/2.0/events" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2576,30 +2840,35 @@ need to have the permission to access the event feed to get the enterprise event
 feed.
 
 <!-- sample get_events -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/events" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_filter -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs&event_type=LOGIN,FAILED_LOGIN" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_stream -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs_streaming" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 <!-- sample get_events enterprise_stream_filter -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/events?stream_type=admin_logs_streaming&event_type=LOGIN,FAILED_LOGIN" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2613,6 +2882,7 @@ Currently, only the `favorites` collection
 is supported.
 
 <!-- sample get_collections -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collections" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2624,6 +2894,7 @@ Retrieves the files and/or folders contained within
 this collection.
 
 <!-- sample get_collections_id_items -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collections/926489/items" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2632,6 +2903,7 @@ curl -i -X GET "https://api.box.com/2.0/collections/926489/items" \
 ## Add file to collection
 
 <!-- sample put_files_id add_to_collection -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2648,6 +2920,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345" \
 ## Add folder to collection
 
 <!-- sample put_folders_id add_to_collection -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2664,6 +2937,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/12345" \
 ## Add web link to collection
 
 <!-- sample put_web_links_id add_to_collection -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2680,6 +2954,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
 ## Remove file from collection
 
 <!-- sample put_files_id remove_from_collection -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2692,6 +2967,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345" \
 ## Remove folder from collection
 
 <!-- sample put_folders_id remove_from_collection -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2704,6 +2980,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/12345" \
 ## Remove web link from collection
 
 <!-- sample put_web_links_id remove_from_collection -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/web_links/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2720,6 +2997,7 @@ by a user, either in the last 90 days or up to the last
 1000 items accessed.
 
 <!-- sample get_recent_items -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/recent_items" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2730,6 +3008,7 @@ curl -i -X GET "https://api.box.com/2.0/recent_items" \
 Retrieves all of the retention policies for an enterprise.
 
 <!-- sample get_retention_policies -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/retention_policies" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2740,6 +3019,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policies" \
 Creates a retention policy.
 
 <!-- sample post_retention_policies -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/retention_policies" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2757,6 +3037,7 @@ curl -i -X POST "https://api.box.com/2.0/retention_policies" \
 Retrieves a retention policy.
 
 <!-- sample get_retention_policies_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/retention_policies/982312" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2767,6 +3048,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policies/982312" \
 Updates a retention policy.
 
 <!-- sample put_retention_policies_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/retention_policies/982312" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2782,6 +3064,7 @@ Returns a list of all retention policy assignments associated with a specified
 retention policy.
 
 <!-- sample get_retention_policies_id_assignments -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/retention_policies/982312/assignments" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2792,6 +3075,7 @@ curl -i -X GET "https://api.box.com/2.0/retention_policies/982312/assignments" \
 Assigns a retention policy to an item.
 
 <!-- sample post_retention_policy_assignments -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/retention_policy_assignments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2810,6 +3094,7 @@ curl -i -X POST "https://api.box.com/2.0/retention_policy_assignments" \
 Retrieves a retention policy assignment
 
 <!-- sample get_retention_policy_assignments_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/retention_policy_assignments/1233123" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2821,6 +3106,7 @@ Retrieves a list of legal hold policies that belong to
 an enterprise.
 
 <!-- sample get_legal_hold_policies -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/legal_hold_policies" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2831,6 +3117,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policies" \
 Create a new legal hold policy.
 
 <!-- sample post_legal_hold_policies -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/legal_hold_policies" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2846,6 +3133,7 @@ curl -i -X POST "https://api.box.com/2.0/legal_hold_policies" \
 Retrieve a legal hold policy.
 
 <!-- sample get_legal_hold_policies_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/legal_hold_policies/324432" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2856,6 +3144,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policies/324432" \
 Update legal hold policy.
 
 <!-- sample put_legal_hold_policies_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/legal_hold_policies/324432" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2873,6 +3162,7 @@ This is an asynchronous process. The policy will not be
 fully deleted yet when the response returns.
 
 <!-- sample delete_legal_hold_policies_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/legal_hold_policies/324432" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2883,6 +3173,7 @@ curl -i -X DELETE "https://api.box.com/2.0/legal_hold_policies/324432" \
 Retrieves a list of items a legal hold policy has been assigned to.
 
 <!-- sample get_legal_hold_policy_assignments -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments?policy_id=324432" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2893,6 +3184,7 @@ curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments?policy_id=
 Assign a legal hold to a file, file version, folder, or user.
 
 <!-- sample post_legal_hold_policy_assignments -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/legal_hold_policy_assignments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -2911,6 +3203,7 @@ curl -i -X POST "https://api.box.com/2.0/legal_hold_policy_assignments" \
 Retrieve a legal hold policy assignment.
 
 <!-- sample get_legal_hold_policy_assignments_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments/753465" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2924,6 +3217,7 @@ This is an asynchronous process. The policy will not be
 fully removed yet when the response returns.
 
 <!-- sample delete_legal_hold_policy_assignments_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/legal_hold_policy_assignments/753465" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2934,6 +3228,7 @@ curl -i -X DELETE "https://api.box.com/2.0/legal_hold_policy_assignments/753465"
 Returns information about a file version retention.
 
 <!-- sample get_file_version_retentions_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/file_version_retentions/3424234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2944,6 +3239,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_retentions/3424234" \
 Retrieves all file version retentions for the given enterprise.
 
 <!-- sample get_file_version_retentions -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/file_version_retentions" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2954,6 +3250,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_retentions" \
 Retrieves all files for the given retention policy id.
 
 <!-- sample get_retention_policy_assignments_id_files_under_retention -->
+
 ```bash
 curl -i -X GET "https://app.box.com/api/2.0/retention_policy_assignments/3424234/files_under_retention" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2964,6 +3261,7 @@ curl -i -X GET "https://app.box.com/api/2.0/retention_policy_assignments/3424234
 Retrieves all file versions for the given retention policy id.
 
 <!-- sample get_retention_policy_assignments_id_file_versions_under_retention -->
+
 ```bash
 curl -i -X GET "https://app.box.com/api/2.0/retention_policy_assignments/3424234/file_versions_under_retention" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2975,6 +3273,7 @@ Retrieves information about the legal hold policies
 assigned to a file version.
 
 <!-- sample get_file_version_legal_holds_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/file_version_legal_holds/2348213" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2986,6 +3285,7 @@ Get list of non-deleted legal holds for a single legal
 hold policy.
 
 <!-- sample get_file_version_legal_holds -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/file_version_legal_holds?policy_id=133870" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -2996,6 +3296,7 @@ curl -i -X GET "https://api.box.com/2.0/file_version_legal_holds?policy_id=13387
 Retrieves information about an individual device pin.
 
 <!-- sample get_device_pinners_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/device_pinners/2324234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3006,6 +3307,7 @@ curl -i -X GET "https://api.box.com/2.0/device_pinners/2324234" \
 Deletes an individual device pin.
 
 <!-- sample delete_device_pinners_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/device_pinners/2324234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3019,6 +3321,7 @@ The user must have admin privileges, and the application
 needs the "manage enterprise" scope to make this call.
 
 <!-- sample get_enterprises_id_device_pinners -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/enterprises/3442311/device_pinners" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3030,6 +3333,7 @@ Returns the current terms of service text and settings
 for the enterprise.
 
 <!-- sample get_terms_of_services -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/terms_of_services" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3041,6 +3345,7 @@ Creates a terms of service for a given enterprise
 and type of user.
 
 <!-- sample post_terms_of_services -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/terms_of_services" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3056,6 +3361,7 @@ curl -i -X POST "https://api.box.com/2.0/terms_of_services" \
 Fetches a specific terms of service.
 
 <!-- sample get_terms_of_services_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/terms_of_services/324234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3066,6 +3372,7 @@ curl -i -X GET "https://api.box.com/2.0/terms_of_services/324234" \
 Updates a specific terms of service.
 
 <!-- sample put_terms_of_services_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/terms_of_services/324234" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3083,6 +3390,7 @@ terms of service, including Whether they have accepted
 the terms and when.
 
 <!-- sample get_terms_of_service_user_statuses -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/terms_of_service_user_statuses?tos_id=324234" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3093,6 +3401,7 @@ curl -i -X GET "https://api.box.com/2.0/terms_of_service_user_statuses?tos_id=32
 Sets the status for a terms of service for a user.
 
 <!-- sample post_terms_of_service_user_statuses -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/terms_of_service_user_statuses" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3115,6 +3424,7 @@ curl -i -X POST "https://api.box.com/2.0/terms_of_service_user_statuses" \
 Updates the status for a terms of service for a user.
 
 <!-- sample put_terms_of_service_user_statuses_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/terms_of_service_user_statuses/324234" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3130,6 +3440,7 @@ Returns the list of whitelist entries which specify what domains can
 collaborate with the current enterprise.
 
 <!-- sample get_collaboration_whitelist_entries -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_entries" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3141,6 +3452,7 @@ Creates a collaboration whitelist entry, specifying a domain
 and direction to allow collaboration for.
 
 <!-- sample post_collaboration_whitelist_entries -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/collaboration_whitelist_entries" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3156,6 +3468,7 @@ curl -i -X POST "https://api.box.com/2.0/collaboration_whitelist_entries" \
 Returns a specific collaboration whitelist entry.
 
 <!-- sample get_collaboration_whitelist_entries_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_entries/213123" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3166,6 +3479,7 @@ curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_entries/213123" 
 Deletes a specific collaboration whitelist entry.
 
 <!-- sample delete_collaboration_whitelist_entries_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/collaboration_whitelist_entries/213123" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3177,6 +3491,7 @@ Returns a list of users who have been exempt from the collaboration
 whitelist.
 
 <!-- sample get_collaboration_whitelist_exempt_targets -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_exempt_targets" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3188,6 +3503,7 @@ Creates a collaboration whitelist entry exemption, specifying a user
 that is exempted from the whitelist.
 
 <!-- sample post_collaboration_whitelist_exempt_targets -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/collaboration_whitelist_exempt_targets" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3205,6 +3521,7 @@ Returns a users who has been exempt from the collaboration
 whitelist.
 
 <!-- sample get_collaboration_whitelist_exempt_targets_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_exempt_targets/984923" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3215,6 +3532,7 @@ curl -i -X GET "https://api.box.com/2.0/collaboration_whitelist_exempt_targets/9
 Deletes a specific collaboration whitelist exemption.
 
 <!-- sample delete_collaboration_whitelist_exempt_targets_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/collaboration_whitelist_exempt_targets/984923" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3225,6 +3543,7 @@ curl -i -X DELETE "https://api.box.com/2.0/collaboration_whitelist_exempt_target
 Fetches all the storage policies in the enterprise.
 
 <!-- sample get_storage_policies -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/storage_policies" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3235,6 +3554,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policies" \
 Fetches a specific storage policy.
 
 <!-- sample get_storage_policies_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/storage_policies/34342" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3245,6 +3565,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policies/34342" \
 Fetches all the storage policy assignment for an enterprise or user.
 
 <!-- sample get_storage_policy_assignments -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments?resolved_for_type=userresolved_for_id=984322" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3255,6 +3576,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments?resolved_for_
 Creates a storage policy assignment for an enterprise or user.
 
 <!-- sample post_storage_policy_assignments -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/storage_policy_assignments" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3276,6 +3598,7 @@ curl -i -X POST "https://api.box.com/2.0/storage_policy_assignments" \
 Fetches a specific storage policy assignment.
 
 <!-- sample get_storage_policy_assignments_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments/932483" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3286,6 +3609,7 @@ curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments/932483" \
 Updates a specific storage policy assignment.
 
 <!-- sample put_storage_policy_assignments_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/storage_policy_assignments/932483" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3310,6 +3634,7 @@ There is a rate limit for calling this endpoint of only
 twice per user in a 24 hour period.
 
 <!-- sample delete_storage_policy_assignments_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/storage_policy_assignments/932483" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3321,10 +3646,10 @@ curl -i -X DELETE "https://api.box.com/2.0/storage_policy_assignments/932483" \
      }'
 ```
 
-
 ## Create zip download
 
 <!-- sample post_zip_downloads -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/zip_downloads" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3350,6 +3675,7 @@ curl -i -X POST "https://api.box.com/2.0/zip_downloads" \
 ## Get zip download status
 
 <!-- sample get_zip_downloads_id_status -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/status" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3358,6 +3684,7 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
 ## Download zip archive
 
 <!-- sample get_zip_downloads_id_content -->
+
 ```bash
 curl -L GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3365,7 +3692,9 @@ curl -L GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==
 ```
 
 ## List all classifications
+
 <!-- sample get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3374,6 +3703,7 @@ curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 ## Add initial classifications
 
 <!-- sample post_metadata_templates_schema classifications -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/metadata_templates/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3409,6 +3739,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_templates/schema" \
 ## Add another classification
 
 <!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema add -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3431,6 +3762,7 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 ## Update classification
 
 <!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema update -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3454,6 +3786,7 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 ## Delete classification
 
 <!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema delete -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3468,6 +3801,7 @@ curl -i -X PUT "https://api.box.com/2.0/metadata_templates/enterprise/securityCl
 ## Delete all classifications
 
 <!-- sample delete_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3476,6 +3810,7 @@ curl -i -X DELETE "https://api.box.com/2.0/metadata_templates/enterprise/securit
 ## Get classification on file
 
 <!-- sample get_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3484,19 +3819,21 @@ curl -i -X GET "https://api.box.com/2.0/files/12345/metadata/enterprise/security
 ## Add classification to file
 
 <!-- sample post_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
        "Box__Security__Classification__Key": "Sensitive"
-        
+
      }'
 ```
 
 ## Update classification on file
 
 <!-- sample put_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3511,6 +3848,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/enterprise/security
 ## Remove classification from file
 
 <!-- sample delete_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3519,6 +3857,7 @@ curl -i -X DELETE "https://api.box.com/2.0/files/12345/metadata/enterprise/secur
 ## Get classification on folder
 
 <!-- sample get_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3527,6 +3866,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/12345/metadata/enterprise/securi
 ## Add classification to folder
 
 <!-- sample post_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3539,6 +3879,7 @@ curl -i -X POST "https://api.box.com/2.0/folders/12345/metadata/enterprise/secur
 ## Update classification on folder
 
 <!-- sample put_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3553,6 +3894,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/12345/metadata/enterprise/securi
 ## Remove classification from folder
 
 <!-- sample delete_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/folders/12345/metadata/enterprise/securityClassification-6VMVochwUWo" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3561,6 +3903,7 @@ curl -i -X DELETE "https://api.box.com/2.0/folders/12345/metadata/enterprise/sec
 ## Copy a file request
 
 <!-- sample post_file_requests_id_copy -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/file_requests/42037322/copy" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3572,7 +3915,7 @@ curl -i -X POST "https://api.box.com/2.0/file_requests/42037322/copy" \
        "is_description_required": false,
        "folder": {
          "id": "2233212",
-         "type": "folder" 
+         "type": "folder"
        }
      }'
 ```
@@ -3580,6 +3923,7 @@ curl -i -X POST "https://api.box.com/2.0/file_requests/42037322/copy" \
 ## Update a file request
 
 <!-- sample put_file_requests_id -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/file_requests/42037322" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3595,6 +3939,7 @@ curl -i -X PUT "https://api.box.com/2.0/file_requests/42037322" \
 ## Get a file request
 
 <!-- sample get_file_requests_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/file_requests/42037322" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3603,6 +3948,7 @@ curl -i -X GET "https://api.box.com/2.0/file_requests/42037322" \
 ## Delete a file request
 
 <!-- sample delete_file_requests_id -->
+
 ```bash
 curl -i -X DELETE "https://api.box.com/2.0/file_requests/42037322" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3611,6 +3957,7 @@ curl -i -X DELETE "https://api.box.com/2.0/file_requests/42037322" \
 ## Get shared link on a file
 
 <!-- sample get_files_id get_shared_link -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3619,6 +3966,7 @@ curl -i -X GET "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 ## Add shared link to a file
 
 <!-- sample put_files_id add_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3637,6 +3985,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 ## Update shared link on a file
 
 <!-- sample put_files_id update_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3655,6 +4004,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 ## Remove shared link from a file
 
 <!-- sample put_files_id remove_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3666,6 +4016,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/32423234?fields=shared_link" \
 ## Get shared link on a folder
 
 <!-- sample get_folders_id get_shared_link -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3674,6 +4025,7 @@ curl -i -X GET "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
 ## Add shared link to a folder
 
 <!-- sample put_folders_id add_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3692,6 +4044,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
 ## Update shared link on a folder
 
 <!-- sample put_folders_id update_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3710,6 +4063,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
 ## Remove shared link from a folder
 
 <!-- sample put_folders_id remove_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3721,6 +4075,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/32423234?fields=shared_link" \
 ## Get shared link on a web link
 
 <!-- sample get_web_links_id get_shared_link -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3729,6 +4084,7 @@ curl -i -X GET "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
 ## Add shared link to a web link
 
 <!-- sample put_web_links_id add_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3747,6 +4103,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
 ## Update shared link on a web link
 
 <!-- sample put_web_links_id update_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3765,6 +4122,7 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
 ## Remove shared link from a web link
 
 <!-- sample put_web_links_id remove_shared_link -->
+
 ```bash
 curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3776,35 +4134,37 @@ curl -i -X PUT "https://api.box.com/2.0/web_links/32423234?fields=shared_link" \
 ## Gets a relay workflow with flows that are of type WORKFLOW_MANUAL_START
 
 <!-- sample get_workflows -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/workflows?folder_id=324234" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" 
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Start a flow in a relay workflow of type WORKFLOW_MANUAL_START
 
 <!-- sample post_workflows_id_start -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
        "type": "workflow_parameters",
        "flow": {
-        "id": "8937625", 
+        "id": "8937625",
         "type": "flow"
        },
        "files": [{
           "type": "file",
           "id": "389047572"
-        }, 
+        },
         {
           "type": "file",
           "id": "389047578"
         }],
        "folder": {
          "id": "2233212",
-         "type": "folder" 
-       }, 
+         "type": "folder"
+       },
        "outcomes": [
           {
             "id": "34895783",
@@ -3828,15 +4188,17 @@ curl -i -X POST "https://api.box.com/2.0/workflows/42037322/start" \
         ]
      }'
 ```
+
 ## Create Box Sign request
 
 <!-- sample post_sign_requests -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/sign_requests" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
        "signers": [
-          {    
+          {
             "role": "signer",
             "email": "example_email@box.com"
           }
@@ -3847,7 +4209,7 @@ curl -i -X POST "https://api.box.com/2.0/sign_requests" \
             "id": "123456789"
           }
        ],
-       "parent_folder": 
+       "parent_folder":
           {
             "type": "folder",
             "id": "0987654321"
@@ -3858,6 +4220,7 @@ curl -i -X POST "https://api.box.com/2.0/sign_requests" \
 ## Get Box Sign requests
 
 <!-- sample get_sign_requests -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/sign_requests" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3866,6 +4229,7 @@ curl -i -X GET "https://api.box.com/2.0/sign_requests" \
 ## Get Box Sign request by ID
 
 <!-- sample get_sign_requests_id -->
+
 ```bash
 curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3874,6 +4238,7 @@ curl -i -X GET "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>" \
 ## Cancel Box Sign request
 
 <!-- sample post_sign_requests_id_cancel -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3882,6 +4247,7 @@ curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/cancel"
 ## Resend Box Sign request
 
 <!-- sample post_sign_requests_id_resend -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
@@ -3890,14 +4256,15 @@ curl -i -X POST "https://api.box.com/2.0/sign_requests/<SIGN_REQUEST_ID>/resend"
 ## Terminate user sessions
 
 <!-- sample post_users_terminate_sessions -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions" \
     -H "authorization: Bearer <ACCESS_TOKEN>" \
     -H "content-type: application/json" \
     -H "accept: application/json" \
-    -d 
+    -d
   {
-      user_ids: ["6178859178", "4824866571"]  
+      user_ids: ["6178859178", "4824866571"]
       user_logins: ["user@example.com", "user2@example.com",]
   }
 ```
@@ -3905,6 +4272,7 @@ curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions" \
 ## Terminate groups sessions
 
 <!-- sample post_groups_terminate_sessions -->
+
 ```bash
 curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3919,6 +4287,7 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
 ## List integration mappings
 
 <!-- sample get_integration_mappings_slack -->
+
 ```bash
 curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3927,6 +4296,7 @@ curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_
 ## Create integration mapping
 
 <!-- sample post_integration_mappings_slack -->
+
 ```bash
 curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
@@ -3959,7 +4329,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
     }'
 ```
 
-## Delete integration mapping 
+## Delete integration mapping
 
 <!-- sample delete_integration_mappings_slack_id -->
 
@@ -3968,7 +4338,6 @@ curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
 ```
-
 
 ## Get Box Sign template by ID
 
