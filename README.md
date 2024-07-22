@@ -121,6 +121,26 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
             "type": "file",
             "id": "9842787262"
         }
+       ]
+    }'
+```
+
+## Send request to AI (extended)
+
+<!-- sample post_ai_ask_extended-->
+
+```bash
+curl -i -L POST "https://api.box.com/2.0/ai/ask" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+         "mode": "single_item_qa",
+         "prompt": "What is the value provided by public APIs based on this document?",
+         "items": [
+        {
+            "type": "file",
+            "id": "9842787262"
+        }
        ],
           "ai_agent": {
             "type": "ai_agent_ask",
@@ -193,11 +213,29 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
                     "presence_penalty": 1.5,
                     "stop": "<|im_end|>"
                   }
-               }
-            }'
+        }
+      }'
+```
+## Send text generation request to AI
+
+<!-- sample post_ai_text_gen-->
+
+```bash
+curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <TOKEN>" \
+     -d '{
+          "prompt": "Write a social media post about protien powder",
+          "items": [
+         {
+            "id": "12345678",
+            "type": "file"
+        }
+      ]
+     }'
 ```
 
-## Send text generation request to AI
+## Send text generation request to AI (extended)
 
 <!-- sample post_ai_text_gen-->
 
@@ -206,12 +244,12 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
-          "prompt": "Write an email to a client about the importance of public APIs.",
+          "prompt": "Write a social media post about protein powder.",
           "items": [
          {
             "id": "12345678",
             "type": "file",
-            "content": "More information about public APIs"
+            "content": "More information about protein powders"
         },
         ],
           "dialogue_history": [
