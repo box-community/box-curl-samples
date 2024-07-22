@@ -237,7 +237,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 
 ## Send text generation request to AI (extended)
 
-<!-- sample post_ai_text_gen-->
+<!-- sample post_ai_text_gen_extended-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
