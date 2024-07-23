@@ -294,10 +294,10 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 
 ## Get default agent config
 
-<!-- sample get_ai_agent_default-->
+<!-- sample get_ai_agent_default -->
 
 ```bash
-curl -L GET 'https://api.box.com/2.0/ai_agent_default?mode=text_gen' \
+curl -L GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
