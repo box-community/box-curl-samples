@@ -225,7 +225,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <TOKEN>" \
      -d '{
-          "prompt": "Write a social media post about protien powder",
+          "prompt": "Write a social media post about protein powder",
           "items": [
          {
             "id": "12345678",
