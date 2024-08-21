@@ -105,9 +105,9 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "box_subject_id=[ENTERPRISE_ID]"
 ```
 
-## Send request to AI
+## Send request to AI (simple)
 
-<!-- sample post_ai_ask-->
+<!-- sample post_ai_ask_simple-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/ask" \
@@ -125,9 +125,9 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
     }'
 ```
 
-## Send request to AI (extended)
+## Send request to AI
 
-<!-- sample post_ai_ask_extended-->
+<!-- sample post_ai_ask-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/ask" \
@@ -142,6 +142,14 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
             "id": "9842787262"
         }
        ],
+       "dialogue_history": [
+        { 
+            "prompt": "Make my email about public APIs sound more professional",
+            "answer": "Here is the first draft of your professional email about public APIs",
+            "created_at": "2013-12-12T10:53:43-08:00"
+        }
+      ],
+       "include_citations": true,
           "ai_agent": {
             "type": "ai_agent_ask",
             "long_text": {
@@ -216,9 +224,10 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
         }
       }'
 ```
-## Send text generation request to AI
 
-<!-- sample post_ai_text_gen-->
+## Send text generation request to AI (simple)
+
+<!-- sample post_ai_text_gen_simple-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
@@ -235,9 +244,9 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
      }'
 ```
 
-## Send text generation request to AI (extended)
+## Send text generation request to AI
 
-<!-- sample post_ai_text_gen_extended-->
+<!-- sample post_ai_text_gen-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
