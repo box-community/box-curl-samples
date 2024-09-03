@@ -310,6 +310,142 @@ curl -L GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
+## Extract structured metadata
+
+<!-- sample get_ai_extract_structured -->
+
+```bash
+curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer <ACCESS_TOKEN>' \
+     -d '{
+        "items": [
+          {
+            "id": "12345678",
+            "type": "file",
+            "content": "This is file content."
+          }
+        ],
+        "metadata_template": {
+            "template_key": "",
+            "type": "metadata_template",
+            "scope": ""
+        },
+        "fields": [
+            {
+              "key": "name",
+              "description": "The name of the person.",
+              "displayName": "Name",
+              "prompt": "The name is the first and last name from the email address.",
+              "type": "string",
+              "options": [
+                {
+                  "key": "First Name"
+                },
+                {
+                  "key": "Last Name"
+                }
+              ]
+            }
+        ],
+        "ai_agent": {
+          "type": "ai_agent_extract",
+          "long_text": {
+            "model": "openai__gpt_3_5_turbo",
+            "system_message": "You are a helpful travel assistant specialized in budget travel",
+            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+            "num_tokens_for_completion": 8400,
+            "llm_endpoint_params": {
+              "type": "openai_params",
+              "temperature": 0,
+              "top_p": 1,
+              "frequency_penalty": 1.5,
+              "presence_penalty": 1.5,
+              "stop": "<|im_end|>"
+            },
+            "embeddings": {
+              "model": "openai__text_embedding_ada_002",
+              "strategy": {
+                "id": "basic",
+                "num_tokens_per_chunk": 64
+              }
+            }
+          },
+          "basic_text": {
+            "model": "openai__gpt_3_5_turbo",
+            "system_message": "You are a helpful travel assistant specialized in budget travel",
+            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+            "num_tokens_for_completion": 8400,
+            "llm_endpoint_params": {
+              "type": "openai_params",
+              "temperature": 0,
+              "top_p": 1,
+              "frequency_penalty": 1.5,
+              "presence_penalty": 1.5,
+              "stop": "<|im_end|>"
+            }
+          }
+        }
+      }'
+```
+
+## Extract unstructured metadata
+
+<!-- sample get_ai_extract -->
+
+```bash
+curl -i -L 'https://api.box.com/2.0/ai/extract' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer <ACCESS_TOKEN>' \
+     -d '{
+        "prompt": "Extract data related to contract conditions",
+        "items": [
+              {
+                  "type": "file",
+                  "id": "1497741268097"
+              }
+        ]
+        "ai_agent": {
+          "type": "ai_agent_extract",
+          "long_text": {
+            "model": "openai__gpt_3_5_turbo",
+            "system_message": "You are a helpful travel assistant specialized in budget travel",
+            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+            "num_tokens_for_completion": 8400,
+            "llm_endpoint_params": {
+              "type": "openai_params",
+              "temperature": 0,
+              "top_p": 1,
+              "frequency_penalty": 1.5,
+              "presence_penalty": 1.5,
+              "stop": "<|im_end|>"
+            },
+            "embeddings": {
+              "model": "openai__text_embedding_ada_002",
+              "strategy": {
+                "id": "basic",
+                "num_tokens_per_chunk": 64
+              }
+            }
+          },
+          "basic_text": {
+            "model": "openai__gpt_3_5_turbo",
+            "system_message": "You are a helpful travel assistant specialized in budget travel",
+            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+            "num_tokens_for_completion": 8400,
+            "llm_endpoint_params": {
+              "type": "openai_params",
+              "temperature": 0,
+              "top_p": 1,
+              "frequency_penalty": 1.5,
+              "presence_penalty": 1.5,
+              "stop": "<|im_end|>"
+            }
+          }
+        }
+      }'
+```
+
 ## Get a file
 
 Retrieves the details about a file.
