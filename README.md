@@ -312,7 +312,7 @@ curl -L GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
 
 ## Extract structured metadata
 
-<!-- sample get_ai_extract_structured -->
+<!-- sample post_ai_extract_structured -->
 
 ```bash
 curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
@@ -391,7 +391,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
 
 ## Extract unstructured metadata
 
-<!-- sample get_ai_extract -->
+<!-- sample post_ai_extract -->
 
 ```bash
 curl -i -L 'https://api.box.com/2.0/ai/extract' \
