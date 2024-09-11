@@ -153,7 +153,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
           "ai_agent": {
             "type": "ai_agent_ask",
             "long_text": {
-              "model": "openai__gpt_3_5_turbo",
+              "model": "azure__openai__gpt_3_5_turbo_16k",
               "system_message": "You are a helpful travel assistant specialized in budget travel",
               "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
               "num_tokens_for_completion": 8400,
@@ -174,7 +174,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
               }
             },
             "basic_text": {
-              "model": ""openai__gpt_3_5_turbo"",
+              "model": ""azure__openai__gpt_3_5_turbo_16k"",
               "system_message": "You are a helpful travel assistant specialized in budget travel",
               "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
               "num_tokens_for_completion": 8400,
@@ -188,7 +188,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
               }
             },
               "long_text_multi": {
-                "model": "openai__gpt_3_5_turbo",
+                "model": "azure__openai__gpt_3_5_turbo_16k",
                 "system_message": "You are a helpful travel assistant specialized in budget travel",
                 "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
                 "num_tokens_for_completion": 8400,
@@ -209,7 +209,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
                 }
               },
               "basic_text_multi": {
-                "model": ""openai__gpt_3_5_turbo"",
+                "model": ""azure__openai__gpt_3_5_turbo_16k"",
                 "system_message": "You are a helpful travel assistant specialized in budget travel",
                 "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
                 "num_tokens_for_completion": 8400,
@@ -276,7 +276,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
           "ai_agent": {
             "type": "ai_agent_text_gen",
             "basic_gen": {
-              "model": "openai__gpt_3_5_turbo",
+              "model": "azure__openai__gpt_3_5_turbo_16k",
               "system_message": "You are a helpful travel assistant specialized in budget travel",
               "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in Azores. What should I see?",
               "num_tokens_for_completion": 8400,
@@ -351,7 +351,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
         "ai_agent": {
           "type": "ai_agent_extract",
           "long_text": {
-            "model": "openai__gpt_3_5_turbo",
+            "model": "azure__openai__gpt_3_5_turbo_16k",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -372,7 +372,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
             }
           },
           "basic_text": {
-            "model": "openai__gpt_3_5_turbo",
+            "model": "azure__openai__gpt_3_5_turbo_16k",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -389,7 +389,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
       }'
 ```
 
-## Extract unstructured metadata
+## Extract metadata
 
 <!-- sample post_ai_extract -->
 
@@ -408,7 +408,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
         "ai_agent": {
           "type": "ai_agent_extract",
           "long_text": {
-            "model": "openai__gpt_3_5_turbo",
+            "model": "azure__openai__gpt_3_5_turbo_16k",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -429,7 +429,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
             }
           },
           "basic_text": {
-            "model": "openai__gpt_3_5_turbo",
+            "model": "azure__openai__gpt_3_5_turbo_16k",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -548,7 +548,7 @@ using the Chunk Upload APIs.
 <!-- sample post_files_id_content -->
 
 ```bash
-curl -i -X POST "https://upload.box.com/2.0/files/12345/content" \
+curl -i -X POST "https://upload.box.com/api/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: multipart/form-data" \
      -F attributes='{"name":"Contract.pdf", "parent":{"id":"11446498"}}' \
@@ -586,7 +586,7 @@ using the Chunk Upload APIs.
 <!-- sample post_files_content -->
 
 ```bash
-curl -i -X POST "https://upload.box.com/2.0/files/content" \
+curl -i -X POST "https://upload.box.com/api/2.0/files/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: multipart/form-data" \
      -F attributes='{"name":"Contract.pdf", "parent":{"id":"11446498"}}' \
@@ -600,7 +600,7 @@ Creates an upload session for a new file.
 <!-- sample post_files_upload_sessions -->
 
 ```bash
-curl -i -X POST "https://upload.box.com/2.0/files/upload_sessions" \
+curl -i -X POST "https://upload.box.com/api/2.0/files/upload_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
@@ -617,7 +617,7 @@ Creates an upload session for an existing file.
 <!-- sample post_files_id_upload_sessions -->
 
 ```bash
-curl -i -X POST "https://upload.box.com/2.0/files/12345/upload_sessions" \
+curl -i -X POST "https://upload.box.com/api/2.0/files/12345/upload_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
