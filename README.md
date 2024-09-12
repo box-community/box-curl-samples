@@ -404,7 +404,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
                   "type": "file",
                   "id": "1497741268097"
               }
-        ]
+        ],
         "ai_agent": {
           "type": "ai_agent_extract",
           "long_text": {
