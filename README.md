@@ -926,7 +926,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/enterprise_27335/b
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
-       "audience: "internal",
+       "audience": "internal",
        "documentType": "Q1 plans",
        "competitiveDocument": "no",
        "status": "active",
@@ -1291,7 +1291,7 @@ curl -i -X POST "https://api.box.com/2.0/folders/4353455/metadata/enterprise_273
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
-       "audience: "internal",
+       "audience": "internal",
        "documentType": "Q1 plans",
        "competitiveDocument": "no",
        "status": "active",
