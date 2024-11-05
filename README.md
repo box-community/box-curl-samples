@@ -105,9 +105,9 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "box_subject_id=[ENTERPRISE_ID]"
 ```
 
-## Send request to AI (simple)
+## Send request to AI
 
-<!-- sample post_ai_ask_simple-->
+<!-- sample post_ai_ask-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/ask" \
@@ -117,17 +117,35 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
          "mode": "single_item_qa",
          "prompt": "What is the value provided by public APIs based on this document?",
          "items": [
-        {
+            {
             "type": "file",
             "id": "9842787262"
-        }
-       ]
-    }'
+            }
+         ],
+         "dialogue_history": [
+              {
+              "prompt": "Make my email about public APIs sound more professional",
+              "answer": "Here is the first draft of your professional email about public APIs",
+              "created_at": "2013-12-12T10:53:43-08:00"
+              }
+          ],
+          "include_citations": true,
+          "ai_agent": {
+            "type": "ai_agent_ask",
+            "long_text": {
+              "model": "azure__openai__gpt_4o_mini",
+              "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+            },
+            "basic_text": {
+              "model": "azure__openai__gpt_4o_mini",
+           }
+         }
+      }'
 ```
 
-## Send request to AI
+## Send request to AI (extended)
 
-<!-- sample post_ai_ask-->
+<!-- sample post_ai_ask_extended-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/ask" \
@@ -143,7 +161,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
         }
        ],
        "dialogue_history": [
-        { 
+        {
             "prompt": "Make my email about public APIs sound more professional",
             "answer": "Here is the first draft of your professional email about public APIs",
             "created_at": "2013-12-12T10:53:43-08:00"
@@ -153,7 +171,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
           "ai_agent": {
             "type": "ai_agent_ask",
             "long_text": {
-              "model": "azure__openai__gpt_3_5_turbo_16k",
+              "model": "azure__openai__gpt_4o_mini",
               "system_message": "You are a helpful travel assistant specialized in budget travel",
               "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
               "num_tokens_for_completion": 8400,
@@ -174,7 +192,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
               }
             },
             "basic_text": {
-              "model": ""azure__openai__gpt_3_5_turbo_16k"",
+              "model": "azure__openai__gpt_4o_mini",
               "system_message": "You are a helpful travel assistant specialized in budget travel",
               "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
               "num_tokens_for_completion": 8400,
@@ -188,7 +206,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
               }
             },
               "long_text_multi": {
-                "model": "azure__openai__gpt_3_5_turbo_16k",
+                "model": "azure__openai__gpt_4o_mini",
                 "system_message": "You are a helpful travel assistant specialized in budget travel",
                 "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
                 "num_tokens_for_completion": 8400,
@@ -209,7 +227,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
                 }
               },
               "basic_text_multi": {
-                "model": ""azure__openai__gpt_3_5_turbo_16k"",
+                "model": "azure__openai__gpt_4o_mini",
                 "system_message": "You are a helpful travel assistant specialized in budget travel",
                 "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
                 "num_tokens_for_completion": 8400,
@@ -220,33 +238,47 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
                     "frequency_penalty": 1.5,
                     "presence_penalty": 1.5,
                     "stop": "<|im_end|>"
-                  }
-        }
+              }
+          }
       }'
-```
-
-## Send text generation request to AI (simple)
-
-<!-- sample post_ai_text_gen_simple-->
-
-```bash
-curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
-     -H "content-type: application/json" \
-     -H "authorization: Bearer <TOKEN>" \
-     -d '{
-          "prompt": "Write a social media post about protein powder",
-          "items": [
-         {
-            "id": "12345678",
-            "type": "file"
-        }
-      ]
-     }'
 ```
 
 ## Send text generation request to AI
 
 <!-- sample post_ai_text_gen-->
+
+```bash
+curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
+     -H "content-type: application/json" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+          "prompt": "Write a social media post about protein powder.",
+          "items": [
+         {
+            "id": "12345678",
+            "type": "file",
+            "content": "More information about protein powders"
+        },
+        ],
+          "dialogue_history": [
+            {
+                "prompt": "Can you add some more information?",
+                "answer": "Public API schemas provide necessary information to integrate with APIs...",
+                "created_at": "2013-12-12T11:20:43-08:00"
+            }
+        ],
+          "ai_agent": {
+            "type": "ai_agent_text_gen",
+            "basic_gen": {
+              "model": "azure__openai__gpt_4o_mini"
+            }
+         }
+     }'
+```
+
+## Send text generation request to AI (extended)
+
+<!-- sample post_ai_text_gen_extended-->
 
 ```bash
 curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
@@ -276,7 +308,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
           "ai_agent": {
             "type": "ai_agent_text_gen",
             "basic_gen": {
-              "model": "azure__openai__gpt_3_5_turbo_16k",
+              "model": "azure__openai__gpt_4o_mini",
               "system_message": "You are a helpful travel assistant specialized in budget travel",
               "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in Azores. What should I see?",
               "num_tokens_for_completion": 8400,
@@ -351,7 +383,57 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
         "ai_agent": {
           "type": "ai_agent_extract",
           "long_text": {
-            "model": "azure__openai__gpt_3_5_turbo_16k",
+            "model": "azure__openai__gpt_4o_mini"
+            },
+          "basic_text": {
+            "model": "azure__openai__gpt_4o_mini"
+         }
+      }
+   }'
+```
+
+## Extract structured metadata (extended)
+
+<!-- sample post_ai_extract_structured_extended -->
+
+```bash
+curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer <ACCESS_TOKEN>' \
+     -d '{
+        "items": [
+          {
+            "id": "12345678",
+            "type": "file",
+            "content": "This is file content."
+          }
+        ],
+        "metadata_template": {
+            "template_key": "",
+            "type": "metadata_template",
+            "scope": ""
+        },
+        "fields": [
+            {
+              "key": "name",
+              "description": "The name of the person.",
+              "displayName": "Name",
+              "prompt": "The name is the first and last name from the email address.",
+              "type": "string",
+              "options": [
+                {
+                  "key": "First Name"
+                },
+                {
+                  "key": "Last Name"
+                }
+              ]
+            }
+        ],
+        "ai_agent": {
+          "type": "ai_agent_extract",
+          "long_text": {
+            "model": "azure__openai__gpt_4o_mini",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -372,7 +454,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
             }
           },
           "basic_text": {
-            "model": "azure__openai__gpt_3_5_turbo_16k",
+            "model": "azure__openai__gpt_4o_mini",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -386,7 +468,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
             }
           }
         }
-      }'
+    }'
 ```
 
 ## Extract metadata
@@ -408,7 +490,36 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
         "ai_agent": {
           "type": "ai_agent_extract",
           "long_text": {
-            "model": "azure__openai__gpt_3_5_turbo_16k",
+            "model": "azure__openai__gpt_4o_mini",
+            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+          },
+          "basic_text": {
+            "model": "azure__openai__gpt_4o_mini",
+          }
+        }
+      }'
+```
+
+## Extract metadata (extended)
+
+<!-- sample post_ai_extract_extended -->
+
+```bash
+curl -i -L 'https://api.box.com/2.0/ai/extract' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer <ACCESS_TOKEN>' \
+     -d '{
+        "prompt": "Extract data related to contract conditions",
+        "items": [
+              {
+                  "type": "file",
+                  "id": "1497741268097"
+              }
+        ],
+        "ai_agent": {
+          "type": "ai_agent_extract",
+          "long_text": {
+            "model": "azure__openai__gpt_4o_mini",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
@@ -429,7 +540,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
             }
           },
           "basic_text": {
-            "model": "azure__openai__gpt_3_5_turbo_16k",
+            "model": "azure__openai__gpt_4o_mini",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
             "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
             "num_tokens_for_completion": 8400,
