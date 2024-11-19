@@ -91,7 +91,8 @@ curl -i -X POST "https://api.box.com/oauth2/revoke" \
 
 ## Authentication with Client Credentials
 
-Creates a token using Client Credentials Grant
+Creates a token using Client Credentials Grant, which
+allows you to log in as a Service Account.
 
 <!-- sample x_auth with_client_credentials-->
 
@@ -103,6 +104,40 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
      -d "grant_type=client_credentials" \
      -d "box_subject_type=enterprise"  \
      -d "box_subject_id=[ENTERPRISE_ID]"
+```
+
+## Authentication with CCG as an admin or managed user
+
+Creates a token using Client Credentials Grant, which
+allows you to log in as an admin or a managed user.
+
+<!-- sample x_auth with_ccg_admin_managed_user-->
+
+```bash
+curl -i -X POST "https://api.box.com/oauth2/token" \
+     -H "content-type: application/x-www-form-urlencoded" \
+     -d "client_id=[CLIENT_ID]" \
+     -d "client_secret=[CLIENT_SECRET]" \
+     -d "grant_type=client_credentials" \
+     -d "box_subject_type=user"  \
+     -d "box_subject_id=[USER_ID]"
+```
+
+## Authentication with CCG as app user
+
+Creates a token using Client Credentials Grant, which
+allows you to log in as any app user.
+
+<!-- sample x_auth with_ccg_app_user-->
+
+```bash
+curl -i -X POST "https://api.box.com/oauth2/token" \
+     -H "content-type: application/x-www-form-urlencoded" \
+     -d "client_id=[CLIENT_ID]" \
+     -d "client_secret=[CLIENT_SECRET]" \
+     -d "grant_type=client_credentials" \
+     -d "box_subject_type=user"  \
+     -d "box_subject_id=[APPUSER_ID]"
 ```
 
 ## Send request to AI
