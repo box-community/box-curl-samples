@@ -592,6 +592,172 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
       }'
 ```
 
+## Add a Doc Gen template
+
+<!-- sample post_docgen_templates -->
+
+```bash
+curl -L 'https://api.box.com/2.0/docgen_templates' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+     -H 'Content-Type: application/json' \
+     -D '{
+        "file": {
+            "id": "12345678",
+            "type": "file"
+        }
+}'
+```
+
+## Delete association between Doc Gen template and file
+
+<!-- sample delete_docgen_templates_id -->
+
+```bash
+curl -L -X DELETE 'https://api.box.com/2.0/docgen_templates/12345678' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+```
+
+## Get all Doc Gen templates
+
+<!-- sample get_docgen_templates -->
+
+```bash
+curl -L 'https://api.box.com/2.0/docgen_templates' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+```
+
+## Get Doc Gen template by ID
+
+<!-- sample get_docgen_templates_id -->
+
+```bash
+curl -L 'https://api.box.com/2.0/docgen_templates/12345678' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+```
+
+## Get Doc Gen jobs for a template
+
+<!-- sample get_docgen_template_jobs_id -->
+
+```bash
+curl -L 'https://api.box.com/2.0/docgen_templates/12345678' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+```
+
+## Get Doc Gen template tags for template
+
+<!-- sample get_docgen_templates_id_tags -->
+
+```bash
+curl -L 'https://api.box.com/2.0/docgen_templates/12345678/tags' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+```
+
+## Generate a document with Doc Gen
+
+<!-- sample post_docgen_batches -->
+
+```bash
+curl -L 'https://api.box.com/2.0/docgen_batches' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+     -D '{
+        "file": {
+            "id": "12345678",
+            "type": "file"
+        },
+        "input_source": "api",
+        "destination_folder": {
+            "id": "12345678",
+            "type": "folder"
+        },
+        "output_type": "docx",
+        "document_generation_data": [
+            {
+                "generated_file_name": "Image test",
+                "user_input": {
+                    "order": {
+                        "id": "12305",
+                        "date": "18-08-2023",
+                        "country": "US",
+                        "expiryDate": "18-08-2024",
+                        "currency": "$",
+                        "amount": 5060.5,
+                        "taxRate": 10,
+                        "requester": "John",
+                        "approver": "Smith",
+                        "department": "Procurement",
+                        "paymentTerms": "30 days",
+                        "deliveryTerms": "30 days",
+                        "deliveryDate": "18-09-2023",
+                        "vendor": {
+                            "company": "Example company",
+                            "address": {
+                                "street": "Example street",
+                                "city": "Example city",
+                                "zip": "EX-456"
+                            }
+                        },
+                        "products": [
+                            {
+                                "id": 1,
+                                "name": "A4 Papers",
+                                "type": "non-fragile",
+                                "quantity": 100,
+                                "price": 29,
+                                "amount": 2900
+                            },
+                            {
+                                "id": 2,
+                                "name": "Ink  Cartridge",
+                                "type": "non-fragile",
+                                "quantity": 40,
+                                "price": 39,
+                                "amount": 1560
+                            },
+                            {
+                                "id": 3,
+                                "name": "Adhesive tape",
+                                "type": "non-fragile",
+                                "quantity": 20,
+                                "price": 30,
+                                "amount": 600.5
+                            }
+                        ]
+                    }
+                }
+            }
+        ]`
+
+```
+
+## Get all Doc Gen jobs 
+
+<!-- sample get_docgen_jobs -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/docgen_jobs" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get Doc Gen job by ID 
+
+<!-- sample get_docgen_jobs_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/docgen_jobs/12345" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+
+## Get Doc Gen job for a specific batch
+
+<!-- sample get_docgen_batch_jobs_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/docgen_batch_jobs/12345" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
 ## Get a file
 
 Retrieves the details about a file.
