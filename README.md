@@ -1,5 +1,5 @@
-<img src="images/box-dev-logo-clip.png" 
-alt= “box-dev-logo” 
+<img src="images/box-dev-logo-clip.png"
+alt= “box-dev-logo”
 style="margin-left:-10px;"
 width=40%;>
 
@@ -594,10 +594,11 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
 
 ## Add a Doc Gen template
 
-<!-- sample post_docgen_templates -->
+<!-- sample post_docgen_templates_v2025.0 -->
 
 ```bash
 curl -L 'https://api.box.com/2.0/docgen_templates' \
+     -H 'box-version: 2025.0' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H 'Content-Type: application/json' \
      -D '{
@@ -610,55 +611,61 @@ curl -L 'https://api.box.com/2.0/docgen_templates' \
 
 ## Delete association between Doc Gen template and file
 
-<!-- sample delete_docgen_templates_id -->
+<!-- sample delete_docgen_templates_id_v2025.0 -->
 
 ```bash
 curl -L -X DELETE 'https://api.box.com/2.0/docgen_templates/12345678' \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+     -H 'box-version: 2025.0' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Get all Doc Gen templates
 
-<!-- sample get_docgen_templates -->
+<!-- sample get_docgen_templates_v2025.0 -->
 
 ```bash
 curl -L 'https://api.box.com/2.0/docgen_templates' \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+     -H 'box-version: 2025.0' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Get Doc Gen template by ID
 
-<!-- sample get_docgen_templates_id -->
+<!-- sample get_docgen_templates_id_v2025.0 -->
 
 ```bash
 curl -L 'https://api.box.com/2.0/docgen_templates/12345678' \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+     -H 'box-version: 2025.0' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Get Doc Gen jobs for a template
 
-<!-- sample get_docgen_template_jobs_id -->
+<!-- sample get_docgen_template_jobs_id_v2025.0 -->
 
 ```bash
 curl -L 'https://api.box.com/2.0/docgen_templates/12345678' \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+     -H 'box-version: 2025.0' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Get Doc Gen template tags for template
 
-<!-- sample get_docgen_templates_id_tags -->
+<!-- sample get_docgen_templates_id_tags_v2025.0 -->
 
 ```bash
 curl -L 'https://api.box.com/2.0/docgen_templates/12345678/tags' \
-     -H 'Authorization: Bearer <ACCESS_TOKEN>' 
+     -H 'box-version: 2025.0' \
+     -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Generate a document with Doc Gen
 
-<!-- sample post_docgen_batches -->
+<!-- sample post_docgen_batches_v2025.0 -->
 
 ```bash
 curl -L 'https://api.box.com/2.0/docgen_batches' \
+     -H 'box-version: 2025.0' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -D '{
         "file": {
@@ -730,31 +737,34 @@ curl -L 'https://api.box.com/2.0/docgen_batches' \
 
 ```
 
-## Get all Doc Gen jobs 
+## Get all Doc Gen jobs
 
-<!-- sample get_docgen_jobs -->
+<!-- sample get_docgen_jobs_v2025.0 -->
 
 ```bash
 curl -i -X GET "https://api.box.com/2.0/docgen_jobs" \
+     -H 'box-version: 2025.0' \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
-## Get Doc Gen job by ID 
+## Get Doc Gen job by ID
 
-<!-- sample get_docgen_jobs_id -->
+<!-- sample get_docgen_jobs_id_v2025.0 -->
 
 ```bash
 curl -i -X GET "https://api.box.com/2.0/docgen_jobs/12345" \
+     -H 'box-version: 2025.0' \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 
 ## Get Doc Gen job for a specific batch
 
-<!-- sample get_docgen_batch_jobs_id -->
+<!-- sample get_docgen_batch_jobs_id_v2025.0 -->
 
 ```bash
 curl -i -X GET "https://api.box.com/2.0/docgen_batch_jobs/12345" \
+     -H 'box-version: 2025.0' \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
