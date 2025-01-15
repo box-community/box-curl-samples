@@ -644,7 +644,7 @@ curl -L 'https://api.box.com/2.0/docgen_templates/12345678' \
 <!-- sample get_docgen_template_jobs_id_v2025.0 -->
 
 ```bash
-curl -L 'https://api.box.com/2.0/docgen_templates/12345678' \
+curl -L 'https://api.box.com/2.0/docgen_template_jobs/12345678' \
      -H 'box-version: 2025.0' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
