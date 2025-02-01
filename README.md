@@ -667,7 +667,7 @@ curl -L 'https://api.box.com/2.0/docgen_templates/12345678/tags' \
 curl -L 'https://api.box.com/2.0/docgen_batches' \
      -H 'box-version: 2025.0' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
-     -D '{
+     -d '{
         "file": {
             "id": "12345678",
             "type": "file"
@@ -733,8 +733,8 @@ curl -L 'https://api.box.com/2.0/docgen_batches' \
                     }
                 }
             }
-        ]`
-
+        ]
+        
 ```
 
 ## Get all Doc Gen jobs
