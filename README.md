@@ -377,6 +377,51 @@ curl -L GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
+## Create agents
+
+Creates custom AI agents.
+
+<!-- sample post-ai-agents -->
+
+```bash
+curl -L POST "https://api.box.com/2.0/post-ai-agents" \
+      -H 'Authorization: Bearer <ACCESS_TOKEN>'
+      -d '{
+        type:
+      type: string
+      description: The type of agent used to handle queries.
+      enum:
+        - ai_agent
+      example: ai_agent
+      name:
+        type: string
+        description: The name of the AI Agent.
+        example: 'My AI Agent'
+      access_state:
+        $ref: ../schemas/ai_agent_access_state.yml
+      icon_reference:
+        type: string
+        minLength: 1
+        description: |-
+          The icon reference of the AI Agent. It should have format of the URL https://cdn01.boxcdn.net/app-assets/aistudio/avatars/<file_name> 
+          where possible values of file_name are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png
+        example: 'https://cdn01.boxcdn.net/app-assets/aistudio/avatars/logo_analytics.svg'
+      allowed_entities:
+        type: array
+        },
+      - d '{
+        items:
+        $ref: '#/components/schemas/AiAgentAllowedEntity'
+      description: List of allowed users or groups.
+      ask:
+        $ref: '#/components/schemas/AiStudioAgentAsk'
+      text_gen:
+        $ref: '#/components/schemas/AiStudioAgentTextGen'
+      extract:
+        $ref: '#/components/schemas/AiStudioAgentExtract'
+      }
+```
+
 ## Extract structured metadata
 
 <!-- sample post_ai_extract_structured -->
@@ -4789,7 +4834,7 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
     }
 ```
 
-## List integration mappings
+## List integration mappings Slack
 
 <!-- sample get_integration_mappings_slack -->
 
@@ -4798,7 +4843,7 @@ curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_
      -H "authorization: Bearer <ACCESS_TOKEN>" \
 ```
 
-## Create integration mapping
+## Create integration mapping Slack
 
 <!-- sample post_integration_mappings_slack -->
 
@@ -4819,7 +4864,7 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
       }'
 ```
 
-## Update integration mapping
+## Update integration mapping Slack
 
 <!-- sample put_integration_mappings_slack_id -->
 
@@ -4834,7 +4879,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
     }'
 ```
 
-## Delete integration mapping
+## Delete integration mapping Slack
 
 <!-- sample delete_integration_mappings_slack_id -->
 
@@ -4861,4 +4906,55 @@ curl -L -X GET "https://api.box.com/2.0/sign_templates/12345678" \
 ```bash
 curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii&limit=1000" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
+```
+
+## List integration mappings Teams
+
+<!-- sample get-integration-mappings-teams -->
+
+```bash
+curl -X -L GET "https://api.box.com/2.0/integration_mappings/teams" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+```
+
+## Create integration mapping Teams
+
+<!-- sample post-integration-mappings-teams -->
+
+```bash
+curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H 'content-type: application/json' \
+     -d '{
+          "partner_item": {
+              "id": "19%3ABCD-Avgfggkggyftdtfgghjhkhkhh%40thread:tacv2",
+              "type": "channel",
+              "team_id": "hjgjgjg-bhhj-564a-b643-hghgj685u",
+              "tenant_id": "E1234567"
+          },
+          "box_item": {
+              "id": "42037322",
+              "type": "folder"
+          }
+      }'
+```
+
+## Update integration mapping Teams
+
+<!-- sample put-integration-mappings-teams-id -->
+
+```bash
+curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"  \
+     -H 'content-type: application/json'  \
+```
+
+## Delete integration mapping Teams
+
+<!-- sample delete-integration-mappings-teams-id -->
+
+```bash
+curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"  \
+     -d ''
 ```
