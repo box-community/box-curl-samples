@@ -4910,7 +4910,7 @@ curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG
 
 ## List integration mappings Teams
 
-<!-- sample get-integration-mappings-teams -->
+<!-- sample get_integration_mappings_teams -->
 
 ```bash
 curl -X -L GET "https://api.box.com/2.0/integration_mappings/teams" \
@@ -4919,7 +4919,7 @@ curl -X -L GET "https://api.box.com/2.0/integration_mappings/teams" \
 
 ## Create integration mapping Teams
 
-<!-- sample post-integration-mappings-teams -->
+<!-- sample post_integration_mappings_teams -->
 
 ```bash
 curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
@@ -4941,7 +4941,7 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
 
 ## Update integration mapping Teams
 
-<!-- sample put-integration-mappings-teams-id -->
+<!-- sample put_integration_mappings_teams_id -->
 
 ```bash
 curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
@@ -4951,7 +4951,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
 
 ## Delete integration mapping Teams
 
-<!-- sample delete-integration-mappings-teams-id -->
+<!-- sample delete_integration_mappings_teams_id -->
 
 ```bash
 curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
