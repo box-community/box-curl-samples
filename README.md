@@ -427,7 +427,7 @@ curl -L POST "https://api.box.com/2.0/ai-agents" \
 <!-- sample delete_ai_agents_id -->
 
 ```bash
-curl -L POST "https://api.box.com/2.0/ai_agents/12345" \
+curl -L DELETE "https://api.box.com/2.0/ai_agents/12345" \
       -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
@@ -454,7 +454,7 @@ curl -i -X GET "https://api.box.com/2.0/ai_agents" \
 <!-- sample put_ai_agents_id -->
 
 ```bash
-curl -i -X PUT "https://api.box.com/2.0/ai_agents/1234567890 \
+curl -i -X PUT "https://api.box.com/2.0/ai_agents/1234567890" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
