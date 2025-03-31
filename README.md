@@ -384,7 +384,7 @@ Creates custom AI agents.
 <!-- sample post-ai-agents -->
 
 ```bash
-curl -L POST "https://api.box.com/2.0/post-ai-agents" \
+curl -L POST "https://api.box.com/2.0/ai-agents" \
       -H 'Authorization: Bearer <ACCESS_TOKEN>'
       -d '{
         type:
@@ -420,6 +420,42 @@ curl -L POST "https://api.box.com/2.0/post-ai-agents" \
       extract:
         $ref: '#/components/schemas/AiStudioAgentExtract'
       }
+```
+
+## Delete AI agent
+
+<!-- sample delete_ai_agents_id -->
+
+```bash
+curl -L POST "https://api.box.com/2.0/ai_agents/12345" \
+      -H 'Authorization: Bearer <ACCESS_TOKEN>'
+```
+
+## Get AI agent by ID
+
+<!-- sample get_ai_agents_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/ai_agents/1234567890" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get AI agents
+
+<!-- sample get_ai_agents -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/ai_agents" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Update AI agents
+
+<!-- sample put_ai_agents_id -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/ai_agents/1234567890 \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Extract structured metadata
@@ -4957,40 +4993,4 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
 curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
-```
-
-## Delete AI agent
-
-<!-- sample delete_ai_agents_id -->
-
-```bash
-curl -L POST "https://api.box.com/2.0/ai_agents/12345" \
-      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-```
-
-## Get AI agent by ID
-
-<!-- sample get_ai_agents_id -->
-
-```bash
-curl -i -X GET "https://api.box.com/2.0/ai_agents/1234567890" \
-     -H "authorization: Bearer <ACCESS_TOKEN>"
-```
-
-## Get AI agents
-
-<!-- sample get_ai_agents -->
-
-```bash
-curl -i -X GET "https://api.box.com/2.0/ai_agents" \
-     -H "authorization: Bearer <ACCESS_TOKEN>"
-```
-
-## Update AI agents
-
-<!-- sample put_ai_agents_id -->
-
-```bash
-curl -i -X PUT "https://api.box.com/2.0/ai_agents/1234567890 \
-     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
