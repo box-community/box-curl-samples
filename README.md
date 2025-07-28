@@ -4994,3 +4994,37 @@ curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
 ```
+
+## Create archive
+
+<!-- sample post_archives_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/archives" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "name": "Some Archive Name"
+     }'
+```
+
+## List archives
+
+<!-- sample get_archives_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/archives" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Delete archive
+
+<!-- sample delete_archives_id_v2025.0 -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/archives/12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
