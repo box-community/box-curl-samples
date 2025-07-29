@@ -497,7 +497,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
             }
         ],
         "ai_agent": {
-          "type": "ai_agent_extract",
+          "type": "ai_agent_extract_structured",
           "long_text": {
             "model": "azure__openai__gpt_4o_mini"
             },
@@ -547,7 +547,7 @@ curl -i -L 'https://api.box.com/2.0/ai/extract_structured' \
             }
         ],
         "ai_agent": {
-          "type": "ai_agent_extract",
+          "type": "ai_agent_extract_structured",
           "long_text": {
             "model": "azure__openai__gpt_4o_mini",
             "system_message": "You are a helpful travel assistant specialized in budget travel",
