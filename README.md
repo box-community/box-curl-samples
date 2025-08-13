@@ -5028,3 +5028,19 @@ curl -i -X DELETE "https://api.box.com/2.0/archives/12345" \
      -H "box-version: 2025.0" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
+
+# Bulk delete external users
+
+<!-- sample post_external_users_submit_delete_job -->
+
+```bash
+curl -X -L POST "https://api.box.com/2.0/external_users/external_users_submit_delete_job" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -d '{
+      "external_users":
+        "type": "array"
+        "description": "List of external users to delete."
+        "items":
+          "$ref: #/components/schemas/UserReference"
+      }'
+```
