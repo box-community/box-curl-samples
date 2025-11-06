@@ -5005,7 +5005,8 @@ curl -i -X POST "https://api.box.com/2.0/archives" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
-       "name": "Some Archive Name"
+       "name": "Some Archive Name",
+       "description": "Some Archive Description"
      }'
 ```
 
@@ -5017,6 +5018,21 @@ curl -i -X POST "https://api.box.com/2.0/archives" \
 curl -i -X GET "https://api.box.com/2.0/archives" \
      -H "box-version: 2025.0" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Update archive
+
+<!-- sample put_archives_id_v2025.0 -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/archives/12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "name": "Some Archive Name",
+       "description": "Some Archive Description"
+     }'
 ```
 
 ## Delete archive
