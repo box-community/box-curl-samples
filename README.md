@@ -4983,6 +4983,18 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
 curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -H 'content-type: application/json'  \
+     -d '{
+          "partner_item": {
+              "id": "19%3ABCD-Avgfggkggyftdtfgghjhkhkhh%40thread:tacv2",
+              "type": "channel",
+              "team_id": "hjgjgjg-bhhj-564a-b643-hghgj685u",
+              "tenant_id": "E1234567"
+          },
+          "box_item": {
+              "id": "42037322",
+              "type": "folder"
+          }
+      }'
 ```
 
 ## Delete integration mapping Teams
