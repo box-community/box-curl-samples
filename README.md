@@ -4949,7 +4949,7 @@ curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG
 <!-- sample get_integration_mappings_teams -->
 
 ```bash
-curl -X -L GET "https://api.box.com/2.0/integration_mappings/teams" \
+curl -X GET -L "https://api.box.com/2.0/integration_mappings/teams" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
 ```
 
