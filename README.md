@@ -2092,7 +2092,7 @@ curl -i -X POST "https://api.box.com/2.0/metadata_cascade_policies/21312/apply" 
 <!-- sample post_metadata_queries_execute_read -->
 
 ```bash
-curl -i -X POST "https://api.box.com/2.0/files/12345" \
+curl -i -X POST "https://api.box.com/2.0/metadata_queries/execute_read" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -d '{
