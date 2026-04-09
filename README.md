@@ -910,7 +910,7 @@ Returns the contents of a file in binary format.
 
 ```bash
 curl -i -L -X GET "https://api.box.com/2.0/files/12345/content" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" 
 ```
 
 ## Download a file version
@@ -2126,6 +2126,154 @@ curl -i -X GET "https://api.box.com/2.0/metadata_query_indices?scope=enterprise&
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
+## Create metadata taxonomy
+
+Creates a new metadata taxonomy that can be used in metadata templates.
+
+<!-- sample post_metadata_taxonomies -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/metadata_taxonomies" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "displayName": "Geography",
+       "key": "geography",
+       "namespace": "enterprise_123456"
+     }'
+```
+
+## Get metadata taxonomies for namespace
+
+Used to retrieve all metadata taxonomies in a namespace.
+
+<!-- sample get_metadata_taxonomies_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get metadata taxonomy by taxonomy key
+
+Used to retrieve a metadata taxonomy by taxonomy key.
+
+<!-- sample get_metadata_taxonomies_id_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Remove metadata taxonomy
+
+Delete a metadata taxonomy. This deletion is permanent and cannot be
+reverted.
+
+<!-- sample delete_metadata_taxonomies_id_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create metadata taxonomy levels
+
+Creates new metadata taxonomy levels.
+
+<!-- sample post_metadata_taxonomies_id_id_levels -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/levels" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '[
+       {
+         "displayName": "Continent",
+         "description": "Continent Level"
+       },
+       {
+         "displayName": "Country",
+         "description": "Country Level"
+       }
+     ]'
+```
+
+## Delete metadata taxonomy level
+
+Deletes the last level of the metadata taxonomy.
+
+<!-- sample post_metadata_taxonomies_id_id_levels:trim -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/levels:trim" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List metadata taxonomy nodes
+
+Used to retrieve metadata taxonomy nodes based on the parameters
+specified.
+
+<!-- sample get_metadata_taxonomies_id_id_nodes -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/nodes" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create metadata taxonomy node
+
+Creates a new metadata taxonomy node.
+
+<!-- sample post_metadata_taxonomies_id_id_nodes -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/nodes" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "displayName": "Europe",
+       "level": 1
+     }'
+```
+
+## Get metadata taxonomy node by ID
+
+Retrieves a metadata taxonomy node by its identifier.
+
+<!-- sample get_metadata_taxonomies_id_id_nodes_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/nodes/14d3d433-c77f-49c5-b146-9dea370f6e32" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Remove metadata taxonomy node
+
+Delete a metadata taxonomy node. This deletion is permanent and cannot
+be reverted. Only metadata taxonomy nodes without any children can be
+deleted.
+
+<!-- sample delete_metadata_taxonomies_id_id_nodes_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/nodes/14d3d433-c77f-49c5-b146-9dea370f6e32" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List metadata template's options for taxonomy field
+
+Used to retrieve metadata taxonomy nodes which are available for the
+taxonomy field based on its configuration and the parameters specified.
+
+<!-- sample get_metadata_templates_id_id_fields_id_options -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_templates/enterprise_123456/properties/fields/geography/options" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
 ## Get comment
 
 Retrieves the message and metadata for a specific comment, as well
@@ -3218,7 +3366,7 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
 <!-- sample get_files_id_metadata_global_boxSkillsCards -->
 
 ```bash
-curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
+curl -i -X GET "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
