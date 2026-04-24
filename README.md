@@ -145,7 +145,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 <!-- sample post_ai_ask-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/ask" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -183,7 +183,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
 <!-- sample post_ai_ask_extended-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/ask" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -283,7 +283,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
 <!-- sample post_ai_text_gen-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -316,7 +316,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 <!-- sample post_ai_text_gen_extended-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -373,7 +373,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 <!-- sample get_ai_agent_default -->
 
 ```bash
-curl -L GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
+curl -L -X GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
@@ -384,8 +384,8 @@ Creates custom AI agents.
 <!-- sample post-ai-agents -->
 
 ```bash
-curl -L POST "https://api.box.com/2.0/ai-agents" \
-      -H 'Authorization: Bearer <ACCESS_TOKEN>'
+curl -L -X POST "https://api.box.com/2.0/ai-agents" \
+      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
       -d '{
         type:
       type: string
@@ -427,7 +427,7 @@ curl -L POST "https://api.box.com/2.0/ai-agents" \
 <!-- sample delete_ai_agents_id -->
 
 ```bash
-curl -L DELETE "https://api.box.com/2.0/ai_agents/12345" \
+curl -L -X DELETE "https://api.box.com/2.0/ai_agents/12345" \
       -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
@@ -682,7 +682,7 @@ curl -L 'https://api.box.com/2.0/docgen_templates' \
      -H 'box-version: 2025.0' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
      -H 'Content-Type: application/json' \
-     -D '{
+     -d '{
         "file": {
             "id": "12345678",
             "type": "file"
@@ -748,7 +748,7 @@ curl -L 'https://api.box.com/2.0/docgen_templates/12345678/tags' \
 curl -L 'https://api.box.com/2.0/docgen_batches' \
      -H 'box-version: 2025.0' \
      -H 'Authorization: Bearer <ACCESS_TOKEN>' \
-     -D '{
+     -d '{
         "file": {
             "id": "12345678",
             "type": "file"
@@ -814,8 +814,8 @@ curl -L 'https://api.box.com/2.0/docgen_batches' \
                     }
                 }
             }
-        ]`
-
+        ]
+    }'
 ```
 
 ## Get all Doc Gen jobs
@@ -1524,7 +1524,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
        "name": "New folder name",
        "parent": {
          "id": "123"
-       }
+       },
         "owned_by": {
          "id": "123456"
        }
@@ -2866,7 +2866,7 @@ Uploads or updates a user avatar.
 <!-- sample post_users_id_avatar -->
 
 ```bash
-curl -i -X -L POST "https://api.box.net/2.0/users/12345/avatar" \
+curl -i -L -X POST "https://api.box.com/2.0/users/12345/avatar" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      --form 'pic=@"path/to/file/file.jpeg"'
 ```
@@ -3483,7 +3483,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json-patch+json" \
-     -d '[
+     -d '[{
        "op": "replace",
        "path": "/cards/0",
        "value": {
@@ -3506,7 +3506,7 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCar
            { "text": "DN86 BOX" }
          }
        }
-     ]'
+     }]'
 ```
 
 ## Delete Skill cards from file
@@ -4420,7 +4420,7 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
 <!-- sample get_zip_downloads_id_content -->
 
 ```bash
-curl -L GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
+curl -L -X GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -o sample_curl.zip
 ```
@@ -4996,11 +4996,10 @@ curl -i -X POST "https://api.box.com/2.0/users/terminate_sessions" \
     -H "authorization: Bearer <ACCESS_TOKEN>" \
     -H "content-type: application/json" \
     -H "accept: application/json" \
-    -d
-  {
-      user_ids: ["6178859178", "4824866571"]
-      user_logins: ["user@example.com", "user2@example.com",]
-  }
+    -d '{
+      "user_ids": ["6178859178", "4824866571"],
+      "user_logins": ["user@example.com", "user2@example.com"]
+    }'
 ```
 
 ## Terminate groups sessions
@@ -5012,10 +5011,9 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json" \
      -H "accept: application/json" \
-     -d
-    {
-    "group_ids": ["6178859178", "4824866571"],
-    }
+     -d '{
+      "group_ids": ["6178859178", "4824866571"]
+    }'
 ```
 
 ## List integration mappings Slack
@@ -5023,7 +5021,7 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
 <!-- sample get_integration_mappings_slack -->
 
 ```bash
-curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789" \
+curl -L -X GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
 ```
 
@@ -5032,7 +5030,7 @@ curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_
 <!-- sample post_integration_mappings_slack -->
 
 ```bash
-curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
+curl -L -X POST "https://api.box.com/2.0/integration_mappings/slack" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H 'content-type: application/json' \
      -d '{
@@ -5053,7 +5051,7 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
 <!-- sample put_integration_mappings_slack_id -->
 
 ```bash
-curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
+curl -L -X PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -H 'content-type: application/json'  \
      -d'{
@@ -5068,7 +5066,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
 <!-- sample delete_integration_mappings_slack_id -->
 
 ```bash
-curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
+curl -L -X DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
 ```
@@ -5106,7 +5104,7 @@ curl -X GET -L "https://api.box.com/2.0/integration_mappings/teams" \
 <!-- sample post_integration_mappings_teams -->
 
 ```bash
-curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
+curl -L -X POST "https://api.box.com/2.0/integration_mappings/teams" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H 'content-type: application/json' \
      -d '{
@@ -5128,7 +5126,7 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
 <!-- sample put_integration_mappings_teams_id -->
 
 ```bash
-curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
+curl -L -X PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -H 'content-type: application/json'  \
 ```
@@ -5138,7 +5136,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
 <!-- sample delete_integration_mappings_teams_id -->
 
 ```bash
-curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
+curl -L -X DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
 ```
@@ -5198,7 +5196,7 @@ curl -i -X DELETE "https://api.box.com/2.0/archives/12345" \
 <!-- sample post_external_users_submit_delete_job -->
 
 ```bash
-curl -X -L POST "https://api.box.com/2.0/external_users/external_users_submit_delete_job" \
+curl -L -X POST "https://api.box.com/2.0/external_users/external_users_submit_delete_job" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
       "external_users":
