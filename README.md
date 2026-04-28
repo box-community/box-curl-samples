@@ -2878,7 +2878,7 @@ Deletes a user avatar.
 <!-- sample delete_users_id_avatar -->
 
 ```bash
-curl -i -X DELETE -L "https://api.box.net/2.0/users/12345/avatar" \
+curl -i -X DELETE -L "https://api.box.com/2.0/users/12345/avatar" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
