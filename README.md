@@ -145,7 +145,7 @@ curl -i -X POST "https://api.box.com/oauth2/token" \
 <!-- sample post_ai_ask-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/ask" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -169,10 +169,10 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
             "type": "ai_agent_ask",
             "long_text": {
               "model": "azure__openai__gpt_4o_mini",
-              "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+              "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?"
             },
             "basic_text": {
-              "model": "azure__openai__gpt_4o_mini",
+              "model": "azure__openai__gpt_4o_mini"
            }
          }
       }'
@@ -183,7 +183,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
 <!-- sample post_ai_ask_extended-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/ask" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/ask" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -283,7 +283,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/ask" \
 <!-- sample post_ai_text_gen-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -293,7 +293,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
             "id": "12345678",
             "type": "file",
             "content": "More information about protein powders"
-        },
+        }
         ],
           "dialogue_history": [
             {
@@ -316,7 +316,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 <!-- sample post_ai_text_gen_extended-->
 
 ```bash
-curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
+curl -i -L -X POST "https://api.box.com/2.0/ai/text_gen" \
      -H "content-type: application/json" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
@@ -326,7 +326,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
             "id": "12345678",
             "type": "file",
             "content": "More information about protein powders"
-        },
+        }
         ],
           "dialogue_history": [
             {
@@ -356,7 +356,7 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
                 "stop": "<|im_end|>"
               },
               "embeddings": {
-                "model": " openai__text_embedding_ada_002",
+                "model": "openai__text_embedding_ada_002",
                 "strategy": {
                   "id": "basic",
                   "num_tokens_per_chunk": 64
@@ -373,53 +373,31 @@ curl -i -L POST "https://api.box.com/2.0/ai/text_gen" \
 <!-- sample get_ai_agent_default -->
 
 ```bash
-curl -L GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
+curl -L -X GET "https://api.box.com/2.0/ai_agent_default?mode=text_gen" \
      -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
 ## Create agents
 
-Creates custom AI agents.
+Creates custom AI agents. At least one of the following capabilities
+must be provided: `ask`, `text_gen`, `extract`.
 
-<!-- sample post-ai-agents -->
+<!-- sample post_ai_agents -->
 
 ```bash
-curl -L POST "https://api.box.com/2.0/ai-agents" \
-      -H 'Authorization: Bearer <ACCESS_TOKEN>'
-      -d '{
-        type:
-      type: string
-      description: The type of agent used to handle queries.
-      enum:
-        - ai_agent
-      example: ai_agent
-      name:
-        type: string
-        description: The name of the AI Agent.
-        example: 'My AI Agent'
-      access_state:
-        $ref: ../schemas/ai_agent_access_state.yml
-      icon_reference:
-        type: string
-        minLength: 1
-        description: |-
-          The icon reference of the AI Agent. It should have format of the URL https://cdn01.boxcdn.net/app-assets/aistudio/avatars/<file_name> 
-          where possible values of file_name are: `logo_boxAi.png`,`logo_stamp.png`,`logo_legal.png`,`logo_finance.png`,`logo_config.png`,`logo_handshake.png`,`logo_analytics.png`,`logo_classification.png
-        example: 'https://cdn01.boxcdn.net/app-assets/aistudio/avatars/logo_analytics.svg'
-      allowed_entities:
-        type: array
-        },
-      - d '{
-        items:
-        $ref: '#/components/schemas/AiAgentAllowedEntity'
-      description: List of allowed users or groups.
-      ask:
-        $ref: '#/components/schemas/AiStudioAgentAsk'
-      text_gen:
-        $ref: '#/components/schemas/AiStudioAgentTextGen'
-      extract:
-        $ref: '#/components/schemas/AiStudioAgentExtract'
-      }
+curl -i -L -X POST "https://api.box.com/2.0/ai_agents" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "type": "ai_agent",
+       "name": "My AI Agent",
+       "access_state": "enabled",
+       "ask": {
+         "type": "ai_agent_ask",
+         "access_state": "enabled",
+         "description": "Answers questions about documents"
+       }
+     }'
 ```
 
 ## Delete AI agent
@@ -427,7 +405,7 @@ curl -L POST "https://api.box.com/2.0/ai-agents" \
 <!-- sample delete_ai_agents_id -->
 
 ```bash
-curl -L DELETE "https://api.box.com/2.0/ai_agents/12345" \
+curl -L -X DELETE "https://api.box.com/2.0/ai_agents/12345" \
       -H 'Authorization: Bearer <ACCESS_TOKEN>'
 ```
 
@@ -607,10 +585,10 @@ curl -i -L 'https://api.box.com/2.0/ai/extract' \
           "type": "ai_agent_extract",
           "long_text": {
             "model": "azure__openai__gpt_4o_mini",
-            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?",
+            "prompt_template": "It is `{current_date}`, and I have $8000 and want to spend a week in the Azores. What should I see?"
           },
           "basic_text": {
-            "model": "azure__openai__gpt_4o_mini",
+            "model": "azure__openai__gpt_4o_mini"
           }
         }
       }'
@@ -3265,17 +3243,17 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
               "message": "Licence Plates"
             },
             "skill": {
-              "type": "service"
+              "type": "service",
               "id": "license-plates-service"
             },
             "invocation": {
-              "type": "skill_invocation"
+              "type": "skill_invocation",
               "id": "license-plates-service-123"
             },
-            "entries": {
+            "entries": [
               { "text": "DD-26-YT" },
               { "text": "DN86 BOX" }
-            }
+            ]
           },{
             "type": "skill_card",
             "skill_card_type": "transcript",
@@ -3284,15 +3262,15 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
               "message": "Video Transcription"
             },
             "skill": {
-              "type": "service"
+              "type": "service",
               "id": "video-transcription-service"
             },
             "invocation": {
-              "type": "skill_invocation"
+              "type": "skill_invocation",
               "id": "video-transcription-service-123"
             },
             "duration": 1000,
-            "entries": {
+            "entries": [
               {
                 "text": "Hi John, have I told you about Box recently?",
                 "appears": [{ "start": 0 }]
@@ -3301,7 +3279,7 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
                 "text": "No Aaron, you have not. Tell me more!",
                 "appears": [{ "start": 5 }]
               }
-            }
+            ]
           },{
             "type": "skill_card",
             "skill_card_type": "timeline",
@@ -3310,15 +3288,15 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
               "message": "Faces"
             },
             "skill": {
-              "type": "service"
+              "type": "service",
               "id": "face-detection-service"
             },
             "invocation": {
-              "type": "skill_invocation"
+              "type": "skill_invocation",
               "id": "face-detection-service-123"
             },
             "duration": 1000,
-            "entries": {
+            "entries": [
               {
                 "text": "John",
                 "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }],
@@ -3329,7 +3307,7 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
                 "appears": [{ "start": 5, "end": 10 }],
                 "image_url": "https://example.com/aaron.png"
               }
-            }
+            ]
           },{
             "type": "skill_card",
             "skill_card_type": "status",
@@ -3338,18 +3316,18 @@ curl -i -X PUT "https://api.box.com/2.0/skill_invocations/33243242" \
               "message": "Please hold..."
             },
             "skill": {
-              "type": "service"
+              "type": "service",
               "id": "face-detection-service"
             },
             "invocation": {
-              "type": "skill_invocation"
+              "type": "skill_invocation",
               "id": "face-detection-service-123"
             },
             "status": {
               "code": "processing",
               "message": "We are processing this file right now."
             }
-          }],
+          }]
        },
        "file": {
          "id": "12345"
@@ -3387,17 +3365,17 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
            "message": "Licence Plates"
          },
          "skill": {
-           "type": "service"
+           "type": "service",
            "id": "license-plates-service"
          },
          "invocation": {
-           "type": "skill_invocation"
+           "type": "skill_invocation",
            "id": "license-plates-service-123"
          },
-         "entries": {
+         "entries": [
            { "text": "DD-26-YT" },
            { "text": "DN86 BOX" }
-         }
+         ]
        },{
          "type": "skill_card",
          "skill_card_type": "transcript",
@@ -3406,15 +3384,15 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
            "message": "Video Transcription"
          },
          "skill": {
-           "type": "service"
+           "type": "service",
            "id": "video-transcription-service"
          },
          "invocation": {
-           "type": "skill_invocation"
+           "type": "skill_invocation",
            "id": "video-transcription-service-123"
          },
          "duration": 1000,
-         "entries": {
+         "entries": [
            {
              "text": "Hi John, have I told you about Box recently?",
              "appears": [{ "start": 0 }]
@@ -3423,7 +3401,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
              "text": "No Aaron, you have not. Tell me more!",
              "appears": [{ "start": 5 }]
            }
-         }
+         ]
        },{
          "type": "skill_card",
          "skill_card_type": "timeline",
@@ -3432,15 +3410,15 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
            "message": "Faces"
          },
          "skill": {
-           "type": "service"
+           "type": "service",
            "id": "face-detection-service"
          },
          "invocation": {
-           "type": "skill_invocation"
+           "type": "skill_invocation",
            "id": "face-detection-service-123"
          },
          "duration": 1000,
-         "entries": {
+         "entries": [
            {
              "text": "John",
              "appears": [{ "start": 0, "end": 5 }, { "start": 10, "end": 15 }],
@@ -3451,7 +3429,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
              "appears": [{ "start": 5, "end": 10 }],
              "image_url": "https://example.com/aaron.png"
            }
-         }
+         ]
        },{
          "type": "skill_card",
          "skill_card_type": "status",
@@ -3460,18 +3438,18 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
            "message": "Please hold..."
          },
          "skill": {
-           "type": "service"
+           "type": "service",
            "id": "face-detection-service"
          },
          "invocation": {
-           "type": "skill_invocation"
+           "type": "skill_invocation",
            "id": "face-detection-service-123"
          },
          "status": {
            "code": "processing",
            "message": "We are processing this file right now."
          }
-       }],
+       }]
      }'
 ```
 
@@ -3483,7 +3461,7 @@ curl -i -X POST "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCa
 curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCards" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H "content-type: application/json-patch+json" \
-     -d '[
+     -d '[{
        "op": "replace",
        "path": "/cards/0",
        "value": {
@@ -3494,19 +3472,19 @@ curl -i -X PUT "https://api.box.com/2.0/files/12345/metadata/global/boxSkillsCar
            "message": "Licence Plates"
          },
          "skill": {
-           "type": "service"
+           "type": "service",
            "id": "license-plates-service"
          },
          "invocation": {
-           "type": "skill_invocation"
+           "type": "skill_invocation",
            "id": "license-plates-service-123"
          },
-         "entries": {
+         "entries": [
            { "text": "DD-26-YT" },
            { "text": "DN86 BOX" }
-         }
+         ]
        }
-     ]'
+     }]'
 ```
 
 ## Delete Skill cards from file
@@ -4193,7 +4171,7 @@ curl -i -X POST "https://api.box.com/2.0/collaboration_whitelist_entries" \
      -H "content-type: application/json" \
      -d '{
        "domain": "example.com",
-       "direction": "inboud"
+       "direction": "inbound"
      }'
 ```
 
@@ -4301,7 +4279,7 @@ Fetches all the storage policy assignment for an enterprise or user.
 <!-- sample get_storage_policy_assignments -->
 
 ```bash
-curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments?resolved_for_type=userresolved_for_id=984322" \
+curl -i -X GET "https://api.box.com/2.0/storage_policy_assignments?resolved_for_type=user&resolved_for_id=984322" \
      -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
@@ -4420,7 +4398,7 @@ curl -i -X GET "https://api.box.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==n
 <!-- sample get_zip_downloads_id_content -->
 
 ```bash
-curl -L GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
+curl -L -X GET "https://dl.boxcloud.com/2.0/zip_downloads/29l00nfxDyHOt7RphI9zT_w==nDnZEDjY2S8iEWWCHEEiptFxwoWojjlibZjJ6geuE5xnXENDTPxzgbks_yY=/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -o sample_curl.zip
 ```
