@@ -1,3 +1,0 @@
-curl -i -X PUT "https://api.box.com/2.0/ai_agents/1234567890" \
-     -H "authorization: Bearer TuW6URx9PYvrj8SRGq8nsrnf75ECSRKH"
-
