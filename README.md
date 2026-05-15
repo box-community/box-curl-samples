@@ -1502,7 +1502,7 @@ curl -i -X PUT "https://api.box.com/2.0/folders/4353455" \
        "name": "New folder name",
        "parent": {
          "id": "123"
-       }
+       },
         "owned_by": {
          "id": "123456"
        }
@@ -5185,4 +5185,844 @@ curl -X -L POST "https://api.box.com/2.0/external_users/external_users_submit_de
         "items":
           "$ref: #/components/schemas/UserReference"
       }'
+```
+
+## List shield information barriers
+
+Retrieves a list of shield information barrier objects
+for the enterprise of JWT.
+
+<!-- sample get_shield_information_barriers -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barriers" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get shield information barrier by ID
+
+Get shield information barrier based on provided ID.
+
+<!-- sample get_shield_information_barriers_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barriers/1910967" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create shield information barrier
+
+Creates a shield information barrier to separate
+individuals/groups within the same firm and prevents
+confidential information passing between them.
+
+<!-- sample post_shield_information_barriers -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_information_barriers" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "enterprise": {
+         "id": "1910967",
+         "type": "enterprise"
+       }
+     }'
+```
+
+## Change status of shield information barrier
+
+Change status of shield information barrier with the
+specified ID.
+
+<!-- sample post_shield_information_barriers_change_status -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_information_barriers/change_status" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "id": "1910967",
+       "status": "pending"
+     }'
+```
+
+## List shield information barrier reports
+
+Lists shield information barrier reports.
+
+<!-- sample get_shield_information_barrier_reports -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_reports?shield_information_barrier_id=1910967" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get shield information barrier report by ID
+
+Retrieves a shield information barrier report by its ID.
+
+<!-- sample get_shield_information_barrier_reports_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_reports/3423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create shield information barrier report
+
+Creates a shield information barrier report for a
+given barrier.
+
+<!-- sample post_shield_information_barrier_reports -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_information_barrier_reports" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "shield_information_barrier": {
+         "id": "11446498",
+         "type": "shield_information_barrier"
+       }
+     }'
+```
+
+## List shield information barrier segments
+
+Retrieves a list of shield information barrier segment
+objects for the specified Information Barrier ID.
+
+<!-- sample get_shield_information_barrier_segments -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_segments?shield_information_barrier_id=1910967" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get shield information barrier segment by ID
+
+Retrieves shield information barrier segment based
+on provided ID.
+
+<!-- sample get_shield_information_barrier_segments_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_segments/3423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create shield information barrier segment
+
+Creates a shield information barrier segment.
+
+<!-- sample post_shield_information_barrier_segments -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_information_barrier_segments" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "shield_information_barrier": {
+         "id": "11446498",
+         "type": "shield_information_barrier"
+       },
+       "name": "Investment Banking"
+     }'
+```
+
+## Update shield information barrier segment
+
+Updates the shield information barrier segment based
+on provided ID.
+
+<!-- sample put_shield_information_barrier_segments_id -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/shield_information_barrier_segments/3423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "name": "Investment Banking",
+       "description": "Corporate division that engages in advisory-based financial transactions on behalf of individuals, corporations, and governments."
+     }'
+```
+
+## Delete shield information barrier segment
+
+Deletes the shield information barrier segment based
+on provided ID.
+
+<!-- sample delete_shield_information_barrier_segments_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/shield_information_barrier_segments/3423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List shield information barrier segment members
+
+Lists shield information barrier segment members based
+on provided segment IDs.
+
+<!-- sample get_shield_information_barrier_segment_members -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_segment_members?shield_information_barrier_segment_id=3423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get shield information barrier segment member by ID
+
+Retrieves a shield information barrier segment member
+by its ID.
+
+<!-- sample get_shield_information_barrier_segment_members_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_segment_members/7815" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create shield information barrier segment member
+
+Creates a new shield information barrier segment member.
+
+<!-- sample post_shield_information_barrier_segment_members -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_information_barrier_segment_members" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "shield_information_barrier_segment": {
+         "id": "432554",
+         "type": "shield_information_barrier_segment"
+       },
+       "user": {
+         "id": "11446498",
+         "type": "user"
+       }
+     }'
+```
+
+## Delete shield information barrier segment member by ID
+
+Deletes a shield information barrier segment member
+based on provided ID.
+
+<!-- sample delete_shield_information_barrier_segment_members_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/shield_information_barrier_segment_members/7815" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List shield information barrier segment restrictions
+
+Lists shield information barrier segment restrictions
+based on provided segment ID.
+
+<!-- sample get_shield_information_barrier_segment_restrictions -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_segment_restrictions?shield_information_barrier_segment_id=3423" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get shield information barrier segment restriction by ID
+
+Retrieves a shield information barrier segment
+restriction based on provided ID.
+
+<!-- sample get_shield_information_barrier_segment_restrictions_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_information_barrier_segment_restrictions/4563" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create shield information barrier segment restriction
+
+Creates a shield information barrier segment
+restriction object.
+
+<!-- sample post_shield_information_barrier_segment_restrictions -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_information_barrier_segment_restrictions" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "type": "shield_information_barrier_segment_restriction",
+       "shield_information_barrier_segment": {
+         "id": "1910967",
+         "type": "shield_information_barrier_segment"
+       },
+       "restricted_segment": {
+         "id": "1910967",
+         "type": "shield_information_barrier_segment"
+       }
+     }'
+```
+
+## Delete shield information barrier segment restriction by ID
+
+Delete shield information barrier segment restriction
+based on provided ID.
+
+<!-- sample delete_shield_information_barrier_segment_restrictions_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/shield_information_barrier_segment_restrictions/4563" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List file app item associations
+
+Returns all app items the file is associated with.
+
+<!-- sample get_files_id_app_item_associations -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/files/12345/app_item_associations" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List folder app item associations
+
+Returns all app items the folder is associated with.
+
+<!-- sample get_folders_id_app_item_associations -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/folders/12345/app_item_associations" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get collection by ID
+
+Retrieves a collection by its ID.
+
+<!-- sample get_collections_id -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/collections/926489" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Find metadata template by instance ID
+
+Finds a metadata template by searching for the ID of
+an instance of the template.
+
+<!-- sample get_metadata_templates -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/metadata_templates?metadata_instance_id=01234500-12f1-1234-aa12-b1d234cb567e" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List files with current file versions for legal hold policy assignment
+
+<!-- sample get_legal_hold_policy_assignments_id_files_on_hold -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments/753465/files_on_hold" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List previous file versions for legal hold policy assignment
+
+<!-- sample get_legal_hold_policy_assignments_id_file_versions_on_hold -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/legal_hold_policy_assignments/753465/file_versions_on_hold" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Delete retention policy
+
+Permanently deletes a retention policy.
+
+<!-- sample delete_retention_policies_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/retention_policies/982312" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Remove retention policy assignment
+
+Removes a retention policy assignment applied to content.
+
+<!-- sample delete_retention_policy_assignments_id -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/retention_policy_assignments/1233123" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Transfer owned folders
+
+Move all of the items (files, folders and workflows)
+owned by a user into another user's account.
+Only the root folder (0) can be transferred.
+
+<!-- sample put_users_id_folders_0 -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/users/12345/folders/0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "owned_by": {
+         "id": "1232234"
+       }
+     }'
+```
+
+## Update metadata taxonomy
+
+Updates an existing metadata taxonomy.
+
+<!-- sample patch_metadata_taxonomies_id_id -->
+
+```bash
+curl -i -X PATCH "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "displayName": "Geography"
+     }'
+```
+
+## Update metadata taxonomy level
+
+Updates an existing metadata taxonomy level.
+
+<!-- sample patch_metadata_taxonomies_id_id_levels_id -->
+
+```bash
+curl -i -X PATCH "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/levels/1" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "displayName": "France",
+       "description": "French Republic"
+     }'
+```
+
+## Update metadata taxonomy node
+
+Updates an existing metadata taxonomy node.
+
+<!-- sample patch_metadata_taxonomies_id_id_nodes_id -->
+
+```bash
+curl -i -X PATCH "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/nodes/14d3d433-c77f-49c5-b146-9dea370f6e32" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "displayName": "France"
+     }'
+```
+
+## Add metadata taxonomy level
+
+Creates a new metadata taxonomy level and appends it
+to the existing levels.
+
+<!-- sample post_metadata_taxonomies_id_id_levels:append -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/metadata_taxonomies/enterprise_123456/geography/levels:append" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "displayName": "City",
+       "description": "City Level"
+     }'
+```
+
+## List all Box Hubs
+
+Retrieves all Box Hubs for requesting user.
+
+<!-- sample get_hubs_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hubs" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create Box Hub
+
+Creates a new Box Hub.
+
+<!-- sample post_hubs_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/hubs" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "title": "Hub Title",
+       "description": "This is a description of the Box Hub."
+     }'
+```
+
+## List all Box Hubs for enterprise
+
+Retrieves all Box Hubs for a given enterprise.
+
+<!-- sample get_enterprise_hubs_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/enterprise_hubs" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get Box Hub by ID
+
+Retrieves details for a Box Hub by its ID.
+
+<!-- sample get_hubs_id_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hubs/12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Update Box Hub by ID
+
+Updates a Box Hub. Can be used to change title,
+description, or Box Hub settings.
+
+<!-- sample put_hubs_id_v2025.0 -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/hubs/12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "title": "Updated Hub Title",
+       "description": "Updated description of the Box Hub."
+     }'
+```
+
+## Delete Box Hub
+
+Deletes a single Box Hub.
+
+<!-- sample delete_hubs_id_v2025.0 -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/hubs/12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Copy Box Hub
+
+Creates a copy of a Box Hub.
+
+<!-- sample post_hubs_id_copy_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/hubs/12345/copy" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "title": "Copied Hub Title",
+       "description": "A copy of the original Box Hub."
+     }'
+```
+
+## Get Box Hub collaborations
+
+Retrieves all collaborations for a Box Hub.
+
+<!-- sample get_hub_collaborations_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hub_collaborations?hub_id=12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create Box Hub collaboration
+
+Adds a collaboration for a single user or a single
+group to a Box Hub.
+
+<!-- sample post_hub_collaborations_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/hub_collaborations" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "hub": {
+         "type": "hubs",
+         "id": "42037322"
+       },
+       "accessible_by": {
+         "type": "user",
+         "id": "23522323"
+       },
+       "role": "viewer"
+     }'
+```
+
+## Get Box Hub collaboration by ID
+
+Retrieves details for a Box Hub collaboration by
+collaboration ID.
+
+<!-- sample get_hub_collaborations_id_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hub_collaborations/1234" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Update Box Hub collaboration
+
+Updates a Box Hub collaboration. Can be used to change
+the Box Hub role.
+
+<!-- sample put_hub_collaborations_id_v2025.0 -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/hub_collaborations/1234" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "role": "editor"
+     }'
+```
+
+## Remove Box Hub collaboration
+
+Deletes a single Box Hub collaboration.
+
+<!-- sample delete_hub_collaborations_id_v2025.0 -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/hub_collaborations/1234" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get Box Hub items
+
+Retrieves all items associated with a Box Hub.
+
+<!-- sample get_hub_items_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hub_items?hub_id=12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Manage Box Hub items
+
+Adds and/or removes Box Hub items from a Box Hub.
+
+<!-- sample post_hubs_id_manage_items_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/hubs/12345/manage_items" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "operations": [
+         {
+           "action": "add",
+           "item": {
+             "type": "folder",
+             "id": "123456789"
+           }
+         }
+       ]
+     }'
+```
+
+## List Hub Document pages
+
+Retrieves a list of Hub Document Pages for
+the specified hub.
+
+<!-- sample get_hub_document_pages_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hub_document_pages?hub_id=12345" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## List Hub Document blocks for page
+
+Retrieves a sorted list of all Hub Document Blocks
+on a specified page in the hub document.
+
+<!-- sample get_hub_document_blocks_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/hub_document_blocks?hub_id=12345&page_id=d97f7c26-0d9b-42a1-a00d-6e6db9619e0f" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get all shield lists
+
+Retrieves all shield lists in the enterprise.
+
+<!-- sample get_shield_lists_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_lists" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Create shield list
+
+Creates a shield list.
+
+<!-- sample post_shield_lists_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/shield_lists" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "name": "My Shield List",
+       "description": "A list of things that are shielded",
+       "content": {
+         "type": "country",
+         "country_codes": ["US", "PL"]
+       }
+     }'
+```
+
+## Get shield list by ID
+
+Retrieves a single shield list by its ID.
+
+<!-- sample get_shield_lists_id_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/shield_lists/90fb0e17-c332-40ed-b4f9-fa8908fbbb24" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Update shield list
+
+Updates a shield list.
+
+<!-- sample put_shield_lists_id_v2025.0 -->
+
+```bash
+curl -i -X PUT "https://api.box.com/2.0/shield_lists/90fb0e17-c332-40ed-b4f9-fa8908fbbb24" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "name": "My Shield List",
+       "description": "Updated description",
+       "content": {
+         "type": "country",
+         "country_codes": ["US"]
+       }
+     }'
+```
+
+## Delete shield list
+
+Delete a single shield list by its ID.
+
+<!-- sample delete_shield_lists_id_v2025.0 -->
+
+```bash
+curl -i -X DELETE "https://api.box.com/2.0/shield_lists/90fb0e17-c332-40ed-b4f9-fa8908fbbb24" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Get enterprise configuration
+
+Retrieves the configuration for an enterprise.
+
+<!-- sample get_enterprise_configurations_id_v2025.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/enterprise_configurations/3442311?categories=security,content_and_sharing" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Submit job to delete external users
+
+Delete external users from current user enterprise.
+
+<!-- sample post_external_users_submit_delete_job_v2025.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/external_users/submit_delete_job" \
+     -H "box-version: 2025.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "external_users": [
+         {
+           "type": "user",
+           "id": "12345"
+         }
+       ]
+     }'
+```
+
+## List Automate workflows
+
+Returns workflow actions from Automate for a folder.
+
+<!-- sample get_automate_workflows_v2026.0 -->
+
+```bash
+curl -i -X GET "https://api.box.com/2.0/automate_workflows?folder_id=12345" \
+     -H "box-version: 2026.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
+```
+
+## Start Automate workflow
+
+Starts an Automate workflow manually by using a
+workflow action ID and file IDs.
+
+<!-- sample post_automate_workflows_id_start_v2026.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/automate_workflows/12345/start" \
+     -H "box-version: 2026.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "workflow_action_id": "981",
+       "file_ids": ["123"]
+     }'
 ```
