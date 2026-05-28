@@ -897,7 +897,7 @@ curl -i -L -X GET "https://api.box.com/2.0/files/12345/content" \
 
 ```bash
 curl -i -L -X GET "https://api.box.com/2.0/files/12345/content?version=4" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Get download URL
@@ -918,7 +918,7 @@ Returns the contents of a file in binary format.
 ```bash
 curl -i -L -X GET "https://api.box.com/2.0/files/12345/content" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
-     -H "boxapi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein" \
+     -H "boxapi: shared_link=https://cloud.box.com/shared/static/gjasdasjhasd&shared_link_password=letmein"
 ```
 
 ## Upload a file version
@@ -2844,7 +2844,7 @@ Uploads or updates a user avatar.
 <!-- sample post_users_id_avatar -->
 
 ```bash
-curl -i -X -L POST "https://api.box.net/2.0/users/12345/avatar" \
+curl -i -L -X POST "https://api.box.net/2.0/users/12345/avatar" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      --form 'pic=@"path/to/file/file.jpeg"'
 ```
@@ -5001,8 +5001,8 @@ curl -i -X POST "https://api.box.com/2.0/groups/terminate_sessions" \
 <!-- sample get_integration_mappings_slack -->
 
 ```bash
-curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" \
+curl -L -X GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_id=C987654321&box_item_id=123456789" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Create integration mapping Slack
@@ -5010,7 +5010,7 @@ curl -X -L GET "https://api.box.com/2.0/integration_mappings/slack?partner_item_
 <!-- sample post_integration_mappings_slack -->
 
 ```bash
-curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
+curl -L -X POST "https://api.box.com/2.0/integration_mappings/slack" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H 'content-type: application/json' \
      -d '{
@@ -5031,10 +5031,10 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/slack" \
 <!-- sample put_integration_mappings_slack_id -->
 
 ```bash
-curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
+curl -L -X PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -H 'content-type: application/json'  \
-     -d'{
+     -d '{
          "options": {
             "is_access_management_disabled": true
         }
@@ -5046,7 +5046,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/slack/512521" \
 <!-- sample delete_integration_mappings_slack_id -->
 
 ```bash
-curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
+curl -L -X DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
 ```
@@ -5058,7 +5058,7 @@ curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/slack/512521" \
 ```bash
 curl -L -X GET "https://api.box.com/2.0/sign_templates/12345678" \
      -H "accept: application/json" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Get Box Sign templates
@@ -5067,7 +5067,7 @@ curl -L -X GET "https://api.box.com/2.0/sign_templates/12345678" \
 
 ```bash
 curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG9yDCRNgd2ymoZIbjsxbJMjIs3kioVii&limit=1000" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## List integration mappings Teams
@@ -5075,8 +5075,8 @@ curl -L -X GET "https://api.box.com/2.0/sign_templates?marker=JV9IRGZmieiBasejOG
 <!-- sample get_integration_mappings_teams -->
 
 ```bash
-curl -X GET -L "https://api.box.com/2.0/integration_mappings/teams" \
-     -H "authorization: Bearer <ACCESS_TOKEN>" \
+curl -L -X GET "https://api.box.com/2.0/integration_mappings/teams" \
+     -H "authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ## Create integration mapping Teams
@@ -5084,7 +5084,7 @@ curl -X GET -L "https://api.box.com/2.0/integration_mappings/teams" \
 <!-- sample post_integration_mappings_teams -->
 
 ```bash
-curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
+curl -L -X POST "https://api.box.com/2.0/integration_mappings/teams" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -H 'content-type: application/json' \
      -d '{
@@ -5106,9 +5106,9 @@ curl -X -L POST "https://api.box.com/2.0/integration_mappings/teams" \
 <!-- sample put_integration_mappings_teams_id -->
 
 ```bash
-curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
-     -H "authorization: Bearer <ACCESS_TOKEN>"  \
-     -H 'content-type: application/json'  \
+curl -L -X PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H 'content-type: application/json'
 ```
 
 ## Delete integration mapping Teams
@@ -5116,7 +5116,7 @@ curl -X -L PUT "https://api.box.com/2.0/integration_mappings/teams/12345" \
 <!-- sample delete_integration_mappings_teams_id -->
 
 ```bash
-curl -X -L DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
+curl -L -X DELETE "https://api.box.com/2.0/integration_mappings/teams/342423" \
      -H "authorization: Bearer <ACCESS_TOKEN>"  \
      -d ''
 ```
@@ -5176,7 +5176,7 @@ curl -i -X DELETE "https://api.box.com/2.0/archives/12345" \
 <!-- sample post_external_users_submit_delete_job -->
 
 ```bash
-curl -X -L POST "https://api.box.com/2.0/external_users/external_users_submit_delete_job" \
+curl -L -X POST "https://api.box.com/2.0/external_users/external_users_submit_delete_job" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
      -d '{
       "external_users":
