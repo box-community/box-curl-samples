@@ -5176,15 +5176,18 @@ curl -i -X DELETE "https://api.box.com/2.0/archives/12345" \
 <!-- sample post_external_users_submit_delete_job -->
 
 ```bash
-curl -L -X POST "https://api.box.com/2.0/external_users/external_users_submit_delete_job" \
+curl -i -X POST "https://api.box.com/2.0/external_users/submit_delete_job" \
+     -H "box-version: 2025.0" \
      -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
      -d '{
-      "external_users":
-        "type": "array"
-        "description": "List of external users to delete."
-        "items":
-          "$ref: #/components/schemas/UserReference"
-      }'
+       "external_users": [
+         {
+           "type": "user",
+           "id": "<EXTERNAL_USER_ID>"
+         }
+       ]
+     }'
 ```
 
 ## List shield information barriers
