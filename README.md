@@ -6029,3 +6029,110 @@ curl -i -X POST "https://api.box.com/2.0/automate_workflows/12345/start" \
        "file_ids": ["123"]
      }'
 ```
+
+## Convert content to Box Note
+
+Creates a Box Note (`.boxnote` file) from supported source content.
+
+<!-- sample post_notes_convert_v2026.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/notes/convert" \
+     -H "box-version: 2026.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "content": "# My note\n\nHello from Markdown.",
+       "content_format": "markdown",
+       "parent": {
+         "type": "folder",
+         "id": "42037322"
+       },
+       "name": "Quarterly plan"
+     }'
+```
+
+## Query for Box items
+
+Runs a query to discover Box items using a logical predicate that can filter
+across item fields and metadata templates.
+
+<!-- sample post_query_v2026.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/query" \
+     -H "box-version: 2026.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "query": {
+         "predicate": "enterprise_12345678:book:purchasePrice >= :price AND box:item:name = :name",
+         "params": {
+           "price": 100,
+           "name": "The Hobbit"
+         },
+         "ancestors": [
+           {
+             "id": "789",
+             "type": "folder"
+           }
+         ]
+       },
+       "order_by": [
+         {
+           "field_key": "enterprise_12345678:book:purchasePrice",
+           "direction": "asc"
+         }
+       ],
+       "limit": 1,
+       "fields": [
+         "box:item:name",
+         "enterprise_12345678:book"
+       ]
+     }'
+```
+
+## Create insights for Box items
+
+Computes aggregated metrics over Box items matching a query predicate.
+
+<!-- sample post_query_insights_v2026.0 -->
+
+```bash
+curl -i -X POST "https://api.box.com/2.0/query_insights" \
+     -H "box-version: 2026.0" \
+     -H "authorization: Bearer <ACCESS_TOKEN>" \
+     -H "content-type: application/json" \
+     -d '{
+       "query": {
+         "predicate": "EXISTS(:templateArg) AND box:item:created_at >= :dateArg1 AND box:item:created_at < :dateArg2",
+         "params": {
+           "templateArg": "enterprise_12345678:sales",
+           "dateArg1": "2025-06-01T00:00:00-07:00",
+           "dateArg2": "2025-07-01T00:00:00-07:00"
+         },
+         "ancestors": [
+           {
+             "id": "123",
+             "type": "folder"
+           }
+         ],
+         "group_by": [
+           {
+             "field": "enterprise_12345678:sales:contractType",
+             "bucket_limit": 3
+           }
+         ]
+       },
+       "metrics": {
+         "totalContractValue": {
+           "type": "sum",
+           "field": "enterprise_12345678:sales:contractValue"
+         },
+         "countContractType": {
+           "type": "count",
+           "field": "enterprise_12345678:sales:contractType"
+         }
+       }
+     }'
+```
